@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "807952069660",
+    "project_id": "omw-7ea8a",
+    "storage_bucket": "omw-7ea8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807952069660:android:ff746d5dfc2fcfe2fd1bd9",
+        "android_client_info": {
+          "package_name": "h.omw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807952069660-59fi7mtladn85vcrrkgrdekitjbfp56v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "h.omw",
+            "certificate_hash": "5a42c7640d676aca65535421ccf4e58c404d339e"
+          }
+        },
+        {
+          "client_id": "807952069660-ot5pod4d0ls5ttupjkc1278j4tfbrh79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkbasyP7WY0RQGl2tr3kpcfYrta-ZtsQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807952069660-ot5pod4d0ls5ttupjkc1278j4tfbrh79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
