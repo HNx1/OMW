@@ -32,36 +32,36 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  provider: ^6.0.3
-  country_list_pick: ^1.0.1+6
-  image_picker: ^0.8.5+3
-  flutter_holo_date_picker: ^1.0.6
-  flutter_switch: ^0.3.2
-  syncfusion_flutter_datepicker: ^20.2.40
-  gugor_emoji: ^0.0.4
-  table_calendar: ^3.0.6
-  url_launcher: ^6.1.5
+  cupertino_icons: 
+  provider: 
+  country_list_pick: 
+  image_picker: 
+  flutter_holo_date_picker: 
+  flutter_switch: 
+  syncfusion_flutter_datepicker: 
+  gugor_emoji: 
+  table_calendar: 
+  url_launcher: 
 
-  shared_preferences: ^2.0.15
-  flutter_paypal: ^0.0.8
-  cached_network_image: ^3.2.1
-  flutter_contacts: ^1.1.5
-  paged_vertical_calendar: ^1.1.3
-  flutter_local_notifications: ^9.7.0
-  http: ^0.13.4
-  flutter_stripe: ^4.0.0
-  flutter_cache_manager: ^3.0.0
+  shared_preferences: 
+  flutter_paypal: 
+  cached_network_image: 
+  flutter_contacts: 
+  paged_vertical_calendar: 
+  flutter_local_notifications: 
+  http: 
+  flutter_stripe: 
+  flutter_cache_manager: 
 
-  firebase_auth: ^3.4.2
-  firebase_core: ^1.20.0
-  cloud_firestore: ^3.4.1
-  firebase_storage: ^10.3.3
-  firebase_messaging: ^12.0.1
+  firebase_auth: 
+  firebase_core: 
+  cloud_firestore: 
+  firebase_storage: 
+  firebase_messaging: 
 
-  flutter_share: ^2.0.0
-  firebase_dynamic_links: ^4.3.5
-  lazy_data_table: ^0.3.1
+  flutter_share: 
+  firebase_dynamic_links: 
+  lazy_data_table: 
 
 dev_dependencies:
   flutter_test:
