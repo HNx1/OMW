@@ -1,7 +1,7 @@
 import 'package:omw/utils/textUtils.dart';
 
 String? isValidEmail(String? email) {
-  RegExp regex = RegExp(r'\w+@\w+\.\w+');
+  RegExp regex = RegExp(r'.+@.+\..+');
   if (email!.isEmpty)
     return TextUtils.enterEmailMessage;
   else if (!regex.hasMatch(email))
@@ -168,7 +168,7 @@ String? isValidpassword(String? password) {
     return TextUtils.enterPassword;
   } else {
     if (!regex.hasMatch(password))
-      return TextUtils.validpasword;
+      return "Please make sure that your password meets all of the below criteria";
     else
       return null;
   }
