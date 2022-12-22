@@ -86,17 +86,6 @@ String? validateDescription(String? name) {
   }
 }
 
-String? validateFullName(String? name) {
-  RegExp regex = RegExp("[A-Z][a-z]+\s[A-Z][a-z]");
-  if (name!.isEmpty) {
-    return TextUtils.enterFullName;
-  } else if (!regex.hasMatch(name)) {
-    return TextUtils.valideFullName;
-  } else {
-    return null;
-  }
-}
-
 String? validateAmount(String? name) {
   RegExp regex = RegExp("[0-9]");
   if (name!.isEmpty) {
