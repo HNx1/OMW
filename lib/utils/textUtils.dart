@@ -55,7 +55,7 @@ class TextUtils {
   static const String validamount = "Please enter valid amount";
   static const String entermobile = 'Please enter your mobile number';
   static const String digit = 'Please enter 10 digit mobile number';
-  static const String validmobile = 'Please enter only 10 digit mobile number';
+  static const String validmobile = 'Please enter a 10 digit mobile number';
   static const String enterPassword = "Please enter your password";
   static const String validpasword =
       "Password must have minimum 8 characters with one letter, one number and one special character";
