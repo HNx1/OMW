@@ -54,7 +54,18 @@ Future<void> main() async {
   BuildContext? context;
 
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  try {
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+  } on FirebaseException catch (e) {
+    if (e.code == 'duplicate-app') {
+      // We will not do anything for now and continue execution
+    } else {
+      throw e;
+    }
+  } catch (e) {
+    rethrow;
+  }
   await FirebaseAuth.instance;
 
   Stripe.publishableKey =
