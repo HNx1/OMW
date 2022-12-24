@@ -15,6 +15,7 @@ import 'package:omw/authentication/addProfileScreen.dart';
 import 'package:omw/authentication/signUp.dart';
 import 'package:omw/bottom/Chat/IndividualChat/individual_chat_Room.dart';
 import 'package:omw/bottom/Events/event/eventDetails_screen.dart';
+import 'package:omw/firebase_options.dart';
 import 'package:omw/notifier/CookieData.dart';
 import 'package:omw/preference/preference.dart';
 import 'package:omw/splash/spalsh.dart';
@@ -53,7 +54,7 @@ Future<void> main() async {
   BuildContext? context;
 
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseAuth.instance;
 
   Stripe.publishableKey =
