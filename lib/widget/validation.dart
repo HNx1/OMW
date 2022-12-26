@@ -160,14 +160,28 @@ String? validateEmailOrPhone(String? value) {
 }
 
 String? isValidpassword(String? password) {
-  Pattern pattern =
-      r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$";
-  RegExp regex = new RegExp(pattern as String);
-  print(password);
+  // Check if it has
   if (password!.isEmpty) {
     return TextUtils.enterPassword;
   } else {
-    if (!regex.hasMatch(password))
+    String thisPwd = password;
+    Pattern hasLettersPattern = r".*[A-Za-z].*";
+    Pattern hasDigitsPattern = r".*\d.*";
+    Pattern hasSpecialCharactersPattern = r".*[@$!%*#?&].*";
+    RegExp LettersRegex = new RegExp(hasLettersPattern as String);
+    RegExp DigitsRegex = new RegExp(hasDigitsPattern as String);
+    RegExp SpecialCharactersRegex =
+        new RegExp(hasSpecialCharactersPattern as String);
+    print(password);
+
+    bool hasLetters = LettersRegex.hasMatch(password);
+    bool hasDigits = DigitsRegex.hasMatch(password);
+    bool hasSpecialCharacters = SpecialCharactersRegex.hasMatch(password);
+    bool validpwd = (thisPwd.length >= 8) &&
+        hasLetters &&
+        hasDigits &&
+        hasSpecialCharacters;
+    if (validpwd)
       return TextUtils.validpasword;
     else
       return null;
