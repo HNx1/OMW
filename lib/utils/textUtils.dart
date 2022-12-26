@@ -55,7 +55,7 @@ class TextUtils {
   static const String validamount = "Please enter valid amount";
   static const String entermobile = 'Please enter your mobile number';
   static const String digit = 'Please enter 10 digit mobile number';
-  static const String validmobile = 'Please enter only 10 digit mobile number';
+  static const String validmobile = 'Please enter a 10 digit mobile number';
   static const String enterPassword = "Please enter your password";
   static const String notValidPassword =
       "Password must have minimum 8 characters with one letter, one number and one special character";
@@ -80,12 +80,6 @@ class TextUtils {
   static const String Settings = "Settings";
   static const String myEvent = "My events";
   static const String editEvent = "Edit event";
-
-  static const String iam =
-      "I am a business woman and i love to buy a car with extraordinary feature and with high comfort zone in car and i have...";
-  static const String Read = "Read More";
-  static const String iamfull =
-      "I am a business woman and i love to buy a car with extraordinary feature and with high comfort zone in car and i have to like logn drive in night with my new new car so i like to have fun... ";
 
   static const String Message = "Message";
   static const String rs = "£";
@@ -162,8 +156,6 @@ class TextUtils {
   static const String Nameorphone = "Name or phone number";
   static const String Suggested = "Suggested";
   static const String AddNewContact = "Add New Contact";
-  static const String MessageDavid = "Message David Warner ";
-  static const String Maildavid = "Mail David Warner ";
 
   static const String ChatNotifications = "Chat Notifications";
   static const String EventNotifications = "Event Notifications";
@@ -216,8 +208,8 @@ class TextUtils {
   static const String Reject = "Reject";
   static const String Validoldpwd = "Please enter old paswword";
   static const String Validnewpwd = "Please enter new password ";
-  static const String Validconfirmpwd = " please enter confirm password";
+  static const String Validconfirmpwd = " Please confirm your password";
   static const String oldpwd = "Enter old paswword";
   static const String newpwd = "Enter new password ";
-  static const String confirmpwd = "Enter confirm password";
+  static const String confirmpwd = "Confirm your password";
 }

@@ -1,7 +1,7 @@
 import 'package:omw/utils/textUtils.dart';
 
 String? isValidEmail(String? email) {
-  RegExp regex = RegExp(r'\w+@\w+\.\w+');
+  RegExp regex = RegExp(r'.+@.+\..+');
   if (email!.isEmpty)
     return TextUtils.enterEmailMessage;
   else if (!regex.hasMatch(email))
@@ -81,17 +81,6 @@ String? validateLocation(String? name) {
 String? validateDescription(String? name) {
   if (name!.isEmpty) {
     return TextUtils.enterDescription;
-  } else {
-    return null;
-  }
-}
-
-String? validateFullName(String? name) {
-  RegExp regex = RegExp("[A-Z][a-z]+\s[A-Z][a-z]");
-  if (name!.isEmpty) {
-    return TextUtils.enterFullName;
-  } else if (!regex.hasMatch(name)) {
-    return TextUtils.valideFullName;
   } else {
     return null;
   }

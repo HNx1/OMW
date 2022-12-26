@@ -34,7 +34,7 @@ class _VerifyEmailPopUpState extends State<VerifyEmailPopUp> {
               Container(
                 margin: EdgeInsets.only(left: width * 0.03),
                 child: Text(
-                  "An email has just been sent to you, Click the link provided to complete registration.\n\nPlease check spam folder too.\n\nThen you can sign in with your new account",
+                  "Please verify your email using the link we just sent to you. \n\n Then you can log in with your new account.",
                   style: AppTheme.getTheme().textTheme.bodyText2!.copyWith(
                       color: ConstColor.white_Color,
                       height: 1.4,
