@@ -181,8 +181,8 @@ String? isValidpassword(String? password) {
         hasLetters &&
         hasDigits &&
         hasSpecialCharacters;
-    if (validpwd)
-      return TextUtils.validpasword;
+    if (!validpwd)
+      return TextUtils.notValidPassword;
     else
       return null;
   }
