@@ -57,7 +57,7 @@ class TextUtils {
   static const String digit = 'Please enter 10 digit mobile number';
   static const String validmobile = 'Please enter a 10 digit mobile number';
   static const String enterPassword = "Please enter your password";
-  static const String validpasword =
+  static const String notValidPassword =
       "Password must have minimum 8 characters with one letter, one number and one special character";
   static const String Code = "Code";
   static const String enterDescription = "Please enter description";
