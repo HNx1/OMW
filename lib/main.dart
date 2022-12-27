@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -50,8 +49,6 @@ String? eventHostUserId;
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 AllChat chat = AllChat("");
 Future<void> main() async {
-  BuildContext? context;
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FirebaseAuth.instance;
@@ -157,13 +154,10 @@ Future<void> main() async {
   });
 
   try {
-    final PendingDynamicLinkData? initialLink = await FirebaseDynamicLinks
-        .instance
-        .getInitialLink()
-        .then((value) async {
+    await FirebaseDynamicLinks.instance.getInitialLink().then((value) async {
       print("====link======" + value!.link.query);
-      if (value != null && value != "") {
-        if (value.link.query != null && value.link.query != "") {
+      if (value != "") {
+        if (value.link.query != "") {
           link = value.link.query;
         }
       }
@@ -173,7 +167,7 @@ Future<void> main() async {
   }
 
   FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) {
-    if (dynamicLinkData.link != null && dynamicLinkData.link != "") {
+    if (dynamicLinkData.link != "") {
       print('Link== ${dynamicLinkData.link}');
       link = dynamicLinkData.link.toString();
 
