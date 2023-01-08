@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gugor_emoji/emoji_picker_flutter.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:omw/bottom/Events/event/wanttoSendImage.dart';
 
@@ -219,7 +219,6 @@ class _EventChatPageState extends State<EventChatPage> {
       ),
       body: Column(
         children: [
-
           Expanded(
             child: SingleChildScrollView(
               reverse: true,
@@ -602,7 +601,6 @@ class _EventChatPageState extends State<EventChatPage> {
                                                 height: 1.4,
                                                 fontSize: width * 0.032),
                                       ),
-                                    
                                     ],
                                   ),
                                 )
@@ -744,7 +742,6 @@ class _EventChatPageState extends State<EventChatPage> {
                                   " " +
                                   objProviderNotifier.objUsers.lastName!,
                               objProviderNotifier.objUsers.userProfile!);
-                        
                         } else {
                           ScaffoldSnackbar.of(context)
                               .show("Turn on the data and retry again");
@@ -828,7 +825,6 @@ class _EventChatPageState extends State<EventChatPage> {
               GestureDetector(
                 onTap: () {
                   _getFromCamera();
-                  
                 },
                 child: commanButton(
                   ConstantData.camera,
@@ -837,7 +833,6 @@ class _EventChatPageState extends State<EventChatPage> {
               GestureDetector(
                 onTap: () {
                   _getFromGallery();
-                  
                 },
                 child: commanButton(
                   ConstantData.gallery,
