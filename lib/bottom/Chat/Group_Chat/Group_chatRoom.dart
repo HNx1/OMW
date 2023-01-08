@@ -888,7 +888,7 @@ class _GropChatPageState extends State<GropChatPage> {
                 child: SizedBox(
                   height: 250,
                   child: EmojiPicker(
-                    onEmojiSelected: (Category category, Emoji emoji) {
+                    onEmojiSelected: (Category? category, Emoji emoji) {
                       _onEmojiSelected(
                         emoji,
                       );
@@ -904,7 +904,6 @@ class _GropChatPageState extends State<GropChatPage> {
                       indicatorColor: Colors.blue,
                       iconColor: Colors.grey,
                       iconColorSelected: Colors.blue,
-                      progressIndicatorColor: Colors.blue,
                       backspaceColor: Colors.blue,
                       skinToneDialogBgColor:
                           AppTheme.getTheme().backgroundColor,
