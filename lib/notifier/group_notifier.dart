@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:contacts_service/contacts_service.dart';
 
 import '../api/apiProvider.dart';
 import '../model/groupModel.dart';
