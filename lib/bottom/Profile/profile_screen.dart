@@ -156,10 +156,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void addContact(UserModel contact) async {
     final newContact = Contact()
-      ..name.first = contact.firstName ?? ""
-      ..name.last = contact.lastName ?? ""
-      ..phones = [Phone(contact.phoneNumber!)];
-    await newContact.insert();
+      ..givenName = contact.firstName ?? ""
+      ..familyName = contact.lastName ?? ""
+      ..phones = [Item(label: "PhoneNumber", value: contact.phoneNumber!)];
+    ContactsService.addContact(newContact);
     print('new contact added');
     getAllContactList();
   }
