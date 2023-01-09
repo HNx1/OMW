@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:omw/model/user_model.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../api/apiProvider.dart';
 import '../model/createEvent_model.dart';
@@ -74,7 +75,9 @@ class CreateEventNotifier extends ChangeNotifier {
     contacts = [];
 
     await getAllUserList(context);
-    if (await FlutterContacts.requestPermission()) {
+    await Permission.contacts.request();
+    PermissionStatus permission = await Permission.contacts.status;
+    if (permission == PermissionStatus.granted) {
       await getDeviceContactList();
       await getAppContactList();
       await getFinalAppContactList(context, docId);

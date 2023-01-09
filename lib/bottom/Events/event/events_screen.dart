@@ -15,6 +15,7 @@ import 'package:omw/main.dart';
 import 'package:omw/notifier/authenication_notifier.dart';
 import 'package:omw/preference/preference.dart';
 import 'package:provider/provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../api/apiProvider.dart';
 import '../../../constant/constants.dart';
@@ -60,7 +61,9 @@ class _EventsSceenState extends State<EventsSceen> {
     print("currentuser=========>$currentuser");
     await initDynamicLinks();
 
-    await FlutterContacts.requestPermission();
+    // await Permission.contacts.request();
+    // PermissionStatus permission = await Permission.contacts.status;
+    await Permission.contacts.request();
 
     var objCreateEventNotifier =
         Provider.of<CreateEventNotifier>(context, listen: false);

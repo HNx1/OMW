@@ -62,6 +62,7 @@ dependencies:
   firebase_dynamic_links: ^4.3.5
   lazy_data_table: ^0.3.1
   contacts_service: ^0.6.3
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_test:
