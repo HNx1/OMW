@@ -91,9 +91,9 @@ class CreateEventNotifier extends ChangeNotifier {
       photoHighResolution: true,
     );
     contacts!.forEach((element) {
-      element.phones.forEach((element) {
-        if (element.number.replaceAll(' ', '').length >= 10) {
-          var phoneNumber = element.number.replaceAll(' ', '');
+      element.phones!.forEach((element) {
+        if (element.value!.replaceAll(' ', '').length >= 10) {
+          var phoneNumber = element.value!.replaceAll(' ', '');
           getcontactnumber = phoneNumber.substring(phoneNumber.length - 10);
 
           myContactList.add(
