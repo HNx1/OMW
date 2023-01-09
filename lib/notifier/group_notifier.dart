@@ -110,9 +110,9 @@ class GroupNotifier extends ChangeNotifier {
       );
 
       contacts!.forEach((element) {
-        element.phones.forEach((element2) {
-          if (element2.number.replaceAll(' ', '').length >= 10) {
-            var phoneNumber = element2.number.replaceAll(' ', '');
+        element.phones!.forEach((element2) {
+          if (element2.value.toString().replaceAll(' ', '').length >= 10) {
+            var phoneNumber = element2.value.toString().replaceAll(' ', '');
             getcontactnumber = phoneNumber.substring(phoneNumber.length - 10);
             // print(getcontactnumber);
             myContactList.add(
