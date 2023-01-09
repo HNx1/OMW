@@ -87,9 +87,8 @@ class CreateEventNotifier extends ChangeNotifier {
   }
 
   Future getDeviceContactList() async {
-    contacts = await FlutterContacts.getContacts(
-      withProperties: true,
-      withPhoto: true,
+    contacts = await ContactsService.getContacts(
+      photoHighResolution: true,
     );
     contacts!.forEach((element) {
       element.phones.forEach((element) {

@@ -104,10 +104,9 @@ class GroupNotifier extends ChangeNotifier {
     // FlutterContacts.config.returnUnifiedContacts = false;
 
     try {
-      contacts = await FlutterContacts.getContacts(
-        withProperties: true,
-        withPhoto: true,
-        sorted: true,
+      contacts = await ContactsService.getContacts(
+        photoHighResolution: true,
+        orderByGivenName: true,
       );
 
       contacts!.forEach((element) {
