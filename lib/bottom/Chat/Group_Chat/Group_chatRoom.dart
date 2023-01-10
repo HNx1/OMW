@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gugor_emoji/emoji_picker_flutter.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:omw/bottom/Chat/deleteChatDialog.dart';
 import 'package:omw/bottom/Chat/imageSend_screen.dart';
@@ -888,7 +888,7 @@ class _GropChatPageState extends State<GropChatPage> {
                 child: SizedBox(
                   height: 250,
                   child: EmojiPicker(
-                    onEmojiSelected: (Category category, Emoji emoji) {
+                    onEmojiSelected: (Category? category, Emoji emoji) {
                       _onEmojiSelected(
                         emoji,
                       );
@@ -904,7 +904,6 @@ class _GropChatPageState extends State<GropChatPage> {
                       indicatorColor: Colors.blue,
                       iconColor: Colors.grey,
                       iconColorSelected: Colors.blue,
-                      progressIndicatorColor: Colors.blue,
                       backspaceColor: Colors.blue,
                       skinToneDialogBgColor:
                           AppTheme.getTheme().backgroundColor,

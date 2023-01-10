@@ -39,7 +39,6 @@ dependencies:
   flutter_holo_date_picker: ^1.0.6
   flutter_switch: ^0.3.2
   syncfusion_flutter_datepicker: ^20.2.40
-  gugor_emoji: ^0.0.4
   table_calendar: ^3.0.6
   url_launcher: ^6.1.5
 
@@ -63,6 +62,7 @@ dependencies:
   lazy_data_table: ^0.3.1
   contacts_service: ^0.6.3
   permission_handler: ^10.2.0
+  emoji_picker_flutter: ^1.5.1
 
 dev_dependencies:
   flutter_test:
