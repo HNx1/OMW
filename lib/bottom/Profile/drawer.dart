@@ -186,7 +186,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
                         ),
                       );
                     },
-                    child: ComanButton(TextUtils.myEvent, ConstantData.calender,
+                    child: ComanButton("Hosted Events", ConstantData.calender,
                         height * 0.028, width * 0.04)),
 
                 ///-------------- payment button ----------
