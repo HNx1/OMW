@@ -29,7 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool charBool = false;
   Pattern letterPattern = r"^(?=.*[A-Za-z])";
   Pattern numberPattern = r"^(?=.*\d)";
-  Pattern charPattern = r"^(?=.*[@$!%*#?&])";
+  Pattern charPattern = r"^(?=.*[@$!%*#?&_-])";
 
   viewPassword() {
     setState(() {
@@ -318,7 +318,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             : Colors.red,
                                         height: height * 0.04,
                                       )),
-                                      Text("A special character (@\$!%*#?&)",
+                                      Text("A special character (@\$!%*#?&-_)",
                                           style: AppTheme.getTheme()
                                               .textTheme
                                               .bodyText2!
