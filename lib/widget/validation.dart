@@ -156,7 +156,7 @@ String? isValidpassword(String? password) {
     String thisPwd = password;
     Pattern hasLettersPattern = r".*[A-Za-z].*";
     Pattern hasDigitsPattern = r".*\d.*";
-    Pattern hasSpecialCharactersPattern = r".*[@$!%*#?&].*";
+    Pattern hasSpecialCharactersPattern = r".*[@$!%*#?&-_].*";
     RegExp LettersRegex = new RegExp(hasLettersPattern as String);
     RegExp DigitsRegex = new RegExp(hasDigitsPattern as String);
     RegExp SpecialCharactersRegex =
