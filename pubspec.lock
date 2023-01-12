@@ -387,13 +387,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.0"
-  gugor_emoji:
-    dependency: "direct main"
-    description:
-      name: gugor_emoji
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.4"
   http:
     dependency: "direct main"
     description:
