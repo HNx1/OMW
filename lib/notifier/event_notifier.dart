@@ -285,7 +285,8 @@ class CreateEventNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
-          return value;
+
+          return List.from(value.reversed);
         });
         print(
             "getListOfPastEventswithCoHostList=====================>$getListOfPastEventswithCoHostList");
@@ -503,8 +504,9 @@ class CreateEventNotifier extends ChangeNotifier {
       try {
         isLoading = true;
 
-        getpastEventList =
-            await ApiProvider().getListOfpastEvents().then((value) async {
+        getpastEventList = await ApiProvider()
+            .getListOfpastEvents(_auth.currentUser!.uid)
+            .then((value) async {
           for (var i = 0; i < value.length; i++)
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
@@ -1059,6 +1061,82 @@ class CreateEventNotifier extends ChangeNotifier {
           return value;
         });
         print("getMyPastEventList=====================>$getMyPastEventList");
+      } catch (e) {
+        print(e);
+        isLoading = false;
+      } finally {
+        isLoading = false;
+      }
+    } else {
+      ScaffoldSnackbar.of(context).show("Turn on the data and retry again");
+      isLoading = false;
+    }
+    notifyListeners();
+  }
+
+  List<CreateEventModel> eventIntersection = [];
+  getEventIntersection(BuildContext context, String user1, String user2) async {
+    await checkConnection();
+    if (isConnected == true) {
+      eventIntersection = [];
+      List<CreateEventModel> list1 = [];
+      List<CreateEventModel> list2 = [];
+      List<String?> stringIntersection = [];
+      isLoading = true;
+      try {
+        list1 =
+            await ApiProvider().getListOfpastEvents(user1).then((value) async {
+          for (var i = 0; i < value.length; i++)
+            try {
+              QuerySnapshot result = await FirebaseFirestore.instance
+                  .collection('users')
+                  .where("uid", isEqualTo: value[i].ownerID)
+                  .get();
+              if (result.docs.length > 0) {
+                for (var docData in result.docs) {
+                  value[i].lstUser = UserModel.parseSnapshot(docData);
+                }
+              }
+            } catch (e) {
+              print(e);
+            }
+
+          return value;
+        });
+
+        print("list1=====>${list1.map((e) => e.eventname).toSet()}");
+        list2 =
+            await ApiProvider().getListOfpastEvents(user2).then((value) async {
+          for (var i = 0; i < value.length; i++)
+            try {
+              QuerySnapshot result = await FirebaseFirestore.instance
+                  .collection('users')
+                  .where("uid", isEqualTo: value[i].ownerID)
+                  .get();
+              if (result.docs.length > 0) {
+                for (var docData in result.docs) {
+                  value[i].lstUser = UserModel.parseSnapshot(docData);
+                }
+              }
+            } catch (e) {
+              print(e);
+            }
+
+          return value;
+        });
+        ;
+        print("list2=====>${list2.map((e) => e.eventname).toSet()}");
+        stringIntersection = list1
+            .map((e) => e.docId)
+            .toSet()
+            .intersection(list2.map((e) => e.docId).toSet())
+            .toList();
+        print("intersection:${stringIntersection}");
+        eventIntersection =
+            List.from(list1.where((e) => stringIntersection.contains(e.docId)));
+        eventIntersection
+            .sort((a, b) => b.eventEndDate!.compareTo(a.eventEndDate!));
+        print("geteventIntersection=====================>$eventIntersection");
       } catch (e) {
         print(e);
         isLoading = false;

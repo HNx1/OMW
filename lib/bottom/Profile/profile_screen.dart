@@ -8,8 +8,10 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:intl/intl.dart';
 import 'package:omw/api/apiProvider.dart';
 import 'package:omw/constant/constants.dart';
+import 'package:omw/model/createEvent_model.dart';
 import 'package:omw/notifier/AllChatingFunctions.dart';
 import 'package:omw/model/user_model.dart';
+import 'package:omw/notifier/authenication_notifier.dart';
 import 'package:omw/utils/colorUtils.dart';
 import 'package:provider/provider.dart';
 
@@ -117,11 +119,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
     currentuser = await PrefServices().getCurrentUserName();
     var objCreateEventNotifier =
         Provider.of<CreateEventNotifier>(context, listen: false);
+    var objProviderNotifier =
+        Provider.of<AuthenicationNotifier>(context, listen: false);
     if (mounted) {
       objCreateEventNotifier.isLoading = true;
     }
-    await objCreateEventNotifier.getListOfProfilePastEvent(
-        context, widget.userId);
+    await objCreateEventNotifier.getListOfMyPastEvent(context);
+    await objCreateEventNotifier.getEventIntersection(
+        context, objProviderNotifier.objUsers.uid!, widget.userId);
+    print("running here ${widget.name}");
     objCreateEventNotifier.isLoading = false;
   }
 
@@ -151,6 +157,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   UserModel profile = new UserModel();
   List contactIds = [];
+  bool addedAsContact = false;
   bool isLoading1 = true;
   bool isLoading2 = true;
 
@@ -187,6 +194,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final objCreateEventNotifier = context.watch<CreateEventNotifier>();
+    List<CreateEventModel> eventList = widget.isOwnProfile
+        ? objCreateEventNotifier.getMyPastEventList
+        : objCreateEventNotifier.eventIntersection;
     return Scaffold(
       body: Container(
         margin: EdgeInsets.only(
@@ -279,7 +289,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ///----------------- message Button   --------------
                     widget.isOwnProfile == true
                         ? Container()
-                        : isLoading1 == true || isLoading2 == true
+                        : isLoading1 == true
                             ? Center(
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 20),
@@ -299,21 +309,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         onTap: () {
                                           AllChat? chat =
                                               chats.firstWhereOrNull((e) =>
-                                                  e.friendId == conversationId);
+                                                  e.friendId == widget.userId);
 
-                                          if (conversationId != null &&
-                                              conversationId != "") {
-                                            chat = chats.firstWhereOrNull((e) =>
-                                                e.conversationId ==
-                                                conversationId);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) =>
-                                                        IndividualChatRoom(
-                                                          chat: chat!,
-                                                        )));
-                                          } else {
+                                          if (chat == null) {
                                             chat = AllChat(
                                               widget.userId,
                                               friendFCMToken: widget.fcmtoken,
@@ -323,13 +321,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               isgroup: false,
                                               messages: [],
                                             );
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) =>
-                                                        IndividualChatRoom(
-                                                            chat: chat!)));
                                           }
+
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      IndividualChatRoom(
+                                                          chat: chat!)));
                                         },
                                         child: CommonOutLineButton(
                                           name: TextUtils.Message,
@@ -337,15 +336,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ),
                                     ),
                                   ),
-                                  contactIds.contains(profile.uid)
+                                  contactIds.contains(profile.uid) ||
+                                          addedAsContact
                                       ? SizedBox.shrink()
                                       : Expanded(
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 8),
                                             child: GestureDetector(
-                                                onTap: () =>
-                                                    addContact(profile),
+                                                onTap: () {
+                                                  addContact(profile);
+                                                  setState(() {
+                                                    addedAsContact = true;
+                                                  });
+                                                },
                                                 child:
                                                     CommonButton(name: 'Add')),
                                           ),
@@ -373,13 +377,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                     ///-------------------------- List Of Events-------------
                     objCreateEventNotifier.isLoading == true &&
-                            objCreateEventNotifier.getMyPastEventList.isEmpty
+                            eventList.isEmpty
                         ? Center(
                             child: CircularProgressIndicator(
                               color: primaryColor,
                             ),
                           )
-                        : objCreateEventNotifier.getMyPastEventList.isEmpty
+                        : eventList.isEmpty
                             ? Container(
                                 margin: EdgeInsets.only(
                                     top: AppBar().preferredSize.height * 2),
@@ -398,8 +402,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               )
                             : ListView.builder(
                                 padding: EdgeInsets.only(bottom: height * 0.04),
-                                itemCount: objCreateEventNotifier
-                                    .getMyPastEventList.length,
+                                itemCount: eventList.length,
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
                                 itemBuilder: (BuildContext context, int index) {
@@ -407,8 +410,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     onTap: () {
                                       setState(() {
                                         objCreateEventNotifier.setEventData =
-                                            objCreateEventNotifier
-                                                .getMyPastEventList[index];
+                                            eventList[index];
                                       });
                                       Navigator.push(
                                         context,
@@ -416,13 +418,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           pageBuilder: (context, animation1,
                                                   animation2) =>
                                               EventDetailsScreen(
-                                            eventId: objCreateEventNotifier
-                                                .getMyPastEventList[index]
-                                                .docId!,
-                                            hostId: objCreateEventNotifier
-                                                .getMyPastEventList[index]
-                                                .lstUser!
-                                                .uid!,
+                                            eventId: eventList[index].docId!,
+                                            hostId:
+                                                eventList[index].lstUser!.uid!,
                                             isPastEvent: false,
                                             isFromMyeventScreen: true,
                                             ismyPastEvent: true,
@@ -463,9 +461,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                             height * 0.015),
                                                     child: CachedNetworkImage(
                                                         imageUrl:
-                                                            objCreateEventNotifier
-                                                                .getMyPastEventList[
-                                                                    index]
+                                                            eventList[index]
                                                                 .eventPhoto!,
                                                         height: height * 0.18,
                                                         width: height * 0.18,
@@ -501,9 +497,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     children: [
                                                       ///------------- event name------------------
                                                       Text(
-                                                        objCreateEventNotifier
-                                                            .getMyPastEventList[
-                                                                index]
+                                                        eventList[index]
                                                             .eventname!,
                                                         style: AppTheme
                                                                 .getTheme()
@@ -533,9 +527,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                             0.1),
                                                                 child:
                                                                     CachedNetworkImage(
-                                                                        imageUrl: objCreateEventNotifier
-                                                                            .getMyPastEventList[
-                                                                                index]
+                                                                        imageUrl: eventList[index]
                                                                             .lstUser!
                                                                             .userProfile!,
                                                                         height: height *
@@ -576,14 +568,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                         top: height *
                                                                             0.005),
                                                                     child: Text(
-                                                                      objCreateEventNotifier
-                                                                              .getMyPastEventList[
-                                                                                  index]
+                                                                      eventList[index]
                                                                               .lstUser!
                                                                               .firstName! +
                                                                           " " +
-                                                                          objCreateEventNotifier
-                                                                              .getMyPastEventList[index]
+                                                                          eventList[index]
                                                                               .lstUser!
                                                                               .lastName!,
                                                                       style: AppTheme
@@ -621,12 +610,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                       left: width *
                                                                           0.02),
                                                               child: Text(
-                                                                '${DateFormat('EEE, MMM dd, h:mm aa -').format(objCreateEventNotifier.getMyPastEventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, h:mm aa -').format(objCreateEventNotifier.getMyPastEventList[index].eventStartDate!).substring(1)).toLowerCase()}' +
+                                                                '${DateFormat('EEE, MMM dd, h:mm aa -').format(eventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, h:mm aa -').format(eventList[index].eventStartDate!).substring(1)).toLowerCase()}' +
                                                                     DateFormat(
                                                                             ' h:mm aa')
-                                                                        .format(objCreateEventNotifier
-                                                                            .getMyPastEventList[index]
-                                                                            .eventEndDate!)
+                                                                        .format(
+                                                                            eventList[index].eventEndDate!)
                                                                         .toLowerCase(),
                                                                 style: AppTheme
                                                                         .getTheme()
@@ -670,8 +658,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                     left: width *
                                                                         0.02),
                                                                 child: Text(
-                                                                  objCreateEventNotifier
-                                                                      .getMyPastEventList[
+                                                                  eventList[
                                                                           index]
                                                                       .location!,
                                                                   maxLines: 2,
@@ -701,11 +688,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               ),
                                             ],
                                           ),
-                                          objCreateEventNotifier
-                                                      .getMyPastEventList
-                                                      .last !=
-                                                  objCreateEventNotifier
-                                                      .getMyPastEventList[index]
+                                          eventList.last != eventList[index]
                                               ? Container(
                                                   margin: EdgeInsets.only(
                                                       top: height * 0.02,
@@ -726,33 +709,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   //     setState(() {
 
                                   //       objProviderNotifier.setevenImage =
-                                  //           objCreateEventNotifier
-                                  //               .getMyPastEventList[index].eventPhoto!;
+                                  //           eventList[index].eventPhoto!;
                                   //       objProviderNotifier.seteventName =
-                                  //           objCreateEventNotifier
-                                  //               .getMyPastEventList[index].eventname!;
+                                  //           eventList[index].eventname!;
                                   //       objProviderNotifier.seteventUserProfile =
-                                  //           objCreateEventNotifier.getMyPastEventList[index]
+                                  //           eventList[index]
                                   //               .lstUser!.userProfile!;
                                   //       objProviderNotifier.seteventCreateBy =
-                                  //           objCreateEventNotifier.getMyPastEventList[index]
+                                  //           eventList[index]
                                   //                   .lstUser!.firstName! +
                                   //               " " +
-                                  //               objCreateEventNotifier
-                                  //                   .getMyPastEventList[index]
+                                  //               eventList[index]
                                   //                   .lstUser!
                                   //                   .lastName!;
                                   //       objProviderNotifier.seteventDescription =
-                                  //           objCreateEventNotifier
-                                  //               .getMyPastEventList[index].description!;
+                                  //           eventList[index].description!;
                                   //       objProviderNotifier.seteventLocation =
-                                  //           objCreateEventNotifier
-                                  //               .getMyPastEventList[index].location!;
+                                  //           eventList[index].location!;
                                   //       objProviderNotifier.seteventDayTime =
-                                  //           '${DateFormat('EEE, MMM dd, hh:mm aa -').format(objCreateEventNotifier.getMyPastEventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, hh:mm aa -').format(objCreateEventNotifier.getMyPastEventList[index].eventStartDate!).substring(1)).toLowerCase()}' +
+                                  //           '${DateFormat('EEE, MMM dd, hh:mm aa -').format(eventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, hh:mm aa -').format(eventList[index].eventStartDate!).substring(1)).toLowerCase()}' +
                                   //               DateFormat(' hh:mm aa')
-                                  //                   .format(objCreateEventNotifier
-                                  //                       .getMyPastEventList[index]
+                                  //                   .format(eventList[index]
                                   //                       .eventEndDate!)
                                   //                   .toLowerCase();
                                   //     });
@@ -760,8 +737,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   //         context,
                                   //         MaterialPageRoute(
                                   //           builder: (contex) => EventDetailsScreen(
-                                  //             getEventListData: objCreateEventNotifier
-                                  //                 .getMyPastEventList[index],
+                                  //             getEventListData: eventList[index],
                                   //             isPastEvent: false,
                                   //             isFromMyeventScreen: true,
                                   //             ismyPastEvent: true,
@@ -797,8 +773,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   //                             Radius.circular(height * 0.02),
                                   //                       ),
                                   //                       child: CachedNetworkImage(
-                                  //                         imageUrl: objCreateEventNotifier
-                                  //                             .getMyPastEventList[index]
+                                  //                         imageUrl: eventList[index]
                                   //                             .eventPhoto!,
                                   //                         height: height * 0.16,
                                   //                         width: width,
@@ -826,8 +801,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   //                         left: width * 0.04,
                                   //                         bottom: height * 0.02),
                                   //                     child: Text(
-                                  //                       objCreateEventNotifier
-                                  //                           .getMyPastEventList[index]
+                                  //                       eventList[index]
                                   //                           .eventname!,
                                   //                       style: AppTheme.getTheme()
                                   //                           .textTheme
@@ -885,8 +859,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   //                       borderRadius: BorderRadius.circular(
                                   //                           height * 0.1),
                                   //                       child: CachedNetworkImage(
-                                  //                         imageUrl: objCreateEventNotifier
-                                  //                             .getMyPastEventList[index]
+                                  //                         imageUrl: eventList[index]
                                   //                             .lstUser!
                                   //                             .userProfile!,
                                   //                         height: height * 0.045,
@@ -904,13 +877,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   //                     margin:
                                   //                         EdgeInsets.only(left: width * 0.02),
                                   //                     child: Text(
-                                  //                       objCreateEventNotifier
-                                  //                               .getMyPastEventList[index]
+                                  //                       eventList[index]
                                   //                               .lstUser!
                                   //                               .firstName! +
                                   //                           " " +
-                                  //                           objCreateEventNotifier
-                                  //                               .getMyPastEventList[index]
+                                  //                           eventList[index]
                                   //                               .lstUser!
                                   //                               .lastName!,
                                   //                       style: AppTheme.getTheme()
@@ -940,11 +911,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   //                       margin: EdgeInsets.only(
                                   //                           left: width * 0.02),
                                   //                       child: Text(
-                                  //                         '${DateFormat('EEE, MMM dd, hh:mm aa -').format(objCreateEventNotifier.getMyPastEventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, hh:mm aa -').format(objCreateEventNotifier.getMyPastEventList[index].eventStartDate!).substring(1)).toLowerCase()}' +
+                                  //                         '${DateFormat('EEE, MMM dd, hh:mm aa -').format(eventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, hh:mm aa -').format(eventList[index].eventStartDate!).substring(1)).toLowerCase()}' +
                                   //                             DateFormat(' hh:mm aa')
                                   //                                 .format(
-                                  //                                     objCreateEventNotifier
-                                  //                                         .getMyPastEventList[
+                                  //                                     eventList[
                                   //                                             index]
                                   //                                         .eventEndDate!)
                                   //                                 .toLowerCase(),

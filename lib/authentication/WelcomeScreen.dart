@@ -172,27 +172,27 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ),
                 ),
-
-                ///--------------------  Create Account Button ---------------------
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, Routes.SignUp);
+                    Navigator.pushReplacementNamed(context, Routes.Login);
                   },
                   child: Container(
                     margin: EdgeInsets.only(top: height * 0.068),
-                    child: CommonButton(name: TextUtils.createAccount),
+                    child: CommonButton(name: TextUtils.signin),
                   ),
                 ),
+
+                ///--------------------  Create Account Button ---------------------
 
                 ///--------------------  Sign In Button ---------------------
                 Container(
                   margin: EdgeInsets.only(bottom: height * 0.05),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, Routes.Login);
+                      Navigator.pushReplacementNamed(context, Routes.SignUp);
                     },
                     child: CommonOutLineButton(
-                      name: TextUtils.signin,
+                      name: TextUtils.createAccount,
                     ),
                   ),
                 ),
