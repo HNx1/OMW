@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:contacts_service/contacts_service.dart';
 import 'package:omw/authentication/loginScreen.dart';
 import 'package:omw/bottom/Events/event/pastFilter.dart';
 import 'package:omw/bottom/Events/event/past_screen.dart';
@@ -15,6 +15,7 @@ import 'package:omw/main.dart';
 import 'package:omw/notifier/authenication_notifier.dart';
 import 'package:omw/preference/preference.dart';
 import 'package:provider/provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../api/apiProvider.dart';
 import '../../../constant/constants.dart';
@@ -60,7 +61,9 @@ class _EventsSceenState extends State<EventsSceen> {
     print("currentuser=========>$currentuser");
     await initDynamicLinks();
 
-    await FlutterContacts.requestPermission();
+    // await Permission.contacts.request();
+    // PermissionStatus permission = await Permission.contacts.status;
+    await Permission.contacts.request();
 
     var objCreateEventNotifier =
         Provider.of<CreateEventNotifier>(context, listen: false);

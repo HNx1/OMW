@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:contacts_service/contacts_service.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../api/apiProvider.dart';
 import '../model/groupModel.dart';
@@ -88,7 +89,9 @@ class GroupNotifier extends ChangeNotifier {
 
     contacts = [];
     await getListOfContactUser(context);
-    if (await FlutterContacts.requestPermission()) {
+    await Permission.contacts.request();
+    PermissionStatus permission = await Permission.contacts.status;
+    if (permission == PermissionStatus.granted) {
       await getDeviceContactList();
       await getAppContactList();
       await getFinalAppContactList(context, docId);
@@ -101,16 +104,15 @@ class GroupNotifier extends ChangeNotifier {
     // FlutterContacts.config.returnUnifiedContacts = false;
 
     try {
-      contacts = await FlutterContacts.getContacts(
-        withProperties: true,
-        withPhoto: true,
-        sorted: true,
+      contacts = await ContactsService.getContacts(
+        photoHighResolution: true,
+        orderByGivenName: true,
       );
 
       contacts!.forEach((element) {
-        element.phones.forEach((element2) {
-          if (element2.number.replaceAll(' ', '').length >= 10) {
-            var phoneNumber = element2.number.replaceAll(' ', '');
+        element.phones!.forEach((element2) {
+          if (element2.value.toString().replaceAll(' ', '').length >= 10) {
+            var phoneNumber = element2.value.toString().replaceAll(' ', '');
             getcontactnumber = phoneNumber.substring(phoneNumber.length - 10);
             // print(getcontactnumber);
             myContactList.add(

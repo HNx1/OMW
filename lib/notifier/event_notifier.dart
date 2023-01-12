@@ -4,8 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:contacts_service/contacts_service.dart';
 import 'package:omw/model/user_model.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../api/apiProvider.dart';
 import '../model/createEvent_model.dart';
@@ -74,7 +75,9 @@ class CreateEventNotifier extends ChangeNotifier {
     contacts = [];
 
     await getAllUserList(context);
-    if (await FlutterContacts.requestPermission()) {
+    await Permission.contacts.request();
+    PermissionStatus permission = await Permission.contacts.status;
+    if (permission == PermissionStatus.granted) {
       await getDeviceContactList();
       await getAppContactList();
       await getFinalAppContactList(context, docId);
@@ -84,14 +87,13 @@ class CreateEventNotifier extends ChangeNotifier {
   }
 
   Future getDeviceContactList() async {
-    contacts = await FlutterContacts.getContacts(
-      withProperties: true,
-      withPhoto: true,
+    contacts = await ContactsService.getContacts(
+      photoHighResolution: true,
     );
     contacts!.forEach((element) {
-      element.phones.forEach((element) {
-        if (element.number.replaceAll(' ', '').length >= 10) {
-          var phoneNumber = element.number.replaceAll(' ', '');
+      element.phones!.forEach((element) {
+        if (element.value!.replaceAll(' ', '').length >= 10) {
+          var phoneNumber = element.value!.replaceAll(' ', '');
           getcontactnumber = phoneNumber.substring(phoneNumber.length - 10);
 
           myContactList.add(

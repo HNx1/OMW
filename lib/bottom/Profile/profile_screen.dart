@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:contacts_service/contacts_service.dart';
 
 import 'package:intl/intl.dart';
 import 'package:omw/api/apiProvider.dart';
@@ -156,10 +156,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void addContact(UserModel contact) async {
     final newContact = Contact()
-      ..name.first = contact.firstName ?? ""
-      ..name.last = contact.lastName ?? ""
-      ..phones = [Phone(contact.phoneNumber!)];
-    await newContact.insert();
+      ..givenName = contact.firstName ?? ""
+      ..familyName = contact.lastName ?? ""
+      ..phones = [Item(label: "PhoneNumber", value: contact.phoneNumber!)];
+    ContactsService.addContact(newContact);
     print('new contact added');
     getAllContactList();
   }
