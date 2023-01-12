@@ -57,6 +57,8 @@ class _MyPastEventsState extends State<MyPastEvents> {
         print(
             "FinalListOfMyPastEvents=====================>$FinalListOfMyPastEvents");
       });
+      FinalListOfMyPastEvents.sort(
+          (a, b) => b.eventEndDate!.compareTo(a.eventEndDate!));
     } catch (e) {
       print(e);
       if (mounted) {
