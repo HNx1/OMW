@@ -476,12 +476,12 @@ class ApiProvider {
     });
   }
 
-  Future<List<CreateEventModel>> getListOfpastEvents() async {
+  Future<List<CreateEventModel>> getListOfpastEvents(String userId) async {
     List<CreateEventModel> lstCreateEventModel = [];
     try {
       QuerySnapshot result = await FirebaseFirestore.instance
           .collection('events')
-          .where("guestsID", arrayContains: _auth.currentUser!.uid)
+          .where("guestsID", arrayContains: userId)
           .where("eventEndDate", isLessThan: DateTime.now().toUtc())
           .get();
       if (result.docs.length > 0) {
@@ -730,6 +730,21 @@ class ApiProvider {
       print(e);
     }
     return lstCreateEventModel;
+  }
+
+  Future getSpecificChat(String user1, String user2) async {
+    try {
+      QuerySnapshot querySnapshot;
+      querySnapshot = await FirebaseFirestore.instance
+          .collection('conversations')
+          .where("members", arrayContains: user1)
+          .where("members", arrayContains: user2)
+          .orderBy("uid")
+          .limit(pazeSize)
+          .get();
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future getListOfContactUser() async {
