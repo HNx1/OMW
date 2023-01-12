@@ -158,6 +158,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   List<UserModel> goingGuest = [];
   List<UserModel> maybeGuest = [];
   List<UserModel> notGoingGuest = [];
+  List<int> attendance = [0, 0, 0];
   bool isDataLoad = false;
   Future getListOfGuestUser() async {
     goingGuest = [];
@@ -191,6 +192,9 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
               .where((element) => element.uid == e.guestID && e.status == 1),
         );
       });
+    });
+    setState(() {
+      attendance = [goingGuest.length, maybeGuest.length, notGoingGuest.length];
     });
 
     print("Going :- $goingGuest");
@@ -989,7 +993,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        goingGuest.length.toString(),
+                                        attendance[0].toString(),
                                         style: AppTheme.getTheme()
                                             .textTheme
                                             .bodyText1!
@@ -1054,7 +1058,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        maybeGuest.length.toString(),
+                                        attendance[1].toString(),
                                         style: AppTheme.getTheme()
                                             .textTheme
                                             .bodyText1!
@@ -1119,7 +1123,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        notGoingGuest.length.toString(),
+                                        attendance[2].toString(),
                                         style: AppTheme.getTheme()
                                             .textTheme
                                             .bodyText1!
@@ -1309,6 +1313,8 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
               GestureDetector(
                 onTap: () async {
                   setState(() {
+                    attendance[index] -= 1;
+                    attendance[indexs] += 1;
                     index = indexs;
                     panIndex = indexs;
                   });
