@@ -808,27 +808,27 @@ PODS:
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
-  - Stripe (23.1.0):
-    - Stripe/Stripe3DS2 (= 23.1.0)
-    - StripeApplePay (= 23.1.0)
-    - StripeCore (= 23.1.0)
-    - StripeUICore (= 23.1.0)
-  - Stripe/Stripe3DS2 (23.1.0):
-    - StripeApplePay (= 23.1.0)
-    - StripeCore (= 23.1.0)
-    - StripeUICore (= 23.1.0)
+  - Stripe (22.5.1):
+    - Stripe/Stripe3DS2 (= 22.5.1)
+    - StripeApplePay (= 22.5.1)
+    - StripeCore (= 22.5.1)
+    - StripeUICore (= 22.5.1)
+  - Stripe/Stripe3DS2 (22.5.1):
+    - StripeApplePay (= 22.5.1)
+    - StripeCore (= 22.5.1)
+    - StripeUICore (= 22.5.1)
   - stripe_ios (0.0.1):
     - Flutter
-    - Stripe (~> 23.1.0)
-    - StripeFinancialConnections (~> 23.1.0)
-  - StripeApplePay (23.1.0):
-    - StripeCore (= 23.1.0)
-  - StripeCore (23.1.0)
-  - StripeFinancialConnections (23.1.0):
-    - StripeCore (= 23.1.0)
-    - StripeUICore (= 23.1.0)
-  - StripeUICore (23.1.0):
-    - StripeCore (= 23.1.0)
+    - Stripe (~> 22.5.1)
+    - StripeFinancialConnections (~> 22.5.1)
+  - StripeApplePay (22.5.1):
+    - StripeCore (= 22.5.1)
+  - StripeCore (22.5.1)
+  - StripeFinancialConnections (22.5.1):
+    - StripeCore (= 22.5.1)
+    - StripeUICore (= 22.5.1)
+  - StripeUICore (22.5.1):
+    - StripeCore (= 22.5.1)
   - url_launcher_ios (0.0.1):
     - Flutter
   - webview_flutter_wkwebview (0.0.1):
