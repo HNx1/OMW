@@ -74,6 +74,7 @@ class GroupNotifier extends ChangeNotifier {
   List myContactList = [];
   List myAppContactList = [];
   List finalList = [];
+  bool contactsAllowed = false;
   List<UserModel> contactList = [];
   List<UserModel> selectedUserList = [];
   String? getAppcontactnumber;
@@ -91,11 +92,13 @@ class GroupNotifier extends ChangeNotifier {
     await getListOfContactUser(context);
     await Permission.contacts.request();
     PermissionStatus permission = await Permission.contacts.status;
-    if (permission == PermissionStatus.granted) {
+    if (permission.isGranted) {
       await getDeviceContactList();
       await getAppContactList();
-      await getFinalAppContactList(context, docId);
+      await getFinalAppContactList();
+      contactsAllowed = true;
     }
+
     notifyListeners();
   }
 
@@ -105,9 +108,10 @@ class GroupNotifier extends ChangeNotifier {
 
     try {
       contacts = await ContactsService.getContacts(
-        photoHighResolution: true,
+        // photoHighResolution: true,
         orderByGivenName: true,
       );
+      print("finding contacts====>${contacts}");
 
       contacts!.forEach((element) {
         element.phones!.forEach((element2) {
@@ -141,7 +145,7 @@ class GroupNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  getFinalAppContactList(BuildContext context, String docId) async {
+  getFinalAppContactList() async {
     bool devContactList = false;
     if (devContactList) {
       finalList = myAppContactList;
@@ -164,9 +168,8 @@ class GroupNotifier extends ChangeNotifier {
           .toList();
 
       selectedUserList.addAll(contactList);
-
-      print("selectedUserList${selectedUserList}");
     });
+    print("selectedUserList${selectedUserList}");
     notifyListeners();
   }
 
