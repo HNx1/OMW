@@ -62,8 +62,6 @@ class CreateEventModel {
       List selectedDate = snapshot["selectedDate"] ?? [];
       List guestsID = snapshot["guestsID"] ?? [];
       List lstallDates = snapshot["allDates"] ?? [];
-      print("cohost list");
-      print(snapshot["docId"]);
       List<String> cohostListEl =
           snapshot.data().toString().contains('cohostList')
               ? new List<String>.from(snapshot["cohostList"])
