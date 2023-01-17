@@ -715,12 +715,9 @@ class ApiProvider {
       if (result.docs.length > 0) {
         for (var docData in result.docs) {
           CreateEventModel objCreateEventModel = new CreateEventModel();
-          print("event model datum 1");
           objCreateEventModel = CreateEventModel.parseSnapshot(docData);
 
-          print("event model datum 2");
           lstCreateEventModel.add(objCreateEventModel);
-          print("event model datum 3");
         }
 
         print("Event model found: ${lstCreateEventModel}");
@@ -755,14 +752,14 @@ class ApiProvider {
             .collection('users')
             .where("uid", isNotEqualTo: _auth.currentUser!.uid)
             .orderBy("uid")
-            .limit(pazeSize)
+            // .limit(pazeSize)
             .get();
       } else {
         querySnapshot = await FirebaseFirestore.instance
             .collection('users')
             .where("uid", isNotEqualTo: _auth.currentUser!.uid)
             .orderBy("uid")
-            .limit(pazeSize)
+            // .limit(pazeSize)
             .startAfterDocument(lastDocumentOfContact!)
             .get();
       }
@@ -857,14 +854,14 @@ class ApiProvider {
             .collection('events')
             .where("guestsID", arrayContains: _auth.currentUser!.uid)
             .orderBy("docId")
-            .limit(pazeSize)
+            .limit(pazeSize * 10)
             .get();
       } else {
         querySnapshot = await FirebaseFirestore.instance
             .collection('events')
             .where("guestsID", arrayContains: _auth.currentUser!.uid)
             .orderBy("docId")
-            .limit(pazeSize)
+            .limit(pazeSize * 10)
             .startAfterDocument(lastDocumentOfSearchEvent!)
             .get();
         print(1);
