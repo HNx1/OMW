@@ -104,6 +104,7 @@ class GroupNotifier extends ChangeNotifier {
       await getFinalAppContactList();
       contactsAllowed = true;
     } catch (e) {
+      selectedUserList = [];
       print(e);
     }
 
