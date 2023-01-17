@@ -92,11 +92,19 @@ class GroupNotifier extends ChangeNotifier {
     await getListOfContactUser(context);
     await Permission.contacts.request();
     PermissionStatus permission = await Permission.contacts.status;
-    if (permission.isGranted) {
+    // if (permission.isGranted) {
+    //   await getDeviceContactList();
+    //   await getAppContactList();
+    //   await getFinalAppContactList();
+    //   contactsAllowed = true;
+    // }
+    try {
       await getDeviceContactList();
       await getAppContactList();
       await getFinalAppContactList();
       contactsAllowed = true;
+    } catch (e) {
+      print(e);
     }
 
     notifyListeners();
