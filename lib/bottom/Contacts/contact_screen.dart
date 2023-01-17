@@ -45,6 +45,7 @@ class _ContactScreenState extends State<ContactScreen> {
 
   List<UserModel> contactsList = [];
   List<UserModel> searchList = [];
+  bool contactsAllowed = true;
 
   getAllContactList() async {
     var objGroupNotifier = Provider.of<GroupNotifier>(context, listen: false);
@@ -53,6 +54,7 @@ class _ContactScreenState extends State<ContactScreen> {
       isLoading = true;
     });
     await objGroupNotifier.getData(context, "");
+    contactsAllowed = objGroupNotifier.contactsAllowed;
     contactsList = objGroupNotifier.selectedUserList.toList();
     contactsList.sort((a, b) => a.lastName!.compareTo(b.lastName!));
     searchList = contactsList;
@@ -265,214 +267,223 @@ class _ContactScreenState extends State<ContactScreen> {
                 ),
 
                 Expanded(
-                    child: isLoading == true && searchList.isEmpty
-                        ? Center(
-                            child: CircularProgressIndicator(
-                              color: primaryColor,
-                            ),
-                          )
-                        : searchList.isEmpty
-                            ? Container(
-                                margin: EdgeInsets.only(
-                                    top: AppBar().preferredSize.height * 2),
-                                child: Center(
-                                    child: Text(
-                                  "No Result found",
-                                  style: AppTheme.getTheme()
-                                      .textTheme
-                                      .bodyText2!
-                                      .copyWith(
-                                          color: ConstColor.white_Color,
-                                          height: 1.4,
-                                          fontSize: width * 0.043),
-                                )),
+                    child: contactsAllowed
+                        ? isLoading == true && searchList.isEmpty
+                            ? Center(
+                                child: CircularProgressIndicator(
+                                  color: primaryColor,
+                                ),
                               )
+                            : searchList.isEmpty
+                                ? Container(
+                                    margin: EdgeInsets.only(
+                                        top: AppBar().preferredSize.height * 2),
+                                    child: Center(
+                                        child: Text(
+                                      "No Result found",
+                                      style: AppTheme.getTheme()
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(
+                                              color: ConstColor.white_Color,
+                                              height: 1.4,
+                                              fontSize: width * 0.043),
+                                    )),
+                                  )
 
-                            ///------------------ List OF Contact Data-------------------
-                            : Consumer<GroupNotifier>(
-                                builder: (BuildContext context, value,
-                                    Widget? child) {
-                                  return NotificationListener<
-                                      ScrollEndNotification>(
-                                    onNotification: (scrollEnd) {
-                                      if (scrollEnd.metrics.atEdge &&
-                                          scrollEnd.metrics.pixels > 0) {
-                                        print("scrollEnd");
-                                        getAllContactList();
-                                      }
-                                      return true;
-                                    },
-                                    child: Stack(
-                                      children: [
-                                        objGroupNotifier.isLoading
-                                            ? Center(
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  color: primaryColor,
-                                                ),
-                                              )
-                                            : Container(),
-                                        ListView.builder(
-                                          cacheExtent: 9999,
-                                          padding: EdgeInsets.only(
-                                            bottom: height * 0.02,
-                                          ),
-                                          itemCount: searchList.length,
-                                          shrinkWrap: true,
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return GestureDetector(
-                                              onTap: () {
-                                                searchList[index]
-                                                        .isSelcetdForGroup =
+                                ///------------------ List OF Contact Data-------------------
+                                : Consumer<GroupNotifier>(
+                                    builder: (BuildContext context, value,
+                                        Widget? child) {
+                                      return NotificationListener<
+                                          ScrollEndNotification>(
+                                        onNotification: (scrollEnd) {
+                                          if (scrollEnd.metrics.atEdge &&
+                                              scrollEnd.metrics.pixels > 0) {
+                                            print("scrollEnd");
+                                            getAllContactList();
+                                          }
+                                          return true;
+                                        },
+                                        child: Stack(
+                                          children: [
+                                            objGroupNotifier.isLoading
+                                                ? Center(
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      color: primaryColor,
+                                                    ),
+                                                  )
+                                                : Container(),
+                                            ListView.builder(
+                                              cacheExtent: 9999,
+                                              padding: EdgeInsets.only(
+                                                bottom: height * 0.02,
+                                              ),
+                                              itemCount: searchList.length,
+                                              shrinkWrap: true,
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int index) {
+                                                return GestureDetector(
+                                                  onTap: () {
                                                     searchList[index]
-                                                        .isSelcetdForGroup;
-                                                if (searchList[index]
-                                                        .isSelcetdForGroup ==
-                                                    true) {
-                                                  objGroupNotifier.addItem(
-                                                      searchList[index]
-                                                          .firstName!);
-                                                } else {
-                                                  objGroupNotifier.removeItem(
-                                                      searchList[index]
-                                                          .firstName!);
-                                                }
-                                              },
-                                              child: Container(
-                                                color: Colors.transparent,
-                                                child: Column(
-                                                  children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                            .isSelcetdForGroup =
+                                                        searchList[index]
+                                                            .isSelcetdForGroup;
+                                                    if (searchList[index]
+                                                            .isSelcetdForGroup ==
+                                                        true) {
+                                                      objGroupNotifier.addItem(
+                                                          searchList[index]
+                                                              .firstName!);
+                                                    } else {
+                                                      objGroupNotifier
+                                                          .removeItem(
+                                                              searchList[index]
+                                                                  .firstName!);
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    color: Colors.transparent,
+                                                    child: Column(
                                                       children: [
                                                         Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
                                                           children: [
-                                                            ///------------------- image--------------------
-                                                            GestureDetector(
-                                                              behavior:
-                                                                  HitTestBehavior
-                                                                      .translucent,
-                                                              onTap: () {
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) =>
-                                                                            ProfileScreen(
-                                                                              fcmtoken: searchList[index].fcmToken!,
-                                                                              userId: searchList[index].uid!,
-                                                                              isOwnProfile: false,
-                                                                              name: searchList[index].firstName! + " " + searchList[index].lastName!,
-                                                                              profile: searchList[index].userProfile!,
-                                                                            )));
-                                                              },
-                                                              child: Row(
-                                                                  children: [
-                                                                    ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(height *
-                                                                              0.1),
-                                                                      child:
-                                                                          CachedNetworkImage(
-                                                                        cacheManager:
-                                                                            CacheManager(Config(
-                                                                          "omw",
-                                                                          stalePeriod:
-                                                                              const Duration(days: 7),
-                                                                          //one week cache period
-                                                                        )),
-                                                                        imageUrl:
-                                                                            searchList[index].userProfile!,
-                                                                        height: height *
-                                                                            0.06,
-                                                                        width: height *
-                                                                            0.06,
-                                                                        fit: BoxFit
-                                                                            .cover,
-                                                                        placeholder:
-                                                                            (context, url) =>
+                                                            Row(
+                                                              children: [
+                                                                ///------------------- image--------------------
+                                                                GestureDetector(
+                                                                  behavior:
+                                                                      HitTestBehavior
+                                                                          .translucent,
+                                                                  onTap: () {
+                                                                    Navigator.push(
+                                                                        context,
+                                                                        MaterialPageRoute(
+                                                                            builder: (context) => ProfileScreen(
+                                                                                  fcmtoken: searchList[index].fcmToken!,
+                                                                                  userId: searchList[index].uid!,
+                                                                                  isOwnProfile: false,
+                                                                                  name: searchList[index].firstName! + " " + searchList[index].lastName!,
+                                                                                  profile: searchList[index].userProfile!,
+                                                                                )));
+                                                                  },
+                                                                  child: Row(
+                                                                      children: [
+                                                                        ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(height * 0.1),
+                                                                          child:
+                                                                              CachedNetworkImage(
+                                                                            cacheManager:
+                                                                                CacheManager(Config(
+                                                                              "omw",
+                                                                              stalePeriod: const Duration(days: 7),
+                                                                              //one week cache period
+                                                                            )),
+                                                                            imageUrl:
+                                                                                searchList[index].userProfile!,
+                                                                            height:
+                                                                                height * 0.06,
+                                                                            width:
+                                                                                height * 0.06,
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                            placeholder: (context, url) =>
                                                                                 CircularProgressIndicator(
-                                                                          color:
-                                                                              primaryColor,
-                                                                        ),
-                                                                        errorWidget: (context, url, error) => Icon(
-                                                                            Icons
-                                                                                .error,
-                                                                            size:
-                                                                                height * 0.06),
-                                                                      ),
-                                                                    ),
-                                                                    Container(
-                                                                      margin: EdgeInsets.only(
-                                                                          left: width *
-                                                                              0.06),
-                                                                      child:
-                                                                          Column(
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          ///------------------name-------------
-                                                                          Container(
-                                                                            margin:
-                                                                                EdgeInsets.only(bottom: height * 0.005),
-                                                                            child:
-                                                                                Text(
-                                                                              searchList[index].firstName! + " " + searchList[index].lastName!,
-                                                                              style: AppTheme.getTheme().textTheme.bodyText2!.copyWith(color: ConstColor.white_Color, height: 1.4, fontSize: width * 0.043),
+                                                                              color: primaryColor,
                                                                             ),
+                                                                            errorWidget: (context, url, error) =>
+                                                                                Icon(Icons.error, size: height * 0.06),
                                                                           ),
+                                                                        ),
+                                                                        Container(
+                                                                          margin:
+                                                                              EdgeInsets.only(left: width * 0.06),
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              ///------------------name-------------
+                                                                              Container(
+                                                                                margin: EdgeInsets.only(bottom: height * 0.005),
+                                                                                child: Text(
+                                                                                  searchList[index].firstName! + " " + searchList[index].lastName!,
+                                                                                  style: AppTheme.getTheme().textTheme.bodyText2!.copyWith(color: ConstColor.white_Color, height: 1.4, fontSize: width * 0.043),
+                                                                                ),
+                                                                              ),
 
-                                                                          ///-----------------conmtacts-------------
-                                                                          // Text(
-                                                                          //   searchList[index].phoneNumber!,
-                                                                          //   style: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
-                                                                          //       color: Color(0xff6C6C6C),
-                                                                          //       height: 1.4,
-                                                                          //       fontSize: width * 0.037),
-                                                                          // )
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ]),
+                                                                              ///-----------------conmtacts-------------
+                                                                              // Text(
+                                                                              //   searchList[index].phoneNumber!,
+                                                                              //   style: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
+                                                                              //       color: Color(0xff6C6C6C),
+                                                                              //       height: 1.4,
+                                                                              //       fontSize: width * 0.037),
+                                                                              // )
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ]),
+                                                                ),
+                                                              ],
                                                             ),
+                                                            searchList[index]
+                                                                        .isSelcetdForGroup ==
+                                                                    true
+                                                                ? Icon(
+                                                                    Icons.check)
+                                                                : Container(),
                                                           ],
                                                         ),
-                                                        searchList[index]
-                                                                    .isSelcetdForGroup ==
-                                                                true
-                                                            ? Icon(Icons.check)
-                                                            : Container(),
+                                                        searchList.last ==
+                                                                searchList[
+                                                                    index]
+                                                            ? Container()
+                                                            : Container(
+                                                                margin: EdgeInsets.only(
+                                                                    top: height *
+                                                                        0.022,
+                                                                    bottom:
+                                                                        height *
+                                                                            0.022),
+                                                                height: 1,
+                                                                width: width,
+                                                                color: ConstColor
+                                                                    .term_condition_grey_color
+                                                                    .withOpacity(
+                                                                        0.6),
+                                                              )
                                                       ],
                                                     ),
-                                                    searchList.last ==
-                                                            searchList[index]
-                                                        ? Container()
-                                                        : Container(
-                                                            margin: EdgeInsets.only(
-                                                                top: height *
-                                                                    0.022,
-                                                                bottom: height *
-                                                                    0.022),
-                                                            height: 1,
-                                                            width: width,
-                                                            color: ConstColor
-                                                                .term_condition_grey_color
-                                                                .withOpacity(
-                                                                    0.6),
-                                                          )
-                                                  ],
-                                                ),
-                                              ),
-                                            );
-                                          },
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              ))
+                                      );
+                                    },
+                                  )
+                        : Container(
+                            margin: EdgeInsets.only(),
+                            child: Center(
+                                child: Text(
+                              "Please enable contacts for \nOMW in your settings",
+                              style: AppTheme.getTheme()
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                      color: ConstColor.white_Color,
+                                      height: 1.4,
+                                      fontSize: width * 0.043),
+                            )),
+                          ))
               ],
             ),
           ),
