@@ -105,6 +105,7 @@ class GroupNotifier extends ChangeNotifier {
       contactsAllowed = true;
     } catch (e) {
       selectedUserList = [];
+      contactsAllowed = false;
       print(e);
     }
 
