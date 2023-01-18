@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../api/apiProvider.dart';
 import '../model/groupModel.dart';
 import '../model/user_model.dart';
+import '../utils/permission_utils.dart';
 import '../widget/scaffoldSnackbar.dart';
 
 class GroupNotifier extends ChangeNotifier {
@@ -90,23 +91,13 @@ class GroupNotifier extends ChangeNotifier {
 
     contacts = [];
     await getListOfContactUser(context);
-    await Permission.contacts.request();
-    PermissionStatus permission = await Permission.contacts.status;
-    // if (permission.isGranted) {
-    //   await getDeviceContactList();
-    //   await getAppContactList();
-    //   await getFinalAppContactList();
-    //   contactsAllowed = true;
-    // }
-    try {
+    bool contactsAllowed = await requestContactsPermission();
+    if (contactsAllowed) {
       await getDeviceContactList();
       await getAppContactList();
       await getFinalAppContactList();
-      contactsAllowed = true;
-    } catch (e) {
+    } else {
       selectedUserList = [];
-      contactsAllowed = false;
-      print(e);
     }
 
     notifyListeners();
