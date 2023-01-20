@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:omw/bottom/Events/event/edit_event_screen.dart';
+import 'package:omw/bottom/Events/event/event_chat_page.dart';
 import 'package:omw/bottom/Profile/profile_screen.dart';
 import 'package:omw/bottom/bottomtab.dart';
 import 'package:omw/bottom/common_BottomTab.dart';
@@ -24,9 +25,6 @@ import '../../Create/multiSelectionDate.dart';
 
 import '../../Create/seeMutiSelectedDate_screen.dart';
 import '../guestList/guestList_screen.dart';
-import 'co-host_edit_event_screen.dart';
-import 'event_chat_page.dart';
-import 'package:intl/intl.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
