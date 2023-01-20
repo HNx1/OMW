@@ -32,8 +32,9 @@ jobs:
       - run: flutter --version
       
       - name: Disable Analytics
-        run: flutter config --no-analytics
-        run: dart --disable-analytics
+        run: |
+          flutter config --no-analytics
+          dart --disable-analytics
 
       - name: Install dependencies
         run: flutter pub get
