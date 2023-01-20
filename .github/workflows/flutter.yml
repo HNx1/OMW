@@ -29,6 +29,9 @@ jobs:
         with:
           flutter-version: '3.0.5'
           channel: 'stable'
+      - name: Disable Analytics
+        flutter config --no-analytics
+        dart --disable-analytics
       - run: flutter --version
 
       - name: Install dependencies
