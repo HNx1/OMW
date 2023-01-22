@@ -20,7 +20,7 @@ import '../../../utils/colorUtils.dart';
 import 'package:intl/intl.dart';
 
 import '../../../utils/textUtils.dart';
-import '../../../widget/scaffoldSnackbar.dart';
+import '../../../widget/scaffold_snackbar.dart';
 
 class EventChatPage extends StatefulWidget {
   @override
@@ -72,7 +72,8 @@ class _EventChatPageState extends State<EventChatPage> {
               builder: (context) => WantSendImage(
                     imageFile: imageFile!,
                     isImageOpen: false,
-                    senderName: "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
+                    senderName:
+                        "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                     senderprofile: objProviderNotifier.objUsers.userProfile!,
                     eventId: objCreateEventNotifier.EventData.docId!,
                   ))).then((value) {
@@ -103,7 +104,8 @@ class _EventChatPageState extends State<EventChatPage> {
               builder: (context) => WantSendImage(
                     imageFile: imageFile!,
                     isImageOpen: false,
-                    senderName: "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
+                    senderName:
+                        "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                     senderprofile: objProviderNotifier.objUsers.userProfile!,
                     eventId: objCreateEventNotifier.EventData.docId!,
                   ))).then((value) {
@@ -300,7 +302,8 @@ class _EventChatPageState extends State<EventChatPage> {
                                             margin: EdgeInsets.only(
                                                 left: width * 0.14),
                                             decoration: BoxDecoration(
-                                                borderRadius: const BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft:
                                                       Radius.circular(10.0),
                                                   topRight:
@@ -504,11 +507,7 @@ class _EventChatPageState extends State<EventChatPage> {
                                                   builder: (context) =>
                                                       WantSendImage(
                                                         senderName:
-                                                            "${objProviderNotifier
-                                                                    .objUsers
-                                                                    .firstName!} ${objProviderNotifier
-                                                                    .objUsers
-                                                                    .lastName!}",
+                                                            "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                                                         senderprofile:
                                                             objProviderNotifier
                                                                 .objUsers

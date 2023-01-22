@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../api/apiProvider.dart';
+import '../api/api_provider.dart';
 import '../model/payment_model.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 class PaymentNotifier extends ChangeNotifier {
   bool isLoading = false;
@@ -21,37 +21,33 @@ class PaymentNotifier extends ChangeNotifier {
 
   PaymentModel objPaymentModel = PaymentModel();
   Future doPayment(
-    BuildContext context,
-    String eventHost,
-    String eventId,
-    String eventName,
-    String paymentBy,
-    dynamic amount,
-    String paymentMethod,
-    String paidUserProfile,
-    String receivedUserProfile,
-
-    String paymentToUserId
-  ) async {
+      BuildContext context,
+      String eventHost,
+      String eventId,
+      String eventName,
+      String paymentBy,
+      dynamic amount,
+      String paymentMethod,
+      String paidUserProfile,
+      String receivedUserProfile,
+      String paymentToUserId) async {
     await checkConnection();
     if (isConnected == true) {
       isLoading = true;
       try {
         objPaymentModel = PaymentModel(
-          paymentTime: Timestamp.now().toDate(),
-          amount: amount,
-          createdAt: Timestamp.now().toDate(),
-          eventHostedBy: eventHost,
-          eventId: eventId,
-          eventName: eventName,
-          paymentBy: paymentBy,
-          payment_method: paymentMethod,
-          currency: "GBP",
-          paidUserProfile: paidUserProfile,
-          paymentToUserId: paymentToUserId,
-          receivedUserProfile: receivedUserProfile
-
-        );
+            paymentTime: Timestamp.now().toDate(),
+            amount: amount,
+            createdAt: Timestamp.now().toDate(),
+            eventHostedBy: eventHost,
+            eventId: eventId,
+            eventName: eventName,
+            paymentBy: paymentBy,
+            payment_method: paymentMethod,
+            currency: "GBP",
+            paidUserProfile: paidUserProfile,
+            paymentToUserId: paymentToUserId,
+            receivedUserProfile: receivedUserProfile);
         await ApiProvider().doPayment(objPaymentModel);
         ScaffoldSnackbar.of(context).show("Payment done successfully!!!");
       } catch (e) {
