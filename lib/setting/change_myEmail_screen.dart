@@ -29,7 +29,7 @@ class _ChangeMyEmailScreenState extends State<ChangeMyEmailScreen> {
   }
 
   bool isemailChnage = false;
-  TextEditingController _emailController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -64,9 +64,8 @@ class _ChangeMyEmailScreenState extends State<ChangeMyEmailScreen> {
       ),
       body: Stack(
         children: [
-          objProviderNotifier.objUsers == null ||
-                  objProviderNotifier.objUsers == ""
-              ? Center(
+          objProviderNotifier.objUsers == ""
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -128,7 +127,7 @@ class _ChangeMyEmailScreenState extends State<ChangeMyEmailScreen> {
                         Stack(
                           children: [
                             isemailChnage == true
-                                ? Center(
+                                ? const Center(
                                     child: CircularProgressIndicator(
                                       color: primaryColor,
                                     ),
@@ -151,7 +150,7 @@ class _ChangeMyEmailScreenState extends State<ChangeMyEmailScreen> {
                                           });
                                     }
                                   },
-                                  child: CommonButton(
+                                  child: const CommonButton(
                                     name: TextUtils.SaveEmail,
                                   )),
                             ),
@@ -179,7 +178,7 @@ class _ChangeMyEmailScreenState extends State<ChangeMyEmailScreen> {
               bottom: height * 0.01),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(height * 0.016),
-            color: Color.fromARGB(255, 15, 15, 15),
+            color: const Color.fromARGB(255, 15, 15, 15),
           ),
           child: Column(
             children: [
@@ -200,7 +199,7 @@ class _ChangeMyEmailScreenState extends State<ChangeMyEmailScreen> {
                     EdgeInsets.only(top: height * 0.022, bottom: height * 0.01),
                 height: 1,
                 width: width,
-                color: Color.fromARGB(255, 187, 171, 171).withOpacity(0.2),
+                color: const Color.fromARGB(255, 187, 171, 171).withOpacity(0.2),
               ),
 
               ///-------------------Button --------------------

@@ -12,7 +12,6 @@ import '../../../utils/colorUtils.dart';
 import '../../../utils/textUtils.dart';
 import '../../notifier/authenication_notifier.dart';
 import '../../setting/bugReport&suggestions_screen.dart';
-import '../payment/payment_screen.dart';
 
 class CommonDrawer extends StatefulWidget {
   const CommonDrawer({Key? key}) : super(key: key);
@@ -54,9 +53,8 @@ class _CommonDrawerState extends State<CommonDrawer> {
         children: [
           Stack(
             children: [
-              objProviderNotifier.objUsers == null ||
-                      objProviderNotifier.objUsers == ""
-                  ? Center(
+              objProviderNotifier.objUsers == ""
+                  ? const Center(
                       child: CircularProgressIndicator(
                         color: primaryColor,
                       ),
@@ -72,15 +70,12 @@ class _CommonDrawerState extends State<CommonDrawer> {
                             userId: objProviderNotifier.objUsers.uid!,
                             isOwnProfile: true,
                             profile: objProviderNotifier.objUsers.userProfile!,
-                            name: "${objProviderNotifier.objUsers.firstName![0].toUpperCase()}${objProviderNotifier.objUsers.firstName!.substring(1).toLowerCase()}" +
-                                " " +
-                                "${objProviderNotifier.objUsers.lastName![0].toUpperCase()}${objProviderNotifier.objUsers.lastName!.substring(1).toLowerCase()}",
+                            name: "${objProviderNotifier.objUsers.firstName![0].toUpperCase()}${objProviderNotifier.objUsers.firstName!.substring(1).toLowerCase()} ${objProviderNotifier.objUsers.lastName![0].toUpperCase()}${objProviderNotifier.objUsers.lastName!.substring(1).toLowerCase()}",
                           )),
                     ),
                   ).whenComplete(() {
                     Navigator.pop(context);
                   });
-                  ;
                 },
                 child: Container(
                   margin: EdgeInsets.all(height * 0.03),
@@ -110,11 +105,11 @@ class _CommonDrawerState extends State<CommonDrawer> {
                             width: height * 0.06,
                             fit: BoxFit.cover,
                             placeholder: (context, url) =>
-                                CircularProgressIndicator(
+                                const CircularProgressIndicator(
                               color: primaryColor,
                             ),
                             errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
+                                const Icon(Icons.error),
                           ),
                         ),
                       ),
@@ -127,9 +122,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
                             children: [
                               ///---------------- Name  ---------------
                               Text(
-                                "${objProviderNotifier.objUsers.firstName![0].toUpperCase()}${objProviderNotifier.objUsers.firstName!.substring(1).toLowerCase()}" +
-                                    " " +
-                                    "${objProviderNotifier.objUsers.lastName![0].toUpperCase()}${objProviderNotifier.objUsers.lastName!.substring(1).toLowerCase()}",
+                                "${objProviderNotifier.objUsers.firstName![0].toUpperCase()}${objProviderNotifier.objUsers.firstName!.substring(1).toLowerCase()} ${objProviderNotifier.objUsers.lastName![0].toUpperCase()}${objProviderNotifier.objUsers.lastName!.substring(1).toLowerCase()}",
                                 style: AppTheme.getTheme()
                                     .textTheme
                                     .bodyText2!
@@ -160,7 +153,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
 
                       ///-------------- Arrow Icon------------
                       ,
-                      Icon(
+                      const Icon(
                         Icons.keyboard_arrow_right_outlined,
                         color: ConstColor.white_Color,
                       )
@@ -182,7 +175,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: ((context) => MyEventScreen()),
+                          builder: ((context) => const MyEventScreen()),
                         ),
                       );
                     },
@@ -211,7 +204,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: ((context) => SettingScreen()),
+                          builder: ((context) => const SettingScreen()),
                         ),
                       );
                     },
@@ -228,7 +221,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: ((context) => BugReportScreen()),
+                  builder: ((context) => const BugReportScreen()),
                 ),
               ).whenComplete(() => Navigator.pop(context));
             },

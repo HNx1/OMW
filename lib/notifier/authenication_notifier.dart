@@ -100,7 +100,7 @@ class AuthenicationNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  UserModel objUsers = new UserModel();
+  UserModel objUsers = UserModel();
   getUserDetail() async {
     isLoading = true;
     User user = _auth.currentUser!;
@@ -128,7 +128,7 @@ class AuthenicationNotifier extends ChangeNotifier {
     required String role,
     required String fcmToken,
   }) async {
-    var isConnected;
+    bool isConnected = false;
     try {
       isLoading = true;
       isConnected = await ApiProvider().checkConnection();
@@ -138,7 +138,7 @@ class AuthenicationNotifier extends ChangeNotifier {
     } finally {
       isLoading = false;
     }
-    if (isConnected == true) {
+    if (isConnected) {
       try {
         isLoading = true;
 
@@ -171,9 +171,9 @@ class AuthenicationNotifier extends ChangeNotifier {
           await ApiProvider().AddUserData(userModel);
 
           PrefServices().setIsUserLoggedIn(true);
-          var name = firstName.trim() + " " + lastname.trim();
+          var name = "${firstName.trim()} ${lastname.trim()}";
           PrefServices().setCurrentUserName(name);
-          var currentUser = await PrefServices().getCurrentUserName();
+          var currentUser = PrefServices().getCurrentUserName();
           print("currentUser==========>$currentUser");
           Navigator.pushReplacementNamed(context, Routes.HOME);
         }
@@ -202,7 +202,7 @@ class AuthenicationNotifier extends ChangeNotifier {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: Color.fromARGB(255, 15, 15, 15),
+            backgroundColor: const Color.fromARGB(255, 15, 15, 15),
             title: const Text("Password Reset Email Sent"),
             content: SingleChildScrollView(
               child: ListBody(
@@ -250,8 +250,8 @@ class AuthenicationNotifier extends ChangeNotifier {
       await ApiProvider().updateToken("");
       await _auth.signOut().whenComplete(() {
         // Navigator.pushReplacementNamed(context, Routes.Login);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginScreen()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const LoginScreen()));
         PrefServices().clearData();
       });
     } catch (e) {
@@ -266,13 +266,12 @@ class AuthenicationNotifier extends ChangeNotifier {
     try {
       await ApiProvider().updateToken("");
       await _auth.currentUser?.delete();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()));
       PrefServices().clearData();
     } catch (e) {
       print(e);
     }
-    ;
 
     notifyListeners();
   }
@@ -285,7 +284,6 @@ class AuthenicationNotifier extends ChangeNotifier {
     } catch (e) {
       print(e);
     }
-    ;
 
     notifyListeners();
   }

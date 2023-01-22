@@ -110,7 +110,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
               children: [
                 ///---------- List OF chating's Data ------------
                 isLoading == true
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(
                           color: primaryColor,
                         ),
@@ -226,14 +226,14 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                                                             fit: BoxFit.cover,
                                                             placeholder: (context,
                                                                     url) =>
-                                                                CircularProgressIndicator(
+                                                                const CircularProgressIndicator(
                                                               color:
                                                                   primaryColor,
                                                             ),
                                                             errorWidget:
                                                                 (context, url,
                                                                         error) =>
-                                                                    Icon(Icons
+                                                                    const Icon(Icons
                                                                         .error),
                                                           ),
                                                         ),
@@ -283,7 +283,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                                                             : item.messages!.last
                                                                         .imageUrl !=
                                                                     ""
-                                                                ? Icon(
+                                                                ? const Icon(
                                                                     Icons.image,
                                                                     color: Colors
                                                                         .grey,
@@ -302,7 +302,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                                                                         .textTheme
                                                                         .bodyText1!
                                                                         .copyWith(
-                                                                            color: Color(
+                                                                            color: const Color(
                                                                                 0xff6C6C6C),
                                                                             height:
                                                                                 1.4,
@@ -386,7 +386,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                                                                   .textTheme
                                                                   .bodyText1!
                                                                   .copyWith(
-                                                                      color: Color(
+                                                                      color: const Color(
                                                                           0xff6C6C6C),
                                                                       height:
                                                                           1.4,
@@ -437,7 +437,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                   context,
                   PageRouteBuilder(
                     pageBuilder: (context, animation1, animation2) =>
-                        BottomNavBarScreen(
+                        const BottomNavBarScreen(
                       index: 2,
                       lastIndex: 2,
                     ),

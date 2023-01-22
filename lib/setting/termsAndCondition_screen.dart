@@ -69,7 +69,7 @@ class _TermsAndConditionState extends State<TermsAndCondition> {
                       null ||
                   objTermAndConditionProvider.objTermAndConditionModel.title ==
                       ""
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),

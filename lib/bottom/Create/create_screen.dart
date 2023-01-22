@@ -46,10 +46,10 @@ class _CreateScreenState extends State<CreateScreen> {
   );
 
   var formKey = GlobalKey<FormState>();
-  TextEditingController _eventnameController = TextEditingController();
-  TextEditingController _LocationController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
-  TextEditingController _addCoHostController = TextEditingController();
+  final TextEditingController _eventnameController = TextEditingController();
+  final TextEditingController _LocationController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _addCoHostController = TextEditingController();
 
   DateTime eventStartDate = DateTime.now();
   DateTime eventEndDate = DateTime.now();
@@ -71,7 +71,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
   onStartDateSubmit(val) {
     setState(() {
-      selectedStartDate = '${DateFormat('MMM d, yyyy').format(val)}';
+      selectedStartDate = DateFormat('MMM d, yyyy').format(val);
       eventStartDate = val;
       FocusManager.instance.primaryFocus?.unfocus();
 
@@ -84,7 +84,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
   void onStartDateChanged(DateRangePickerSelectionChangedArgs args) {
     setState(() {
-      selectedStartDate = '${DateFormat('MMM d, yyyy').format(args.value)}';
+      selectedStartDate = DateFormat('MMM d, yyyy').format(args.value);
       eventStartDate = args.value;
       FocusManager.instance.primaryFocus?.unfocus();
       print('Changed start date $selectedStartDate');
@@ -93,7 +93,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
   void onEndDateChanged(DateRangePickerSelectionChangedArgs args) {
     setState(() {
-      selectedEndDate = '${DateFormat('MMM d, yyyy').format(args.value)}';
+      selectedEndDate = DateFormat('MMM d, yyyy').format(args.value);
       eventEndDate = args.value;
       print('Changed end date $selectedEndDate');
     });
@@ -108,7 +108,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
   onEndDateSubmit(val) {
     setState(() {
-      selectedEndDate = '${DateFormat('MMM d, yyyy').format(val)}';
+      selectedEndDate = DateFormat('MMM d, yyyy').format(val);
       eventEndDate = val;
 
       print(eventEndDate);
@@ -180,7 +180,7 @@ class _CreateScreenState extends State<CreateScreen> {
     }
   }
 
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   CalendarFormat _calendarFormat = CalendarFormat.week;
   DateTime _focusedDay = DateTime.now();
 
@@ -272,9 +272,9 @@ class _CreateScreenState extends State<CreateScreen> {
   }
 
   String currentuser = "";
-  UserModel currentUserModel = new UserModel();
+  UserModel currentUserModel = UserModel();
   getCurrentUser() async {
-    currentuser = await PrefServices().getCurrentUserName();
+    currentuser = PrefServices().getCurrentUserName();
     currentUserModel =
         await ApiProvider().getUserDetail(_auth.currentUser!.uid);
     cohostList = [currentUserModel];
@@ -307,7 +307,7 @@ class _CreateScreenState extends State<CreateScreen> {
         );
       }
       _scrollController.animateTo(height * 0.75,
-          curve: Curves.linear, duration: Duration(milliseconds: 500));
+          curve: Curves.linear, duration: const Duration(milliseconds: 500));
     });
   }
   _getContactsData() async {
@@ -332,9 +332,9 @@ class _CreateScreenState extends State<CreateScreen> {
                     ),
           )
           .toList();
-      print('Contacts List ====>${contactsList}');
-      print('Search Text =======> ${_searchText}');
-      print('Search List ====>${searchList}');
+      print('Contacts List ====>$contactsList');
+      print('Search Text =======> $_searchText');
+      print('Search List ====>$searchList');
       return searchList;
     }
   }
@@ -382,7 +382,7 @@ class _CreateScreenState extends State<CreateScreen> {
             alignment: Alignment.center,
             children: [
               objCreateEventNotifier.isLoading == true || isLoading == true
-                  ? CircularProgressIndicator(
+                  ? const CircularProgressIndicator(
                       color: primaryColor,
                     )
                   : Container(),
@@ -428,35 +428,35 @@ class _CreateScreenState extends State<CreateScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               disabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
@@ -469,7 +469,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                   .bodyText1!
                                   .copyWith(
                                     fontSize: width * 0.038,
-                                    color: Color(0xff6C6C6C),
+                                    color: const Color(0xff6C6C6C),
                                   ),
                             ),
                             validator: validateName,
@@ -532,9 +532,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                                                     "" &&
                                                                 selectedEndDate !=
                                                                     ""
-                                                            ? selectedStartDate +
-                                                                " -\n" +
-                                                                selectedEndDate
+                                                            ? "$selectedStartDate -\n$selectedEndDate"
                                                             : TextUtils
                                                                 .Enterdate,
                                                   )
@@ -619,9 +617,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                                     ? selectStartTime
                                                     : selectStartTime != "" &&
                                                             selectEndTime != ""
-                                                        ? selectStartTime +
-                                                            " -\n" +
-                                                            selectEndTime
+                                                        ? "$selectStartTime -\n$selectEndTime"
                                                         : TextUtils.time,
                                               ),
                                             ),
@@ -727,14 +723,14 @@ class _CreateScreenState extends State<CreateScreen> {
                                   ? Container(
                                       margin:
                                           EdgeInsets.only(top: height * 0.023),
-                                      color: Color.fromARGB(255, 15, 15, 15),
+                                      color: const Color.fromARGB(255, 15, 15, 15),
                                       child: TableCalendar(
                                         calendarStyle: CalendarStyle(
                                           isTodayHighlighted: true,
                                           cellPadding: EdgeInsets.zero,
                                           cellMargin:
                                               EdgeInsets.all(height * 0.014),
-                                          selectedDecoration: BoxDecoration(
+                                          selectedDecoration: const BoxDecoration(
                                               color: primaryColor,
                                               shape: BoxShape.rectangle),
                                           selectedTextStyle: AppTheme.getTheme()
@@ -752,25 +748,25 @@ class _CreateScreenState extends State<CreateScreen> {
                                                   color:
                                                       ConstColor.primaryColor,
                                                   fontWeight: FontWeight.w400),
-                                          todayDecoration: BoxDecoration(
+                                          todayDecoration: const BoxDecoration(
                                               color: Color.fromARGB(
                                                   255, 15, 15, 15),
                                               shape: BoxShape.circle),
-                                          disabledTextStyle: TextStyle(
+                                          disabledTextStyle: const TextStyle(
                                             color: Colors.grey,
                                           ),
-                                          defaultTextStyle: TextStyle(
+                                          defaultTextStyle: const TextStyle(
                                             color: Colors.white,
                                           ),
-                                          outsideTextStyle: TextStyle(
+                                          outsideTextStyle: const TextStyle(
                                             color: Colors.grey,
                                           ),
                                           weekendTextStyle:
-                                              TextStyle(color: Colors.white),
+                                              const TextStyle(color: Colors.white),
                                         ),
                                         startingDayOfWeek:
                                             StartingDayOfWeek.monday,
-                                        daysOfWeekStyle: DaysOfWeekStyle(
+                                        daysOfWeekStyle: const DaysOfWeekStyle(
                                           weekdayStyle:
                                               TextStyle(color: Colors.white),
                                           weekendStyle:
@@ -780,12 +776,12 @@ class _CreateScreenState extends State<CreateScreen> {
                                           formatButtonVisible: false,
                                           leftChevronVisible: true,
                                           rightChevronVisible: true,
-                                          leftChevronIcon: Icon(
+                                          leftChevronIcon: const Icon(
                                             Icons.keyboard_arrow_left,
                                             color: ConstColor.white_Color,
                                           ),
                                           titleCentered: true,
-                                          rightChevronIcon: Icon(
+                                          rightChevronIcon: const Icon(
                                             Icons.keyboard_arrow_right,
                                             color: ConstColor.white_Color,
                                           ),
@@ -798,7 +794,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                         ),
                                         firstDay: DateTime.now(),
                                         lastDay: DateTime.now().add(
-                                          Duration(days: 500),
+                                          const Duration(days: 500),
                                         ),
                                         focusedDay: _focusedDay,
                                         calendarFormat: _calendarFormat,
@@ -908,35 +904,35 @@ class _CreateScreenState extends State<CreateScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               disabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
@@ -949,7 +945,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                   .bodyText1!
                                   .copyWith(
                                     fontSize: width * 0.038,
-                                    color: Color(0xff6C6C6C),
+                                    color: const Color(0xff6C6C6C),
                                   ),
                             ),
                           ),
@@ -984,35 +980,35 @@ class _CreateScreenState extends State<CreateScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               disabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
@@ -1025,7 +1021,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                   .bodyText1!
                                   .copyWith(
                                     fontSize: width * 0.038,
-                                    color: Color(0xff6C6C6C),
+                                    color: const Color(0xff6C6C6C),
                                   ),
                             ),
                             validator: validateDescription,
@@ -1053,13 +1049,13 @@ class _CreateScreenState extends State<CreateScreen> {
                                             width: width,
                                             height: height * 0.08,
                                             decoration: BoxDecoration(
-                                                color: Color.fromARGB(
+                                                color: const Color.fromARGB(
                                                     255, 40, 40, 40),
                                                 borderRadius:
-                                                    new BorderRadius.vertical(
+                                                    BorderRadius.vertical(
                                                         top: Radius.circular(
                                                             height * 0.03),
-                                                        bottom: Radius.circular(
+                                                        bottom: const Radius.circular(
                                                             0))),
                                             child: Center(
                                               child: Container(
@@ -1079,7 +1075,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                             ),
                                           ),
                                         ),
-                                        Divider(
+                                        const Divider(
                                           thickness: 2,
                                           height: 1,
                                           color: Colors.black,
@@ -1093,7 +1089,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                             width: width,
                                             height: height * 0.08,
                                             color:
-                                                Color.fromARGB(255, 40, 40, 40),
+                                                const Color.fromARGB(255, 40, 40, 40),
                                             child: Center(
                                               child: Container(
                                                 margin: EdgeInsets.all(
@@ -1112,7 +1108,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                             ),
                                           ),
                                         ),
-                                        Divider(
+                                        const Divider(
                                           thickness: 2,
                                           height: 1,
                                           color: Colors.black,
@@ -1125,7 +1121,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                             width: width,
                                             height: height * 0.08,
                                             color:
-                                                Color.fromARGB(255, 40, 40, 40),
+                                                const Color.fromARGB(255, 40, 40, 40),
                                             child: Center(
                                               child: Container(
                                                 margin: EdgeInsets.all(
@@ -1176,7 +1172,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                         .bodyText1!
                                         .copyWith(
                                           fontSize: width * 0.038,
-                                          color: Color(0xff6C6C6C),
+                                          color: const Color(0xff6C6C6C),
                                         ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -1293,7 +1289,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                   if (hasFocus) {
                                     _scrollController.animateTo(height * 1.6,
                                         curve: Curves.linear,
-                                        duration: Duration(milliseconds: 500));
+                                        duration: const Duration(milliseconds: 500));
                                   }
                                 },
                                 child: TextFormField(
@@ -1365,14 +1361,14 @@ class _CreateScreenState extends State<CreateScreen> {
                         //     : Container(),
                         ListView.builder(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           padding: EdgeInsets.zero,
                           itemCount: min(searchList.length, 5),
                           itemBuilder: (BuildContext context, int index) {
                             return cohostList.contains(searchList[index])
                                 ? Container()
                                 : Container(
-                                    color: Color.fromARGB(255, 15, 15, 15),
+                                    color: const Color.fromARGB(255, 15, 15, 15),
                                     child: Column(
                                       children: [
                                         GestureDetector(
@@ -1380,14 +1376,11 @@ class _CreateScreenState extends State<CreateScreen> {
                                             setState(() {
                                               print(searchList[index].uid);
                                               cohostList.add(searchList[index]);
-                                              co_host += ", " +
-                                                  searchList[index].firstName! +
-                                                  " " +
-                                                  searchList[index].lastName!;
+                                              co_host += ", ${searchList[index].firstName!} ${searchList[index].lastName!}";
                                               _addCoHostController.text = "";
                                             });
                                             print(
-                                                "Co host list ====> ${cohostList}");
+                                                "Co host list ====> $cohostList");
 
                                             FocusScope.of(context)
                                                 .requestFocus(FocusNode());
@@ -1401,9 +1394,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                               margin: EdgeInsets.only(
                                                   left: width * 0.05),
                                               child: CommanLabeltext(
-                                                searchList[index].firstName! +
-                                                    " " +
-                                                    searchList[index].lastName!,
+                                                "${searchList[index].firstName!} ${searchList[index].lastName!}",
                                               ),
                                             ),
                                           ),
@@ -1444,7 +1435,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                     children: [
                                       ListView.builder(
                                         shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
+                                        physics: const NeverScrollableScrollPhysics(),
                                         itemCount: cohostList.length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
@@ -1465,11 +1456,9 @@ class _CreateScreenState extends State<CreateScreen> {
                                                                   .primaryColor),
                                                     )
                                                   : Text(
-                                                      cohostList[index]
-                                                              .firstName! +
-                                                          " " +
-                                                          cohostList[index]
-                                                              .lastName!,
+                                                      "${cohostList[index]
+                                                              .firstName!} ${cohostList[index]
+                                                              .lastName!}",
                                                       style: AppTheme.getTheme()
                                                           .textTheme
                                                           .bodyText2!
@@ -1610,7 +1599,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                     ? "11:59 PM"
                                     : selectEndTime;
                                 var selectedTime =
-                                    selectStartTime + " - " + endTime;
+                                    "$selectStartTime - $endTime";
 
                                 await geteventStartDateFromString();
                                 await geteventEndDateFromString();
@@ -1686,7 +1675,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                       context,
                                       MaterialPageRoute(
                                         builder: ((context) =>
-                                            InviteFriendsScreen(
+                                            const InviteFriendsScreen(
                                               isFromAddEvent: true,
                                             )),
                                       ),
@@ -1695,7 +1684,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                 });
                               }
                             },
-                            child: CommonButton(
+                            child: const CommonButton(
                               name: TextUtils.Create,
                             ),
                           ),
@@ -1738,7 +1727,7 @@ class _CreateScreenState extends State<CreateScreen> {
       barrierDismissible: true,
       barrierColor: Colors.black54,
       builder: (BuildContext context) {
-        return CommonDrawer();
+        return const CommonDrawer();
       },
     );
   }
@@ -1767,12 +1756,12 @@ class _CreateScreenState extends State<CreateScreen> {
         Navigator.pop(context);
         FocusManager.instance.primaryFocus?.unfocus();
 
-        print('================>${selectStartTime}');
+        print('================>$selectStartTime');
       },
       onFromOKTap: () {
         if (selectStartTime == "") {
           setState(() {
-            selectStartTime = '${DateFormat('h:mm aa').format(DateTime.now())}';
+            selectStartTime = DateFormat('h:mm aa').format(DateTime.now());
           });
         }
         setState(() {
@@ -1780,12 +1769,12 @@ class _CreateScreenState extends State<CreateScreen> {
         });
         Navigator.pop(context);
         FocusManager.instance.primaryFocus?.unfocus();
-        print('================>${selectStartTime}');
+        print('================>$selectStartTime');
       },
       onToOkTap: () {
         setState(() {
           if (selectEndTime == "") {
-            selectEndTime = '${DateFormat('h:mm aa').format(DateTime.now())}';
+            selectEndTime = DateFormat('h:mm aa').format(DateTime.now());
           }
           setState(() {
             selectEndTime;
@@ -1793,7 +1782,7 @@ class _CreateScreenState extends State<CreateScreen> {
         });
         Navigator.pop(context);
         FocusManager.instance.primaryFocus?.unfocus();
-        print('================>${selectEndTime}');
+        print('================>$selectEndTime');
       },
       onToCancelTap: () {
         // if (selectEndTime != "") {
@@ -1808,18 +1797,18 @@ class _CreateScreenState extends State<CreateScreen> {
         });
         Navigator.pop(context);
 
-        print('================>${selectEndTime}');
+        print('================>$selectEndTime');
       },
       onEndDateTimeChanged: (newDateTime) {
         setState(() {
-          selectEndTime = '${DateFormat('h:mm aa').format(newDateTime)}';
+          selectEndTime = DateFormat('h:mm aa').format(newDateTime);
           currentTime2 = newDateTime;
           print(newDateTime);
         });
       },
       onStartDateTimeChanged: (newDateTime) {
         setState(() {
-          selectStartTime = '${DateFormat('h:mm aa').format(newDateTime)}';
+          selectStartTime = DateFormat('h:mm aa').format(newDateTime);
 
           currentTime = newDateTime;
         });

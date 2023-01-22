@@ -99,7 +99,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                       .copyWith(
                                           decoration: TextDecoration.none,
                                           color: index != 0
-                                              ? Color(0xffA5A5A5)
+                                              ? const Color(0xffA5A5A5)
                                               : ConstColor.black_Color,
                                           fontSize: width * 0.043,
                                           fontWeight: index != 0
@@ -139,7 +139,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                       .copyWith(
                                           decoration: TextDecoration.none,
                                           color: index != 1
-                                              ? Color(0xffA5A5A5)
+                                              ? const Color(0xffA5A5A5)
                                               : ConstColor.black_Color,
                                           fontSize: width * 0.043,
                                           fontWeight: index != 1
@@ -157,7 +157,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       child: SingleChildScrollView(
                           padding: EdgeInsets.only(
                               bottom: height * 0.02, top: height * 0.005),
-                          child: index == 0 ? PaidScreen() : ReceiveScreen()))
+                          child: index == 0 ? const PaidScreen() : const ReceiveScreen()))
                 ],
               ),
             ),

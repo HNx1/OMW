@@ -24,7 +24,7 @@ class _ErrorButtonState extends State<ErrorButton> {
       padding: EdgeInsets.all(height * 0.019),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(height * 0.1),
-          color: Color.fromARGB(255, 214, 41, 29)),
+          color: const Color.fromARGB(255, 214, 41, 29)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -6,7 +6,6 @@ import 'package:omw/utils/colorUtils.dart';
 import 'package:omw/utils/textUtils.dart';
 import 'package:provider/provider.dart';
 
-import '../../../api/apiProvider.dart';
 import '../../../constant/constants.dart';
 import '../../../constant/theme.dart';
 import '../../../model/createEvent_model.dart';
@@ -20,7 +19,7 @@ class UpComingScreen extends StatefulWidget {
   final bool isLoading;
   final bool isFilteredData;
 
-  UpComingScreen(
+  const UpComingScreen(
       {Key? key,
       required this.getList,
       required this.isLoading,
@@ -81,7 +80,7 @@ class _UpComingScreenState extends State<UpComingScreen> {
     return Expanded(
       child: objCreateEventNotifier.isLoading == true &&
               objCreateEventNotifier.getupcomingEventList.isEmpty
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
                 color: primaryColor,
               ),
@@ -202,7 +201,7 @@ class _UpComingScreenState extends State<UpComingScreen> {
                                                       MainAxisAlignment.center,
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
-                                                  children: [
+                                                  children: const [
                                                     CircularProgressIndicator(
                                                       color: primaryColor,
                                                     ),
@@ -269,9 +268,7 @@ class _UpComingScreenState extends State<UpComingScreen> {
                                                                       left: height *
                                                                           0.005),
                                                               child: Text(
-                                                                "${objCreateEventNotifier.getupcomingEventList[index].lstUser!.firstName![0].toUpperCase()}${objCreateEventNotifier.getupcomingEventList[index].lstUser!.firstName!.substring(1).toLowerCase()}" +
-                                                                    " " +
-                                                                    "${objCreateEventNotifier.getupcomingEventList[index].lstUser!.lastName![0].toUpperCase()}${objCreateEventNotifier.getupcomingEventList[index].lstUser!.lastName!.substring(1).toLowerCase()}",
+                                                                "${objCreateEventNotifier.getupcomingEventList[index].lstUser!.firstName![0].toUpperCase()}${objCreateEventNotifier.getupcomingEventList[index].lstUser!.firstName!.substring(1).toLowerCase()} ${objCreateEventNotifier.getupcomingEventList[index].lstUser!.lastName![0].toUpperCase()}${objCreateEventNotifier.getupcomingEventList[index].lstUser!.lastName!.substring(1).toLowerCase()}",
                                                                 maxLines: 1,
                                                                 overflow:
                                                                     TextOverflow
@@ -325,10 +322,9 @@ class _UpComingScreenState extends State<UpComingScreen> {
                                                                                 index]
                                                                             .isDatePoll!)
                                                                     ? "Date Poll"
-                                                                    : '${DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getupcomingEventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getupcomingEventList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getupcomingEventList[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getupcomingEventList[index].eventStartDate!).substring(5)).toLowerCase()}' +
-                                                                        DateFormat(' - h:mm aa')
+                                                                    : '${DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getupcomingEventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getupcomingEventList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getupcomingEventList[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getupcomingEventList[index].eventStartDate!).substring(5)).toLowerCase()}${DateFormat(' - h:mm aa')
                                                                             .format(objCreateEventNotifier.getupcomingEventList[index].eventEndDate!)
-                                                                            .toLowerCase(),
+                                                                            .toLowerCase()}',
                                                                 maxLines: 1,
                                                                 overflow:
                                                                     TextOverflow
@@ -406,7 +402,7 @@ class _UpComingScreenState extends State<UpComingScreen> {
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                                 height: height * 0.15,
                                                 child: objCreateEventNotifier
                                                                 .getupcomingEventList[
@@ -462,7 +458,7 @@ class _UpComingScreenState extends State<UpComingScreen> {
   Widget filteredUpCommingList(CreateEventNotifier objCreateEventNotifier) {
     return Expanded(
       child: widget.isLoading == true && widget.getList.isEmpty
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
                 color: primaryColor,
               ),
@@ -562,7 +558,7 @@ class _UpComingScreenState extends State<UpComingScreen> {
                                                   MainAxisAlignment.center,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
-                                              children: [
+                                              children: const [
                                                 CircularProgressIndicator(
                                                   color: primaryColor,
                                                 ),
@@ -581,7 +577,7 @@ class _UpComingScreenState extends State<UpComingScreen> {
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.end,
-                                                  children: [],
+                                                  children: const [],
                                                 ),
                                                 Text(
                                                   widget.getList[index]
@@ -630,9 +626,7 @@ class _UpComingScreenState extends State<UpComingScreen> {
                                                                   left: height *
                                                                       0.005),
                                                           child: Text(
-                                                            "${widget.getList[index].lstUser!.firstName![0].toUpperCase()}${widget.getList[index].lstUser!.firstName!.substring(1).toLowerCase()}" +
-                                                                " " +
-                                                                "${widget.getList[index].lstUser!.lastName![0].toUpperCase()}${widget.getList[index].lstUser!.lastName!.substring(1).toLowerCase()}",
+                                                            "${widget.getList[index].lstUser!.firstName![0].toUpperCase()}${widget.getList[index].lstUser!.firstName!.substring(1).toLowerCase()} ${widget.getList[index].lstUser!.lastName![0].toUpperCase()}${widget.getList[index].lstUser!.lastName!.substring(1).toLowerCase()}",
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
@@ -685,13 +679,12 @@ class _UpComingScreenState extends State<UpComingScreen> {
                                                                             index]
                                                                         .isDatePoll!)
                                                                 ? "Date Poll"
-                                                                : '${DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!).substring(5)).toLowerCase()}' +
-                                                                    DateFormat(
+                                                                : '${DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!).substring(5)).toLowerCase()}${DateFormat(
                                                                             ' - h:mm aa')
                                                                         .format(widget
                                                                             .getList[index]
                                                                             .eventEndDate!)
-                                                                        .toLowerCase(),
+                                                                        .toLowerCase()}',
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
@@ -770,7 +763,7 @@ class _UpComingScreenState extends State<UpComingScreen> {
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                             height: height * 0.15,
                                             child: widget.getList[index]
                                                             .cohostList ==

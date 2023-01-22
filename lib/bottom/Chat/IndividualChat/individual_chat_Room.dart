@@ -109,7 +109,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
                     chat: widget.chat,
                     isImageOpen: false,
                     senderName:
-                        '${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}',
+                        "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                     senderprofile: objProviderNotifier.objUsers.userProfile!,
                   ))).then((value) {
         setState(() {
@@ -139,7 +139,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
                     chat: widget.chat,
                     isImageOpen: false,
                     senderName:
-                        '${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}',
+                        "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                     senderprofile: objProviderNotifier.objUsers.userProfile!,
                   ))).then((value) {
         setState(() {
@@ -213,11 +213,11 @@ class _ChatPageState extends State<IndividualChatRoom> {
                               width: height * 0.052,
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
-                                  CircularProgressIndicator(
+                                  const CircularProgressIndicator(
                                 color: primaryColor,
                               ),
                               errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
+                                  const Icon(Icons.error),
                             )),
                 )
               ],
@@ -310,7 +310,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
                           Container(
                             margin: EdgeInsets.only(
                                 left: width * 0.02, right: width * 0.02),
-                            child: Icon(
+                            child: const Icon(
                               Icons.block_flipped,
                               color: Colors.black,
                             ),
@@ -376,7 +376,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.only(
                     left: height * 0.02,
                     right: height * 0.02,
@@ -417,7 +417,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
                                     MaterialPageRoute(
                                         builder: (context) => IsImageSending(
                                               senderName:
-                                                  '${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}',
+                                                  "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                                               senderprofile: objProviderNotifier
                                                   .objUsers.userProfile!,
                                               chat: widget.chat,
@@ -449,7 +449,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
                                     horizontal: width * 0.02,
                                     vertical: height * 0.02),
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(10.0),
                                       topRight: Radius.circular(10.0),
                                       bottomRight: Radius.circular(10.0),
@@ -521,7 +521,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
                                     MaterialPageRoute(
                                         builder: (context) => IsImageSending(
                                               senderName:
-                                                  '${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}',
+                                                  "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                                               senderprofile: objProviderNotifier
                                                   .objUsers.userProfile!,
                                               chat: widget.chat,
@@ -656,7 +656,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
                 right: width * 0.03,
                 top: height * 0.03,
                 bottom: height * 0.03),
-            color: Color(0xff0E0E0E),
+            color: const Color(0xff0E0E0E),
             child: Row(
               children: [
                 Expanded(
@@ -746,21 +746,20 @@ class _ChatPageState extends State<IndividualChatRoom> {
                         ),
                       ),
                       hintText: TextUtils.type,
-                      fillColor: Color(0xff999999).withOpacity(0.2),
+                      fillColor: const Color(0xff999999).withOpacity(0.2),
                       filled: true,
                       hintStyle: AppTheme.getTheme()
                           .textTheme
                           .bodyText1!
                           .copyWith(
-                              fontSize: width * 0.04, color: Color(0xff888888)),
+                              fontSize: width * 0.04, color: const Color(0xff888888)),
                     ),
                   ),
                 ),
                 GestureDetector(
                   onTap: () async {
                     if (objChattingNotifier.isBlock == false) {
-                      if (messageController.text != null &&
-                          messageController.text != "") {
+                      if (messageController.text != "") {
                         await objNotificationNotifier.checkConnection();
                         if (objNotificationNotifier.isConnected == true) {
                           await widget.chat.sendMessage(
@@ -768,7 +767,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
                               false,
                               "",
                               [widget.chat.friendId, _auth.currentUser!.uid],
-                              "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}",
+                              "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                               objProviderNotifier.objUsers.userProfile!,
                               objChattingNotifier.currentUserIsBlockOrNot
                                               .blockTo ==
@@ -790,7 +789,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
                                 context,
                                 widget.chat.friendFCMToken!,
                                 "Message Received",
-                                "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!} sent you a message",
+                                "${"${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}"} sent you a message",
                                 "Chatting",
                                 widget.chat.conversationId!,
                                 "",
@@ -799,14 +798,14 @@ class _ChatPageState extends State<IndividualChatRoom> {
                                 context: context,
                                 title: "Message Received",
                                 description:
-                                    "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!} sent you a message",
+                                    "${"${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}"} sent you a message",
                                 userId: widget.chat.friendId,
                                 type: "Chatting",
                                 typeOfData: [
                                   {
                                     "notificationType": "Message",
                                     "sender":
-                                        "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}",
+                                        "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                                     "conversationId": widget.chat.conversationId
                                   }
                                 ]);
@@ -888,7 +887,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         AlertDialog(
-          backgroundColor: Color.fromARGB(255, 15, 15, 15),
+          backgroundColor: const Color.fromARGB(255, 15, 15, 15),
           title: Container(
             margin: EdgeInsets.only(left: width * 0.02, right: width * 0.02),
             child: Text(
@@ -954,7 +953,7 @@ class _ChatPageState extends State<IndividualChatRoom> {
       children: [
         Container(
           padding: EdgeInsets.only(left: width * 0.03, right: width * 0.03),
-          color: Color(0xff0E0E0E),
+          color: const Color(0xff0E0E0E),
           height: height * 0.2,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

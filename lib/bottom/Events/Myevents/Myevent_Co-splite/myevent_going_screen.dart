@@ -29,7 +29,7 @@ class _MyEvent_GoingState extends State<MyEvent_Going> {
         children: [
           ///---------- List OF Going's Data ------------
           widget.isLoading == true && widget.goingGuest.isEmpty
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -52,7 +52,7 @@ class _MyEvent_GoingState extends State<MyEvent_Going> {
                       padding: EdgeInsets.only(bottom: height * 0.02),
                       itemCount: widget.goingGuest.length,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
@@ -71,11 +71,11 @@ class _MyEvent_GoingState extends State<MyEvent_Going> {
                                           width: height * 0.068,
                                           fit: BoxFit.cover,
                                           placeholder: (context, url) =>
-                                              CircularProgressIndicator(
+                                              const CircularProgressIndicator(
                                             color: primaryColor,
                                           ),
                                           errorWidget: (context, url, error) =>
-                                              Icon(Icons.error),
+                                              const Icon(Icons.error),
                                         )),
                                     Container(
                                       margin:
@@ -89,11 +89,9 @@ class _MyEvent_GoingState extends State<MyEvent_Going> {
                                             margin: EdgeInsets.only(
                                                 bottom: height * 0.005),
                                             child: Text(
-                                              widget.goingGuest[index]
-                                                      .firstName! +
-                                                  " " +
-                                                  widget.goingGuest[index]
-                                                      .lastName!,
+                                              "${widget.goingGuest[index]
+                                                      .firstName!} ${widget.goingGuest[index]
+                                                      .lastName!}",
                                               style: AppTheme.getTheme()
                                                   .textTheme
                                                   .bodyText2!

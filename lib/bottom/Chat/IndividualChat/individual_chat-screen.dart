@@ -106,7 +106,7 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
               children: [
                 ///---------- List OF chating's Data ------------
                 isLoading == true
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(
                           color: primaryColor,
                         ),
@@ -197,14 +197,14 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
                                                             fit: BoxFit.cover,
                                                             placeholder: (context,
                                                                     url) =>
-                                                                CircularProgressIndicator(
+                                                                const CircularProgressIndicator(
                                                               color:
                                                                   primaryColor,
                                                             ),
                                                             errorWidget:
                                                                 (context, url,
                                                                         error) =>
-                                                                    Icon(Icons
+                                                                    const Icon(Icons
                                                                         .error),
                                                           ),
                                                         ),
@@ -254,7 +254,7 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
                                                             : item.messages!.last
                                                                         .imageUrl !=
                                                                     ""
-                                                                ? Icon(
+                                                                ? const Icon(
                                                                     Icons.image,
                                                                     color: Colors
                                                                         .grey,
@@ -273,7 +273,7 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
                                                                         .textTheme
                                                                         .bodyText1!
                                                                         .copyWith(
-                                                                            color: Color(
+                                                                            color: const Color(
                                                                                 0xff6C6C6C),
                                                                             height:
                                                                                 1.4,
@@ -357,7 +357,7 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
                                                                   .textTheme
                                                                   .bodyText1!
                                                                   .copyWith(
-                                                                      color: Color(
+                                                                      color: const Color(
                                                                           0xff6C6C6C),
                                                                       height:
                                                                           1.4,

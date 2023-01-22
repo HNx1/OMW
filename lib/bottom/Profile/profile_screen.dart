@@ -116,7 +116,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   getUserName() async {
-    currentuser = await PrefServices().getCurrentUserName();
+    currentuser = PrefServices().getCurrentUserName();
     var objCreateEventNotifier =
         Provider.of<CreateEventNotifier>(context, listen: false);
     var objProviderNotifier =
@@ -139,14 +139,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     var contacts = objGroupNotifier.selectedUserList;
     List cIds = [for (var i in contacts) i.uid];
-    print('contacts: ${cIds}');
+    print('contacts: $cIds');
     setState(() {
       contactIds = cIds;
     });
 
     var data = await ApiProvider().getUserDetail(widget.userId);
     var pId = data.uid;
-    print('currentProfile: ${pId}');
+    print('currentProfile: $pId');
     setState(() {
       profile = data;
     });
@@ -155,7 +155,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
-  UserModel profile = new UserModel();
+  UserModel profile = UserModel();
   List contactIds = [];
   bool addedAsContact = false;
   bool isLoading1 = true;
@@ -250,11 +250,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             width: height * 0.1,
                             fit: BoxFit.cover,
                             placeholder: (context, url) =>
-                                CircularProgressIndicator(
+                                const CircularProgressIndicator(
                               color: primaryColor,
                             ),
                             errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
+                                const Icon(Icons.error),
                           ),
                         ),
 
@@ -290,9 +290,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     widget.isOwnProfile == true
                         ? Container()
                         : isLoading1 == true
-                            ? Center(
+                            ? const Center(
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top: 20),
+                                  padding: EdgeInsets.only(top: 20),
                                   child: CircularProgressIndicator(
                                     color: secondaryColor,
                                   ),
@@ -311,8 +311,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               chats.firstWhereOrNull((e) =>
                                                   e.friendId == widget.userId);
 
-                                          if (chat == null) {
-                                            chat = AllChat(
+                                          chat ??= AllChat(
                                               widget.userId,
                                               friendFCMToken: widget.fcmtoken,
                                               UserProfile: widget.profile,
@@ -321,7 +320,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               isgroup: false,
                                               messages: [],
                                             );
-                                          }
 
                                           Navigator.push(
                                               context,
@@ -330,7 +328,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       IndividualChatRoom(
                                                           chat: chat!)));
                                         },
-                                        child: CommonOutLineButton(
+                                        child: const CommonOutLineButton(
                                           name: TextUtils.Message,
                                         ),
                                       ),
@@ -338,7 +336,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   contactIds.contains(profile.uid) ||
                                           addedAsContact
-                                      ? SizedBox.shrink()
+                                      ? const SizedBox.shrink()
                                       : Expanded(
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
@@ -351,7 +349,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   });
                                                 },
                                                 child:
-                                                    CommonButton(name: 'Add')),
+                                                    const CommonButton(name: 'Add')),
                                           ),
                                         )
                                 ],
@@ -378,7 +376,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ///-------------------------- List Of Events-------------
                     objCreateEventNotifier.isLoading == true &&
                             eventList.isEmpty
-                        ? Center(
+                        ? const Center(
                             child: CircularProgressIndicator(
                               color: primaryColor,
                             ),
@@ -404,7 +402,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 padding: EdgeInsets.only(bottom: height * 0.04),
                                 itemCount: eventList.length,
                                 shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder: (BuildContext context, int index) {
                                   return GestureDetector(
                                     onTap: () {
@@ -453,7 +451,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                             height * 0.015),
                                                     border: Border.all(
                                                         width: 2,
-                                                        color: Color.fromARGB(
+                                                        color: const Color.fromARGB(
                                                             255, 58, 51, 51))),
                                                 child: ClipRRect(
                                                     borderRadius:
@@ -475,7 +473,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                   crossAxisAlignment:
                                                                       CrossAxisAlignment
                                                                           .center,
-                                                                  children: [
+                                                                  children: const [
                                                                     CircularProgressIndicator(
                                                                       color:
                                                                           primaryColor,
@@ -538,7 +536,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                             .cover,
                                                                         placeholder: (context,
                                                                                 url) =>
-                                                                            CircularProgressIndicator(
+                                                                            const CircularProgressIndicator(
                                                                               color: primaryColor,
                                                                             ))),
                                                             Container(
@@ -568,13 +566,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                         top: height *
                                                                             0.005),
                                                                     child: Text(
-                                                                      eventList[index]
+                                                                      "${eventList[index]
                                                                               .lstUser!
-                                                                              .firstName! +
-                                                                          " " +
-                                                                          eventList[index]
+                                                                              .firstName!} ${eventList[index]
                                                                               .lstUser!
-                                                                              .lastName!,
+                                                                              .lastName!}",
                                                                       style: AppTheme
                                                                               .getTheme()
                                                                           .textTheme
@@ -610,12 +606,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                       left: width *
                                                                           0.02),
                                                               child: Text(
-                                                                '${DateFormat('EEE, MMM dd, h:mm aa -').format(eventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, h:mm aa -').format(eventList[index].eventStartDate!).substring(1)).toLowerCase()}' +
-                                                                    DateFormat(
+                                                                '${DateFormat('EEE, MMM dd, h:mm aa -').format(eventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, h:mm aa -').format(eventList[index].eventStartDate!).substring(1)).toLowerCase()}${DateFormat(
                                                                             ' h:mm aa')
                                                                         .format(
                                                                             eventList[index].eventEndDate!)
-                                                                        .toLowerCase(),
+                                                                        .toLowerCase()}',
                                                                 style: AppTheme
                                                                         .getTheme()
                                                                     .textTheme

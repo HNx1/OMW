@@ -19,7 +19,7 @@ class GuestListScreen extends StatefulWidget {
   final int index;
   final String eventHostUserId;
 
-  GuestListScreen(
+  const GuestListScreen(
       {Key? key,
       required this.eventId,
       required this.index,
@@ -53,7 +53,7 @@ class _GuestListScreenState extends State<GuestListScreen> {
     maybeGuest = [];
     notGoingGuest = [];
 
-    var user = await PrefServices().getCurrentUserId();
+    var user = PrefServices().getCurrentUserId();
 
     setState(() {
       currentUser = user;
@@ -72,29 +72,29 @@ class _GuestListScreenState extends State<GuestListScreen> {
 
     if (objCreateEventNotifier.getEventDetails.guestsID!.isNotEmpty) {
       setState(() {
-        objCreateEventNotifier.getEventDetails.guest!.forEach((e) {
+        for (var e in objCreateEventNotifier.getEventDetails.guest!) {
           setState(() {
             goingGuest.addAll(objCreateEventNotifier.retrievedGuestUserList
                 .where((element) => element.uid == e.guestID && e.status == 0));
           });
-        });
+        }
       });
       print(goingGuest);
       setState(() {
-        objCreateEventNotifier.getEventDetails.guest!.forEach((e) {
+        for (var e in objCreateEventNotifier.getEventDetails.guest!) {
           setState(() {
             maybeGuest.addAll(objCreateEventNotifier.retrievedGuestUserList
                 .where((element) => element.uid == e.guestID && e.status == 2));
           });
-        });
+        }
       });
       setState(() {
-        objCreateEventNotifier.getEventDetails.guest!.forEach((e) {
+        for (var e in objCreateEventNotifier.getEventDetails.guest!) {
           setState(() {
             notGoingGuest.addAll(objCreateEventNotifier.retrievedGuestUserList
                 .where((element) => element.uid == e.guestID && e.status == 1));
           });
-        });
+        }
       });
     }
 
@@ -143,7 +143,7 @@ class _GuestListScreenState extends State<GuestListScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: ((context) => InviteFriendsScreen(
+                          builder: ((context) => const InviteFriendsScreen(
                                 isFromAddEvent: false,
                               )),
                         ),
@@ -154,7 +154,7 @@ class _GuestListScreenState extends State<GuestListScreen> {
                     child: Container(
                       color: Colors.transparent,
                       margin: EdgeInsets.only(right: width * 0.04),
-                      child: Icon(
+                      child: const Icon(
                         Icons.add,
                         color: primaryColor,
                       ),
@@ -212,7 +212,7 @@ class _GuestListScreenState extends State<GuestListScreen> {
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 0
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 0
@@ -220,13 +220,13 @@ class _GuestListScreenState extends State<GuestListScreen> {
                                             : FontWeight.w700),
                               ),
                               Text(
-                                " (" + goingGuest.length.toString() + ")",
+                                " (${goingGuest.length})",
                                 style: AppTheme.getTheme()
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 0
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 0
@@ -269,7 +269,7 @@ class _GuestListScreenState extends State<GuestListScreen> {
                                     .bodyText2!
                                     .copyWith(
                                         color: index != 1
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 1
@@ -277,13 +277,13 @@ class _GuestListScreenState extends State<GuestListScreen> {
                                             : FontWeight.w700),
                               ),
                               Text(
-                                " (" + maybeGuest.length.toString() + ")",
+                                " (${maybeGuest.length})",
                                 style: AppTheme.getTheme()
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 1
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 1
@@ -326,7 +326,7 @@ class _GuestListScreenState extends State<GuestListScreen> {
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 2
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 2
@@ -334,13 +334,13 @@ class _GuestListScreenState extends State<GuestListScreen> {
                                             : FontWeight.w700),
                               ),
                               Text(
-                                " (" + notGoingGuest.length.toString() + ")",
+                                " (${notGoingGuest.length})",
                                 style: AppTheme.getTheme()
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 2
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 2

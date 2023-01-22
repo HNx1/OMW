@@ -37,7 +37,7 @@ class _PaidScreenState extends State<PaidScreen> {
           ///---------- List OF paid Data ------------
           objPaymentNotifier.isLoading &&
                   objPaymentNotifier.lstOfPaidpayments.isEmpty
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -61,7 +61,7 @@ class _PaidScreenState extends State<PaidScreen> {
                       padding: EdgeInsets.zero,
                       itemCount: objPaymentNotifier.lstOfPaidpayments.length,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
                           margin: EdgeInsets.only(
@@ -79,11 +79,11 @@ class _PaidScreenState extends State<PaidScreen> {
                                     width: height * 0.058,
                                     fit: BoxFit.cover,
                                     placeholder: (context, url) =>
-                                        CircularProgressIndicator(
+                                        const CircularProgressIndicator(
                                       color: primaryColor,
                                     ),
                                     errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
+                                        const Icon(Icons.error),
                                   )),
                               Expanded(
                                 child: Container(
@@ -100,7 +100,7 @@ class _PaidScreenState extends State<PaidScreen> {
                                                 height: 1.4,
                                                 fontSize: width * 0.04),
                                         children: [
-                                          TextSpan(text: " "),
+                                          const TextSpan(text: " "),
                                           TextSpan(
                                             text: "have paid",
                                             style: AppTheme.getTheme()
@@ -112,16 +112,14 @@ class _PaidScreenState extends State<PaidScreen> {
                                                     height: 1.4,
                                                     fontSize: width * 0.036),
                                           ),
-                                          TextSpan(text: " "),
+                                          const TextSpan(text: " "),
                                           TextSpan(
-                                            text: "£" +
-                                                double.parse(objPaymentNotifier
+                                            text: "£${double.parse(objPaymentNotifier
                                                         .lstOfPaidpayments[
                                                             index]
                                                         .amount
                                                         .toString())
-                                                    .toStringAsFixed(2) +
-                                                " ",
+                                                    .toStringAsFixed(2)} ",
                                             style: AppTheme.getTheme()
                                                 .textTheme
                                                 .bodyText2!
@@ -144,7 +142,7 @@ class _PaidScreenState extends State<PaidScreen> {
                                                     height: 1.4,
                                                     fontSize: width * 0.04),
                                           ),
-                                          TextSpan(text: " "),
+                                          const TextSpan(text: " "),
                                           TextSpan(
                                             text: "for the event of ",
                                             style: AppTheme.getTheme()
@@ -169,7 +167,7 @@ class _PaidScreenState extends State<PaidScreen> {
                                                     height: 1.4,
                                                     fontSize: width * 0.04),
                                           ),
-                                          TextSpan(text: "\n"),
+                                          const TextSpan(text: "\n"),
                                           TextSpan(
                                             text:
                                                 '${DateFormat('EEE, MMM dd, hh:mm aa ').format(objPaymentNotifier.lstOfPaidpayments[index].paymentTime!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, hh:mm aa ').format(objPaymentNotifier.lstOfPaidpayments[index].paymentTime!).substring(1)).toLowerCase()}',
@@ -177,7 +175,7 @@ class _PaidScreenState extends State<PaidScreen> {
                                                 .textTheme
                                                 .bodyText1!
                                                 .copyWith(
-                                                    color: Color(0xffCECECE),
+                                                    color: const Color(0xffCECECE),
                                                     height: 1.4,
                                                     fontSize: width * 0.036),
                                           ),

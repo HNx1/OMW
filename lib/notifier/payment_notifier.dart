@@ -27,7 +27,7 @@ class PaymentNotifier extends ChangeNotifier {
     String eventName,
     String paymentBy,
     dynamic amount,
-    String payment_method,
+    String paymentMethod,
     String paidUserProfile,
     String receivedUserProfile,
 
@@ -45,7 +45,7 @@ class PaymentNotifier extends ChangeNotifier {
           eventId: eventId,
           eventName: eventName,
           paymentBy: paymentBy,
-          payment_method: payment_method,
+          payment_method: paymentMethod,
           currency: "GBP",
           paidUserProfile: paidUserProfile,
           paymentToUserId: paymentToUserId,

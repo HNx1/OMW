@@ -29,7 +29,7 @@ class _Myevent_No_screenState extends State<Myevent_No_screen> {
         children: [
           ///---------- List OF Going's Data ------------
           widget.isLoading == true && widget.notGoingGuest.isEmpty
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -52,7 +52,7 @@ class _Myevent_No_screenState extends State<Myevent_No_screen> {
                       padding: EdgeInsets.only(bottom: height * 0.02),
                       itemCount: widget.notGoingGuest.length,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
@@ -75,12 +75,12 @@ class _Myevent_No_screenState extends State<Myevent_No_screen> {
                                               width: height * 0.068,
                                               fit: BoxFit.cover,
                                               placeholder: (context, url) =>
-                                                  CircularProgressIndicator(
+                                                  const CircularProgressIndicator(
                                                 color: primaryColor,
                                               ),
                                               errorWidget:
                                                   (context, url, error) =>
-                                                      Icon(Icons.error),
+                                                      const Icon(Icons.error),
                                             )),
                                         Container(
                                           margin: EdgeInsets.only(
@@ -94,12 +94,10 @@ class _Myevent_No_screenState extends State<Myevent_No_screen> {
                                                 margin: EdgeInsets.only(
                                                     bottom: height * 0.005),
                                                 child: Text(
-                                                  widget.notGoingGuest[index]
-                                                          .firstName! +
-                                                      " " +
-                                                      widget
+                                                  "${widget.notGoingGuest[index]
+                                                          .firstName!} ${widget
                                                           .notGoingGuest[index]
-                                                          .lastName!,
+                                                          .lastName!}",
                                                   style: AppTheme.getTheme()
                                                       .textTheme
                                                       .bodyText2!

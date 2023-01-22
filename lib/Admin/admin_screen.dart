@@ -65,7 +65,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: ((context) => EditCookiesPolicy())));
+                          builder: ((context) => const EditCookiesPolicy())));
                 },
                 child: commanSetting(
                   ConstantData.cookie,
@@ -97,7 +97,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: ((context) => EditBugReportAndSuggestion()),
+                      builder: ((context) => const EditBugReportAndSuggestion()),
                     ),
                   );
                 },
@@ -163,7 +163,7 @@ class _AdminScreenState extends State<AdminScreen> {
               ? Container(
                   height: 0.8,
                   width: width,
-                  color: Color(0xff5B5B5B).withOpacity(0.56),
+                  color: const Color(0xff5B5B5B).withOpacity(0.56),
                   margin: EdgeInsets.only(
                       top: height * 0.026, bottom: height * 0.026),
                 )

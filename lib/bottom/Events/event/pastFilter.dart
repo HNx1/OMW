@@ -32,7 +32,7 @@ class _PastFilterDialogState extends State<PastFilterDialog> {
               bottom: height * 0.026),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(height * 0.016),
-            color: Color.fromARGB(255, 15, 15, 15),
+            color: const Color.fromARGB(255, 15, 15, 15),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +95,7 @@ class _PastFilterDialogState extends State<PastFilterDialog> {
                 ),
                 height: 1,
                 width: width,
-                color: Color.fromARGB(255, 182, 172, 172).withOpacity(0.2),
+                color: const Color.fromARGB(255, 182, 172, 172).withOpacity(0.2),
               ),
 
               ///--------------- List Of filter----------
@@ -305,7 +305,7 @@ class _PastFilterDialogState extends State<PastFilterDialog> {
                                       true
                                   ? primaryColor
                                   : Colors.transparent),
-                          color: Color(0xff515151).withOpacity(0.07),
+                          color: const Color(0xff515151).withOpacity(0.07),
                         ),
                         child: Text(
                           objProviderNotifier.lstOfPastFilters[index]["name"],

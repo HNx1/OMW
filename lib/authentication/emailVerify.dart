@@ -27,7 +27,7 @@ class _VerifyEmailPopUpState extends State<VerifyEmailPopUp> {
               bottom: height * 0.01),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(height * 0.016),
-            color: Color.fromARGB(255, 15, 15, 15),
+            color: const Color.fromARGB(255, 15, 15, 15),
           ),
           child: Column(
             children: [
@@ -48,7 +48,7 @@ class _VerifyEmailPopUpState extends State<VerifyEmailPopUp> {
                     EdgeInsets.only(top: height * 0.022, bottom: height * 0.01),
                 height: 1,
                 width: width,
-                color: Color.fromARGB(255, 187, 171, 171).withOpacity(0.2),
+                color: const Color.fromARGB(255, 187, 171, 171).withOpacity(0.2),
               ),
 
               ///------------------- Message David--------------------

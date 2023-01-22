@@ -16,17 +16,17 @@ class AppTheme {
 
   static TextTheme buildTextTheme(TextTheme base) {
     return base.copyWith(
-      bodyText1: TextStyle(
+      bodyText1: const TextStyle(
           decoration: TextDecoration.none,
           fontWeight: FontWeight.w400,
           fontFamily: "CORBEL",
           color: ConstColor.black_Color),
-      bodyText2: TextStyle(
+      bodyText2: const TextStyle(
           decoration: TextDecoration.none,
           fontWeight: FontWeight.w700,
           fontFamily: "Corbel",
           color: ConstColor.black_Color),
-      subtitle1: TextStyle(
+      subtitle1: const TextStyle(
           decoration: TextDecoration.none,
           fontWeight: FontWeight.w400,
           fontFamily: "Aharoni",
@@ -37,13 +37,13 @@ class AppTheme {
   static ThemeData lightTheme() {
     final ThemeData base = ThemeData.light();
     return base.copyWith(
-      appBarTheme: AppBarTheme(color: Colors.white),
-      popupMenuTheme: PopupMenuThemeData(color: Colors.white),
-      iconTheme: IconThemeData(color: Color(0xff2b2b2b)),
+      appBarTheme: const AppBarTheme(color: Colors.white),
+      popupMenuTheme: const PopupMenuThemeData(color: Colors.white),
+      iconTheme: const IconThemeData(color: Color(0xff2b2b2b)),
       primaryColor: primaryColor,
       splashColor: Colors.white.withOpacity(0.1),
       canvasColor: Colors.white,
-      scaffoldBackgroundColor: Color(0xffffffff),
+      scaffoldBackgroundColor: const Color(0xffffffff),
       backgroundColor: Colors.white,
       errorColor: Colors.red,
       textTheme: buildTextTheme(base.textTheme),
@@ -57,8 +57,8 @@ class AppTheme {
     final ThemeData base = ThemeData.dark();
     return base.copyWith(
       appBarTheme: AppBarTheme(color: Colors.grey[700]),
-      popupMenuTheme: PopupMenuThemeData(color: Colors.black),
-      iconTheme: IconThemeData(color: Colors.white),
+      popupMenuTheme: const PopupMenuThemeData(color: Colors.black),
+      iconTheme: const IconThemeData(color: Colors.white),
       primaryColor: primaryColor,
       splashColor: Colors.white24,
       canvasColor: Colors.grey[900],

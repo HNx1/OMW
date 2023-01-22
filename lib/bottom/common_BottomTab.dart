@@ -39,7 +39,7 @@ class _PersistanceBottomTabState extends State<PersistanceBottomTab> {
       alignment: Alignment.topCenter,
       children: [
         BottomAppBar(
-          shape: CircularNotchedRectangle(),
+          shape: const CircularNotchedRectangle(),
           notchMargin: 4,
           color: ConstColor.black_Color,
           child: Container(
@@ -49,7 +49,7 @@ class _PersistanceBottomTabState extends State<PersistanceBottomTab> {
                 topLeft: Radius.circular(height * 0.015),
                 topRight: Radius.circular(height * 0.015),
               ),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 0.7,
                   spreadRadius: 0.7,
@@ -174,7 +174,7 @@ class _PersistanceBottomTabState extends State<PersistanceBottomTab> {
                                           backgroundColor: Colors.black,
                                           child: CircleAvatar(
                                             radius: 4.7,
-                                            backgroundColor: Color.fromARGB(
+                                            backgroundColor: const Color.fromARGB(
                                                 255, 255, 21, 21),
                                             child: Center(
                                                 child: Text(

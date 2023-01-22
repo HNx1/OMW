@@ -42,7 +42,7 @@ class _MayBeScreenState extends State<MayBeScreen> {
             ///---------- List OF Going's Data ------------
             objCreateEventNotifier.isLoading == true &&
                     widget.maybeGuest.isEmpty
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                       color: primaryColor,
                     ),
@@ -92,13 +92,11 @@ class _MayBeScreenState extends State<MayBeScreen> {
                                                                   .currentUserId
                                                           ? true
                                                           : false,
-                                                      name: widget
+                                                      name: "${widget
                                                               .maybeGuest[index]
-                                                              .firstName! +
-                                                          " " +
-                                                          widget
+                                                              .firstName!} ${widget
                                                               .maybeGuest[index]
-                                                              .lastName!,
+                                                              .lastName!}",
                                                       profile: widget
                                                           .maybeGuest[index]
                                                           .userProfile!,
@@ -123,12 +121,12 @@ class _MayBeScreenState extends State<MayBeScreen> {
                                                     fit: BoxFit.cover,
                                                     placeholder: (context,
                                                             url) =>
-                                                        CircularProgressIndicator(
+                                                        const CircularProgressIndicator(
                                                       color: primaryColor,
                                                     ),
                                                     errorWidget:
                                                         (context, url, error) =>
-                                                            Icon(Icons.error),
+                                                            const Icon(Icons.error),
                                                   )),
                                               Container(
                                                 margin: EdgeInsets.only(
@@ -143,13 +141,11 @@ class _MayBeScreenState extends State<MayBeScreen> {
                                                           bottom:
                                                               height * 0.005),
                                                       child: Text(
-                                                        widget.maybeGuest[index]
-                                                                .firstName! +
-                                                            " " +
-                                                            widget
+                                                        "${widget.maybeGuest[index]
+                                                                .firstName!} ${widget
                                                                 .maybeGuest[
                                                                     index]
-                                                                .lastName!,
+                                                                .lastName!}",
                                                         style: AppTheme
                                                                 .getTheme()
                                                             .textTheme

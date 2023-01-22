@@ -1,11 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../constant/constants.dart';
 import '../../../constant/theme.dart';
 import '../../../model/user_model.dart';
-import '../../../notifier/event_notifier.dart';
 import '../../../utils/colorUtils.dart';
 import '../../../utils/textUtils.dart';
 import '../../Profile/profile_screen.dart';
@@ -38,7 +36,7 @@ class _GoingScreenState extends State<GoingScreen> {
           children: [
             ///---------- List OF Going's Data ------------
             widget.isLoading == true && widget.goingGuest.isEmpty
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                       color: primaryColor,
                     ),
@@ -88,13 +86,11 @@ class _GoingScreenState extends State<GoingScreen> {
                                                                   .currentUserId
                                                           ? true
                                                           : false,
-                                                      name: widget
+                                                      name: "${widget
                                                               .goingGuest[index]
-                                                              .firstName! +
-                                                          " " +
-                                                          widget
+                                                              .firstName!} ${widget
                                                               .goingGuest[index]
-                                                              .lastName!,
+                                                              .lastName!}",
                                                       profile: widget
                                                           .goingGuest[index]
                                                           .userProfile!,
@@ -119,12 +115,12 @@ class _GoingScreenState extends State<GoingScreen> {
                                                     fit: BoxFit.cover,
                                                     placeholder: (context,
                                                             url) =>
-                                                        CircularProgressIndicator(
+                                                        const CircularProgressIndicator(
                                                       color: primaryColor,
                                                     ),
                                                     errorWidget:
                                                         (context, url, error) =>
-                                                            Icon(Icons.error),
+                                                            const Icon(Icons.error),
                                                   )),
                                               Container(
                                                 margin: EdgeInsets.only(
@@ -139,13 +135,11 @@ class _GoingScreenState extends State<GoingScreen> {
                                                           bottom:
                                                               height * 0.005),
                                                       child: Text(
-                                                        widget.goingGuest[index]
-                                                                .firstName! +
-                                                            " " +
-                                                            widget
+                                                        "${widget.goingGuest[index]
+                                                                .firstName!} ${widget
                                                                 .goingGuest[
                                                                     index]
-                                                                .lastName!,
+                                                                .lastName!}",
                                                         style: AppTheme
                                                                 .getTheme()
                                                             .textTheme

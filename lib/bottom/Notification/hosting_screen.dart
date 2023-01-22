@@ -28,7 +28,7 @@ class _HostingScreenState extends State<HostingScreen> {
   List<AllChat> chats = [];
   AllChat chat = AllChat("");
   getListOfHostingNotification() async {
-    currentuser = await PrefServices().getCurrentUserName();
+    currentuser = PrefServices().getCurrentUserName();
     var objNotificationNotifier =
         Provider.of<NotificationNotifier>(context, listen: false);
 
@@ -73,7 +73,7 @@ class _HostingScreenState extends State<HostingScreen> {
           ///---------- List OF Today's Data ------------
           objNotificationNotifier.isLoading &&
                   objNotificationNotifier.lstHostingNotificationModel.isEmpty
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -108,7 +108,7 @@ class _HostingScreenState extends State<HostingScreen> {
                             child: Stack(
                               children: [
                                 objNotificationNotifier.isLoading
-                                    ? Center(
+                                    ? const Center(
                                         child: CircularProgressIndicator(
                                           color: primaryColor,
                                         ),
@@ -129,7 +129,7 @@ class _HostingScreenState extends State<HostingScreen> {
                                           context,
                                           MaterialPageRoute(
                                             builder: ((context) =>
-                                                PaymentScreen()),
+                                                const PaymentScreen()),
                                           ),
                                         );
                                       },
@@ -158,17 +158,15 @@ class _HostingScreenState extends State<HostingScreen> {
                                                               .userDetails!
                                                               .uid!,
                                                           isOwnProfile: false,
-                                                          name: objNotificationNotifier
+                                                          name: "${objNotificationNotifier
                                                                   .lstHostingNotificationModel[
                                                                       index]
                                                                   .userDetails!
-                                                                  .firstName! +
-                                                              " " +
-                                                              objNotificationNotifier
+                                                                  .firstName!} ${objNotificationNotifier
                                                                   .lstHostingNotificationModel[
                                                                       index]
                                                                   .userDetails!
-                                                                  .lastName!,
+                                                                  .lastName!}",
                                                           profile:
                                                               objNotificationNotifier
                                                                   .lstHostingNotificationModel[
@@ -207,7 +205,7 @@ class _HostingScreenState extends State<HostingScreen> {
                                                                     crossAxisAlignment:
                                                                         CrossAxisAlignment
                                                                             .center,
-                                                                    children: [
+                                                                    children: const [
                                                                       CircularProgressIndicator(
                                                                         color:
                                                                             primaryColor,
@@ -320,11 +318,11 @@ class _HostingScreenState extends State<HostingScreen> {
                                                                             width *
                                                                                 0.036),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                   text: "\n"),
                                                               TextSpan(
                                                                 text: toBeginningOfSentenceCase(
-                                                                        "${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!)}")
+                                                                        DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!))
                                                                     .toString()
                                                                     .replaceAll(
                                                                         "PM",
@@ -338,7 +336,7 @@ class _HostingScreenState extends State<HostingScreen> {
                                                                     .textTheme
                                                                     .bodyText1!
                                                                     .copyWith(
-                                                                        color: Color(
+                                                                        color: const Color(
                                                                             0xffCECECE),
                                                                         height:
                                                                             1.4,
@@ -412,12 +410,12 @@ class _HostingScreenState extends State<HostingScreen> {
                                                                             fontSize:
                                                                                 width * 0.036),
                                                                   ),
-                                                                  TextSpan(
+                                                                  const TextSpan(
                                                                       text:
                                                                           "\n"),
                                                                   TextSpan(
                                                                     text: toBeginningOfSentenceCase(
-                                                                            "${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!)}")
+                                                                            DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!))
                                                                         .toString()
                                                                         .replaceAll(
                                                                             "PM",
@@ -431,7 +429,7 @@ class _HostingScreenState extends State<HostingScreen> {
                                                                         .textTheme
                                                                         .bodyText1!
                                                                         .copyWith(
-                                                                            color: Color(
+                                                                            color: const Color(
                                                                                 0xffCECECE),
                                                                             height:
                                                                                 1.4,
@@ -480,11 +478,11 @@ class _HostingScreenState extends State<HostingScreen> {
                                                                             fontSize:
                                                                                 width * 0.036),
                                                                       ),
-                                                                      TextSpan(
+                                                                      const TextSpan(
                                                                           text:
                                                                               "\n"),
                                                                       TextSpan(
-                                                                        text: toBeginningOfSentenceCase("${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!)}")
+                                                                        text: toBeginningOfSentenceCase(DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!))
                                                                             .toString()
                                                                             .replaceAll("PM",
                                                                                 "pm")
@@ -492,7 +490,7 @@ class _HostingScreenState extends State<HostingScreen> {
                                                                                 "am"),
                                                                         // '${DateFormat('EEE, MMM dd, hh:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!)[0].toUpperCase()}${(DateFormat('EEE, MMM d, h:m aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!).substring(1)).replaceAll("PM", "pm").replaceAll("AM", "am")}',
                                                                         style: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
-                                                                            color: Color(
+                                                                            color: const Color(
                                                                                 0xffCECECE),
                                                                             height:
                                                                                 1.4,
@@ -524,11 +522,11 @@ class _HostingScreenState extends State<HostingScreen> {
                                                                             fontSize:
                                                                                 width * 0.036),
                                                                       ),
-                                                                      TextSpan(
+                                                                      const TextSpan(
                                                                           text:
                                                                               "\n"),
                                                                       TextSpan(
-                                                                        text: toBeginningOfSentenceCase("${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!)}")
+                                                                        text: toBeginningOfSentenceCase(DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!))
                                                                             .toString()
                                                                             .replaceAll("PM",
                                                                                 "pm")
@@ -536,7 +534,7 @@ class _HostingScreenState extends State<HostingScreen> {
                                                                                 "am"),
                                                                         // '${DateFormat('EEE, MMM dd, hh:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!)[0].toUpperCase()}${(DateFormat('EEE, MMM d, h:m aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!).substring(1)).replaceAll("PM", "pm").replaceAll("AM", "am")}',
                                                                         style: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
-                                                                            color: Color(
+                                                                            color: const Color(
                                                                                 0xffCECECE),
                                                                             height:
                                                                                 1.4,

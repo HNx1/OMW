@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:omw/bottom/bottomtab.dart';
 
@@ -29,7 +28,7 @@ class _MyEventScreenState extends State<MyEventScreen> {
             ? Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => BottomNavBarScreen(
+                    builder: (context) => const BottomNavBarScreen(
                           index: 1,
                           lastIndex: 1,
                         )))
@@ -50,7 +49,7 @@ class _MyEventScreenState extends State<MyEventScreen> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => BottomNavBarScreen(
+                        builder: (context) => const BottomNavBarScreen(
                               index: 1,
                               lastIndex: 1,
                             )));
@@ -125,7 +124,7 @@ class _MyEventScreenState extends State<MyEventScreen> {
                                       .copyWith(
                                           decoration: TextDecoration.none,
                                           color: index != 0
-                                              ? Color(0xffA5A5A5)
+                                              ? const Color(0xffA5A5A5)
                                               : ConstColor.black_Color,
                                           fontSize: width * 0.043,
                                           fontWeight: index != 0
@@ -162,7 +161,7 @@ class _MyEventScreenState extends State<MyEventScreen> {
                                       .copyWith(
                                           decoration: TextDecoration.none,
                                           color: index != 1
-                                              ? Color(0xffA5A5A5)
+                                              ? const Color(0xffA5A5A5)
                                               : ConstColor.black_Color,
                                           fontSize: width * 0.043,
                                           fontWeight: index != 1
@@ -176,9 +175,9 @@ class _MyEventScreenState extends State<MyEventScreen> {
                       ),
                     ),
                     index == 0
-                        ? MyUpcomingScreen()
+                        ? const MyUpcomingScreen()
                         : index == 1
-                            ? MyPastEvents()
+                            ? const MyPastEvents()
                             : Container()
                   ],
                 ),

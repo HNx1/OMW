@@ -26,8 +26,8 @@ class _EditBugReportAndSuggestionState
   }
 
   var formKey = GlobalKey<FormState>();
-  TextEditingController _title = TextEditingController();
-  TextEditingController _description = TextEditingController();
+  final TextEditingController _title = TextEditingController();
+  final TextEditingController _description = TextEditingController();
   bool isValid = true;
 
   getData() async {
@@ -77,7 +77,7 @@ class _EditBugReportAndSuggestionState
                       "" ||
                   objbugReportProvider.objBugsAndReportModel.title == null ||
                   objbugReportProvider.objBugsAndReportModel.title == ""
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -138,35 +138,35 @@ class _EditBugReportAndSuggestionState
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.04),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.04),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.04),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               disabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.04),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.04),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
@@ -221,7 +221,7 @@ class _EditBugReportAndSuggestionState
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(height * 0.1),
                       color:
-                          isValid ? ConstColor.primaryColor : Color(0xff2F2F2F),
+                          isValid ? ConstColor.primaryColor : const Color(0xff2F2F2F),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

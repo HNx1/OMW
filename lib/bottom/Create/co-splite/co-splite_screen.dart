@@ -92,10 +92,10 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
                 top: height * 0.01,
               ),
               decoration: BoxDecoration(
-                color: Color(0xff080808),
+                color: const Color(0xff080808),
                 borderRadius: BorderRadius.circular(height * 0.02),
                 border: Border.all(
-                  color: Color(0xff252525),
+                  color: const Color(0xff252525),
                 ),
               ),
               child: Column(
@@ -103,11 +103,9 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
                   RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                      text: objCreateEventNotifier
-                              .getEventData.lstUser!.firstName! +
-                          " " +
-                          objCreateEventNotifier
-                              .getEventData.lstUser!.lastName!,
+                      text: "${objCreateEventNotifier
+                              .getEventData.lstUser!.firstName!} ${objCreateEventNotifier
+                              .getEventData.lstUser!.lastName!}",
                       style: AppTheme.getTheme().textTheme.bodyText2!.copyWith(
                             color: ConstColor.primaryColor,
                             fontSize: width * 0.046,
@@ -172,12 +170,10 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
                                 ),
                         children: [
                           TextSpan(
-                            text: " £ " +
-                                double.parse(objCreateEventNotifier
+                            text: " £ ${double.parse(objCreateEventNotifier
                                         .getEventData.costAmount
                                         .toString())
-                                    .toStringAsFixed(2) +
-                                " ",
+                                    .toStringAsFixed(2)} ",
                             style: AppTheme.getTheme()
                                 .textTheme
                                 .bodyText1!
@@ -258,16 +254,12 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
                         objPaymentNotifier
                             .doPayment(
                           context,
-                          objCreateEventNotifier
-                                  .getEventData.lstUser!.firstName! +
-                              " " +
-                              objCreateEventNotifier
-                                  .getEventData.lstUser!.lastName!,
+                          "${objCreateEventNotifier
+                                  .getEventData.lstUser!.firstName!} ${objCreateEventNotifier
+                                  .getEventData.lstUser!.lastName!}",
                           objCreateEventNotifier.getEventData.docId!,
                           objCreateEventNotifier.getEventData.eventname!,
-                          objProviderNotifier.objUsers.firstName! +
-                              " " +
-                              objProviderNotifier.objUsers.lastName!,
+                          "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                           objCreateEventNotifier.getEventData.costAmount,
                           "paypal",
                           objCreateEventNotifier
@@ -281,7 +273,7 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
                               objCreateEventNotifier
                                   .getEventData.lstUser!.fcmToken!,
                               "transfer money",
-                              "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!} has paid you £${objCreateEventNotifier.getEventData.costAmount} for hosting event ",
+                              "${"${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}"} has paid you £${objCreateEventNotifier.getEventData.costAmount} for hosting event ",
                               "money transaction",
                               "",
                               "",
@@ -290,14 +282,14 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
                               context: context,
                               title: "transfer money",
                               description:
-                                  "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!} has paid you £${objCreateEventNotifier.getEventData.costAmount} for hosting event ",
+                                  "${"${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}"} has paid you £${objCreateEventNotifier.getEventData.costAmount} for hosting event ",
                               userId: objCreateEventNotifier
                                   .getEventData.lstUser!.uid,
                               type: "money transaction",
                               typeOfData: [
                                 {
                                   "NotificationSendBy":
-                                      "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}",
+                                      "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                                   "eventId":
                                       objCreateEventNotifier.EventData.docId!
                                 }
@@ -322,7 +314,7 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(height * 0.01),
                   border: Border.all(
-                    color: Color(0xffD4D4D4).withOpacity(0.41),
+                    color: const Color(0xffD4D4D4).withOpacity(0.41),
                   ),
                 ),
                 child: Row(
@@ -361,7 +353,7 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(height * 0.01),
                   border: Border.all(
-                    color: Color(0xffD4D4D4).withOpacity(0.41),
+                    color: const Color(0xffD4D4D4).withOpacity(0.41),
                   ),
                 ),
                 child: Row(
@@ -414,9 +406,7 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
         // googlePay: true,
         // testEnv: true,
         merchantDisplayName:
-            objCreateEventNotifier.getEventData.lstUser!.firstName! +
-                " " +
-                objCreateEventNotifier.getEventData.lstUser!.lastName!,
+            "${objCreateEventNotifier.getEventData.lstUser!.firstName!} ${objCreateEventNotifier.getEventData.lstUser!.lastName!}",
       ))
           .then((value) {
         displayPaymentSheet(objCreateEventNotifier, objProviderNotifier,
@@ -440,23 +430,19 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
         confirmPayment: true,
       ))
           .then((newValue) async {
-        print('payment intent' + paymentIntentData!['id'].toString());
+        print('payment intent${paymentIntentData!['id']}');
         print(
-            'payment intent' + paymentIntentData!['client_secret'].toString());
-        print('payment intent' + paymentIntentData!['amount'].toString());
-        print('payment intent' + paymentIntentData.toString());
+            'payment intent${paymentIntentData!['client_secret']}');
+        print('payment intent${paymentIntentData!['amount']}');
+        print('payment intent$paymentIntentData');
 
         await objPaymentNotifier
             .doPayment(
           context,
-          objCreateEventNotifier.getEventData.lstUser!.firstName! +
-              " " +
-              objCreateEventNotifier.getEventData.lstUser!.lastName!,
+          "${objCreateEventNotifier.getEventData.lstUser!.firstName!} ${objCreateEventNotifier.getEventData.lstUser!.lastName!}",
           objCreateEventNotifier.getEventData.docId!,
           objCreateEventNotifier.getEventData.eventname!,
-          objProviderNotifier.objUsers.firstName! +
-              " " +
-              objProviderNotifier.objUsers.lastName!,
+          "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
           objCreateEventNotifier.getEventData.costAmount,
           "Stripe",
           objCreateEventNotifier.getEventData.lstUser!.userProfile!,
@@ -468,7 +454,7 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
               context,
               objCreateEventNotifier.getEventData.lstUser!.fcmToken!,
               "transfer money",
-              "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!} has paid you £${objCreateEventNotifier.getEventData.costAmount} for hosting event ",
+              "${"${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}"} has paid you £${objCreateEventNotifier.getEventData.costAmount} for hosting event ",
               "money transaction",
               "",
               "",
@@ -477,19 +463,19 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
               context: context,
               title: "transfer money",
               description:
-                  "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!} has paid you £${objCreateEventNotifier.getEventData.costAmount} for hosting event ",
+                  "${"${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}"} has paid you £${objCreateEventNotifier.getEventData.costAmount} for hosting event ",
               userId: objCreateEventNotifier.getEventData.lstUser!.uid,
               type: "money transaction",
               typeOfData: [
                 {
                   "NotificationSendBy":
-                      "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}",
+                      "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                   "eventId": objCreateEventNotifier.EventData.docId!
                 }
               ]);
         });
         ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("paid successfully")));
+            .showSnackBar(const SnackBar(content: Text("paid successfully")));
         paymentIntentData = null;
       }).onError((error, stackTrace) {
         print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
@@ -498,7 +484,7 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
       print('Exception/DISPLAYPAYMENTSHEET==> $e');
       showDialog(
           context: context,
-          builder: (_) => AlertDialog(
+          builder: (_) => const AlertDialog(
                 content: Text("Cancelled "),
               ));
     } catch (e) {

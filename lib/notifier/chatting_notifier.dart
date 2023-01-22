@@ -107,7 +107,7 @@ class ChattingNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  BlockUserModel getblockUserModel = new BlockUserModel();
+  BlockUserModel getblockUserModel = BlockUserModel();
   bool isBlock = false;
 
   Future getBlockUserDetail(BuildContext context, String uid) async {
@@ -155,7 +155,7 @@ class ChattingNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  BlockUserModel currentUserIsBlockOrNot = new BlockUserModel();
+  BlockUserModel currentUserIsBlockOrNot = BlockUserModel();
 
   Future checkThatCurrentUserBlcokOrNot(
       BuildContext context, String uid) async {

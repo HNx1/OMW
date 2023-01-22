@@ -10,7 +10,7 @@ import '../model/privacyPolicy_model.dart';
 class CookiesData extends ChangeNotifier {
   bool isLoading = false;
   var isConnected;
-  PrivacyPolicyModel objPrivacyPolicy = new PrivacyPolicyModel();
+  PrivacyPolicyModel objPrivacyPolicy = PrivacyPolicyModel();
 
   getPrivacyPolicys(BuildContext context) async {
     try {
@@ -38,7 +38,7 @@ class CookiesData extends ChangeNotifier {
     notifyListeners();
   }
 
-  TermAndConditionModel objTermAndConditionModel = new TermAndConditionModel();
+  TermAndConditionModel objTermAndConditionModel = TermAndConditionModel();
   getConditions(BuildContext context) async {
     try {
       isLoading = true;
@@ -64,7 +64,7 @@ class CookiesData extends ChangeNotifier {
     notifyListeners();
   }
 
-  CookieModel objCookieModel = new CookieModel();
+  CookieModel objCookieModel = CookieModel();
   getCookies(BuildContext context) async {
     try {
       isLoading = true;
@@ -90,7 +90,7 @@ class CookiesData extends ChangeNotifier {
     notifyListeners();
   }
 
-  BugsAndReportModel objBugsAndReportModel = new BugsAndReportModel();
+  BugsAndReportModel objBugsAndReportModel = BugsAndReportModel();
   getbugAndReports(BuildContext context) async {
     try {
       isLoading = true;

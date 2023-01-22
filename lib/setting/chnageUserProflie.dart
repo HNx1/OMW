@@ -119,9 +119,8 @@ class _ChangeUserProfileState extends State<ChangeUserProfile> {
       body: Stack(
         children: [
           isProfileUploaded == true ||
-                  objProviderNotifier.objUsers == null ||
                   objProviderNotifier.objUsers == ""
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -159,12 +158,12 @@ class _ChangeUserProfileState extends State<ChangeUserProfile> {
                                               width: height * 0.14,
                                               fit: BoxFit.cover,
                                               placeholder: (context, url) =>
-                                                  CircularProgressIndicator(
+                                                  const CircularProgressIndicator(
                                                 color: primaryColor,
                                               ),
                                               errorWidget:
                                                   (context, url, error) =>
-                                                      Icon(Icons.error),
+                                                      const Icon(Icons.error),
                                             )
                                           : Image.file(
                                               imageFile!,
@@ -177,7 +176,7 @@ class _ChangeUserProfileState extends State<ChangeUserProfile> {
                                     child: GestureDetector(
                                       onTap: () {
                                         showModalBottomSheet(
-                                          shape: RoundedRectangleBorder(
+                                          shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(20),
                                               topRight: Radius.circular(20),
@@ -211,7 +210,7 @@ class _ChangeUserProfileState extends State<ChangeUserProfile> {
                                                         ),
                                                       ),
                                                     ),
-                                                    Divider(
+                                                    const Divider(
                                                       thickness: 2,
                                                     ),
                                                     GestureDetector(
@@ -235,7 +234,7 @@ class _ChangeUserProfileState extends State<ChangeUserProfile> {
                                                         ),
                                                       ),
                                                     ),
-                                                    Divider(
+                                                    const Divider(
                                                       thickness: 2,
                                                     ),
                                                     GestureDetector(
@@ -306,12 +305,12 @@ class _ChangeUserProfileState extends State<ChangeUserProfile> {
 
                           await objProviderNotifier.updateProfileImage(
                               context,
-                              imageUrl != "" && imageUrl != null
+                              imageUrl != ""
                                   ? uploadImage!
                                   : objProviderNotifier.objUsers.userProfile!);
                         }
                       },
-                      child: CommonButton(
+                      child: const CommonButton(
                         name: TextUtils.Save,
                       )),
                 )

@@ -37,26 +37,25 @@ class _MyPastEventsState extends State<MyPastEvents> {
           isLoading = true;
         });
       }
-      currentuser = await PrefServices().getCurrentUserName();
+      currentuser = PrefServices().getCurrentUserName();
       var objCreateEventNotifier =
           Provider.of<CreateEventNotifier>(context, listen: false);
       await objCreateEventNotifier.getListOfMyPastEvent(
         context,
       );
-      objCreateEventNotifier.getMyPastEventList.forEach((element) {
+      for (var element in objCreateEventNotifier.getMyPastEventList) {
         FinalListOfMyPastEvents.add(element);
         print(
             "FinalListOfMyPastEvents=====================>$FinalListOfMyPastEvents");
-      });
+      }
       await objCreateEventNotifier.getListOfMyPastEventswithCoHost(
           context, currentuser);
 
-      objCreateEventNotifier.getListOfPastEventswithCoHostList
-          .forEach((element) {
+      for (var element in objCreateEventNotifier.getListOfPastEventswithCoHostList) {
         FinalListOfMyPastEvents.add(element);
         print(
             "FinalListOfMyPastEvents=====================>$FinalListOfMyPastEvents");
-      });
+      }
       FinalListOfMyPastEvents.sort(
           (a, b) => b.eventEndDate!.compareTo(a.eventEndDate!));
     } catch (e) {
@@ -80,7 +79,7 @@ class _MyPastEventsState extends State<MyPastEvents> {
     final objCreateEventNotifier = context.watch<CreateEventNotifier>();
     return Expanded(
       child: isLoading == true && FinalListOfMyPastEvents.isEmpty
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
                 color: primaryColor,
               ),
@@ -157,7 +156,7 @@ class _MyPastEventsState extends State<MyPastEvents> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                    children: [
+                                    children: const [
                                       CircularProgressIndicator(
                                         color: primaryColor,
                                       ),
@@ -211,9 +210,7 @@ class _MyPastEventsState extends State<MyPastEvents> {
                                                 margin: EdgeInsets.only(
                                                     left: height * 0.005),
                                                 child: Text(
-                                                  "${FinalListOfMyPastEvents[index].lstUser!.firstName![0].toUpperCase()}${FinalListOfMyPastEvents[index].lstUser!.firstName!.substring(1).toLowerCase()}" +
-                                                      " " +
-                                                      "${FinalListOfMyPastEvents[index].lstUser!.lastName![0].toUpperCase()}${FinalListOfMyPastEvents[index].lstUser!.lastName!.substring(1).toLowerCase()}",
+                                                  "${FinalListOfMyPastEvents[index].lstUser!.firstName![0].toUpperCase()}${FinalListOfMyPastEvents[index].lstUser!.firstName!.substring(1).toLowerCase()} ${FinalListOfMyPastEvents[index].lstUser!.lastName![0].toUpperCase()}${FinalListOfMyPastEvents[index].lstUser!.lastName!.substring(1).toLowerCase()}",
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -251,13 +248,12 @@ class _MyPastEventsState extends State<MyPastEvents> {
                                                 margin: EdgeInsets.only(
                                                     left: width * 0.02),
                                                 child: Text(
-                                                  '${DateFormat(TextUtils.dateFormat).format(FinalListOfMyPastEvents[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(FinalListOfMyPastEvents[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(FinalListOfMyPastEvents[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(FinalListOfMyPastEvents[index].eventStartDate!).substring(5)).toLowerCase()}' +
-                                                      DateFormat(' - h:mm aa')
+                                                  '${DateFormat(TextUtils.dateFormat).format(FinalListOfMyPastEvents[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(FinalListOfMyPastEvents[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(FinalListOfMyPastEvents[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(FinalListOfMyPastEvents[index].eventStartDate!).substring(5)).toLowerCase()}${DateFormat(' - h:mm aa')
                                                           .format(
                                                               FinalListOfMyPastEvents[
                                                                       index]
                                                                   .eventEndDate!)
-                                                          .toLowerCase(),
+                                                          .toLowerCase()}',
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis,

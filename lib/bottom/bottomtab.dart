@@ -32,7 +32,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen>
     currentIndex = widget.index;
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 400),
       value: 1,
     );
     super.initState();
@@ -42,11 +42,11 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen>
 
   ///------- tab screen  ----------
   final List<Widget> viewContainer = [
-    CreateScreen(),
-    EventsSceen(),
-    ContactScreen(),
-    NotificationScreen(),
-    ChatScreen(),
+    const CreateScreen(),
+    const EventsSceen(),
+    const ContactScreen(),
+    const NotificationScreen(),
+    const ChatScreen(),
   ];
 
   @override
@@ -65,7 +65,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen>
               barrierDismissible: true,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  backgroundColor: Color.fromARGB(255, 15, 15, 15),
+                  backgroundColor: const Color.fromARGB(255, 15, 15, 15),
                   title: Container(
                     margin: EdgeInsets.only(
                         left: width * 0.02, right: width * 0.02),

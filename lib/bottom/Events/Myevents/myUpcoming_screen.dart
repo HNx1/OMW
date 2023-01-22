@@ -40,28 +40,27 @@ class _MyUpcomingScreenState extends State<MyUpcomingScreen> {
       }
 
       FinalListOfMyUpcoming = [];
-      currentuser = await PrefServices().getCurrentUserName();
+      currentuser = PrefServices().getCurrentUserName();
       var objCreateEventNotifier =
           Provider.of<CreateEventNotifier>(context, listen: false);
 
       await objCreateEventNotifier.getListOfMyUpcomingEvent(
         context,
       );
-      objCreateEventNotifier.getMyupcomingEventList.forEach((element) {
+      for (var element in objCreateEventNotifier.getMyupcomingEventList) {
         FinalListOfMyUpcoming.add(element);
         print(
             "FinalListOfMyUpcoming=====================>$FinalListOfMyUpcoming");
-      });
+      }
       if (currentuser != "") {
         await objCreateEventNotifier.getListOfMyUpcomingEventswithCoHost(
             context, currentuser);
 
-        objCreateEventNotifier.getListOfMyUpcomingEventswithCoHostList
-            .forEach((element) {
+        for (var element in objCreateEventNotifier.getListOfMyUpcomingEventswithCoHostList) {
           FinalListOfMyUpcoming.add(element);
           print(
               "FinalListOfMyUpcoming=====================>$FinalListOfMyUpcoming");
-        });
+        }
       }
     } catch (e) {
       if (mounted) {
@@ -85,7 +84,7 @@ class _MyUpcomingScreenState extends State<MyUpcomingScreen> {
     final objCreateEventNotifier = context.watch<CreateEventNotifier>();
     return Expanded(
       child: isLoading == true && FinalListOfMyUpcoming.isEmpty
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
                 color: primaryColor,
               ),
@@ -161,7 +160,7 @@ class _MyUpcomingScreenState extends State<MyUpcomingScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                    children: [
+                                    children: const [
                                       CircularProgressIndicator(
                                         color: primaryColor,
                                       ),
@@ -214,9 +213,7 @@ class _MyUpcomingScreenState extends State<MyUpcomingScreen> {
                                                 margin: EdgeInsets.only(
                                                     left: height * 0.005),
                                                 child: Text(
-                                                  "${FinalListOfMyUpcoming[index].lstUser!.firstName![0].toUpperCase()}${FinalListOfMyUpcoming[index].lstUser!.firstName!.substring(1).toLowerCase()}" +
-                                                      " " +
-                                                      "${FinalListOfMyUpcoming[index].lstUser!.lastName![0].toUpperCase()}${FinalListOfMyUpcoming[index].lstUser!.lastName!.substring(1).toLowerCase()}",
+                                                  "${FinalListOfMyUpcoming[index].lstUser!.firstName![0].toUpperCase()}${FinalListOfMyUpcoming[index].lstUser!.firstName!.substring(1).toLowerCase()} ${FinalListOfMyUpcoming[index].lstUser!.lastName![0].toUpperCase()}${FinalListOfMyUpcoming[index].lstUser!.lastName!.substring(1).toLowerCase()}",
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -262,13 +259,12 @@ class _MyUpcomingScreenState extends State<MyUpcomingScreen> {
                                                                   index]
                                                               .isDatePoll!)
                                                       ? "Date Poll"
-                                                      : '${DateFormat(TextUtils.dateFormat).format(FinalListOfMyUpcoming[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(FinalListOfMyUpcoming[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(FinalListOfMyUpcoming[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(FinalListOfMyUpcoming[index].eventStartDate!).substring(5)).toLowerCase()}' +
-                                                          DateFormat(
+                                                      : '${DateFormat(TextUtils.dateFormat).format(FinalListOfMyUpcoming[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(FinalListOfMyUpcoming[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(FinalListOfMyUpcoming[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(FinalListOfMyUpcoming[index].eventStartDate!).substring(5)).toLowerCase()}${DateFormat(
                                                                   ' - h:mm aa')
                                                               .format(FinalListOfMyUpcoming[
                                                                       index]
                                                                   .eventEndDate!)
-                                                              .toLowerCase(),
+                                                              .toLowerCase()}',
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis,

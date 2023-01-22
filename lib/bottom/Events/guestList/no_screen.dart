@@ -36,7 +36,7 @@ class _NoScreenState extends State<NoScreen> {
           children: [
             ///---------- List OF Going's Data ------------
             widget.isLoading == true && widget.notGoingGuest.isEmpty
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                       color: primaryColor,
                     ),
@@ -86,15 +86,13 @@ class _NoScreenState extends State<NoScreen> {
                                                                   .currentUserId
                                                           ? true
                                                           : false,
-                                                      name: widget
+                                                      name: "${widget
                                                               .notGoingGuest[
                                                                   index]
-                                                              .firstName! +
-                                                          " " +
-                                                          widget
+                                                              .firstName!} ${widget
                                                               .notGoingGuest[
                                                                   index]
-                                                              .lastName!,
+                                                              .lastName!}",
                                                       profile: widget
                                                           .notGoingGuest[index]
                                                           .userProfile!,
@@ -119,12 +117,12 @@ class _NoScreenState extends State<NoScreen> {
                                                     fit: BoxFit.cover,
                                                     placeholder: (context,
                                                             url) =>
-                                                        CircularProgressIndicator(
+                                                        const CircularProgressIndicator(
                                                       color: primaryColor,
                                                     ),
                                                     errorWidget:
                                                         (context, url, error) =>
-                                                            Icon(Icons.error),
+                                                            const Icon(Icons.error),
                                                   )),
                                               Container(
                                                 margin: EdgeInsets.only(
@@ -139,15 +137,13 @@ class _NoScreenState extends State<NoScreen> {
                                                           bottom:
                                                               height * 0.005),
                                                       child: Text(
-                                                        widget
+                                                        "${widget
                                                                 .notGoingGuest[
                                                                     index]
-                                                                .firstName! +
-                                                            " " +
-                                                            widget
+                                                                .firstName!} ${widget
                                                                 .notGoingGuest[
                                                                     index]
-                                                                .lastName!,
+                                                                .lastName!}",
                                                         style: AppTheme
                                                                 .getTheme()
                                                             .textTheme

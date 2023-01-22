@@ -121,7 +121,7 @@ class GroupNotifier extends ChangeNotifier {
           }
         });
       });
-      print("device Contact List ==========>\n${myContactList}");
+      print("device Contact List ==========>\n$myContactList");
     } catch (e) {
       print("$e");
     }
@@ -165,7 +165,7 @@ class GroupNotifier extends ChangeNotifier {
 
       selectedUserList.addAll(contactList);
 
-      print("selectedUserList${selectedUserList}");
+      print("selectedUserList$selectedUserList");
     });
     notifyListeners();
   }

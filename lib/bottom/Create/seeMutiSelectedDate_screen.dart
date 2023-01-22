@@ -1,8 +1,6 @@
 import 'dart:core';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:lazy_data_table/lazy_data_table.dart';
 
@@ -18,7 +16,6 @@ import '../../notifier/event_notifier.dart';
 import '../../notifier/notication_notifier.dart';
 import '../../utils/colorUtils.dart';
 
-import '../../utils/textUtils.dart';
 import 'package:intl/intl.dart';
 
 class SeeMultiSelectedDate extends StatefulWidget {
@@ -66,12 +63,12 @@ class _SeeMultiSelectedDateState extends State<SeeMultiSelectedDate> {
         widget.guestId,
       )
           .whenComplete(() {
-        objCreateEventNotifier.getEventDetails.guest!.forEach((element) {
+        for (var element in objCreateEventNotifier.getEventDetails.guest!) {
           guestUser = objCreateEventNotifier.retrievedGuestUserList;
           guestUser.sort((a, b) => a.lastName!.compareTo(b.lastName!));
 
           print("==============>$element");
-        });
+        }
       });
     }
 
@@ -116,7 +113,7 @@ class _SeeMultiSelectedDateState extends State<SeeMultiSelectedDate> {
                 typeOfData: [
                   {
                     "NotificationSendBy":
-                        "${objAuthenicationNotifier.objUsers.firstName! + " " + objAuthenicationNotifier.objUsers.lastName!}",
+                        "${objAuthenicationNotifier.objUsers.firstName!} ${objAuthenicationNotifier.objUsers.lastName!}",
                     "eventId": objCreateEventNotifier.getEventDetails.docId!
                   }
                 ]);
@@ -172,7 +169,7 @@ class _SeeMultiSelectedDateState extends State<SeeMultiSelectedDate> {
         body: Consumer<CreateEventNotifier>(
           builder: (BuildContext context, value, Widget? child) {
             return isLoading == true
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                       color: primaryColor,
                     ),
@@ -198,7 +195,7 @@ class _SeeMultiSelectedDateState extends State<SeeMultiSelectedDate> {
                         alignment: Alignment.center,
                         margin: EdgeInsets.all(height * 0.015),
                         child: LazyDataTable(
-                          tableTheme: LazyDataTableTheme(
+                          tableTheme: const LazyDataTableTheme(
                             columnHeaderBorder: Border(
                               top: BorderSide(
                                 color: ConstColor.textFormFieldColor,
@@ -298,11 +295,11 @@ class _SeeMultiSelectedDateState extends State<SeeMultiSelectedDate> {
                             child: Container(
                               decoration: BoxDecoration(
                                 border: Border(
-                                  bottom: BorderSide(
+                                  bottom: const BorderSide(
                                       color: ConstColor.textFormFieldColor),
                                   right: value.getEventDetails.allDates!.last ==
                                           value.getEventDetails.allDates![k]
-                                      ? BorderSide(
+                                      ? const BorderSide(
                                           color: ConstColor.textFormFieldColor,
                                         )
                                       : BorderSide.none,
@@ -310,7 +307,7 @@ class _SeeMultiSelectedDateState extends State<SeeMultiSelectedDate> {
                               ),
                               child: Container(
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                   left: 10,
                                   right: 10,
                                 ),
@@ -337,7 +334,7 @@ class _SeeMultiSelectedDateState extends State<SeeMultiSelectedDate> {
                             alignment: Alignment.center,
                             padding: EdgeInsets.zero,
                             margin: EdgeInsets.zero,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               border: Border(
                                   right: BorderSide(
                                 color: ConstColor.textFormFieldColor,
@@ -380,7 +377,7 @@ class _SeeMultiSelectedDateState extends State<SeeMultiSelectedDate> {
                             ),
                           ),
                           topLeftCornerWidget: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.transparent,
                               border: Border(),
                             ),
@@ -396,7 +393,7 @@ class _SeeMultiSelectedDateState extends State<SeeMultiSelectedDate> {
     CreateEventNotifier objCreateEventNotifier,
   ) {
     return AlertDialog(
-      backgroundColor: Color.fromARGB(255, 15, 15, 15),
+      backgroundColor: const Color.fromARGB(255, 15, 15, 15),
       title: Container(
         margin: EdgeInsets.only(
           left: width * 0.02,

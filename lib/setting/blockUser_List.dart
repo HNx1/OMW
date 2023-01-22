@@ -15,7 +15,7 @@ class BlockUserList extends StatefulWidget {
 }
 
 class _BlockUserListState extends State<BlockUserList> {
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   bool _IsSearching = false;
   String _searchText = "";
@@ -137,7 +137,7 @@ class _BlockUserListState extends State<BlockUserList> {
                   border: InputBorder.none,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(height * 0.1),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: ConstColor.textFormFieldColor,
                     ),
                   ),
@@ -155,32 +155,32 @@ class _BlockUserListState extends State<BlockUserList> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(height * 0.1),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: ConstColor.textFormFieldColor,
                     ),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(height * 0.1),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: ConstColor.textFormFieldColor,
                     ),
                   ),
                   disabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(height * 0.1),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: ConstColor.textFormFieldColor,
                     ),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(height * 0.1),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: ConstColor.textFormFieldColor,
                     ),
                   ),
                   hintText: TextUtils.Nameorphone,
                   hintStyle: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
                         fontSize: width * 0.045,
-                        color: Color(0xff6C6C6C),
+                        color: const Color(0xff6C6C6C),
                       ),
                 ),
               ),
@@ -188,7 +188,7 @@ class _BlockUserListState extends State<BlockUserList> {
 
             Expanded(
               child: isLoading == true && objChattingNotifier.searchList.isEmpty
-                  ? Center(
+                  ? const Center(
                       child: CircularProgressIndicator(
                         color: primaryColor,
                       ),
@@ -279,7 +279,7 @@ class _BlockUserListState extends State<BlockUserList> {
                                                       .bodyText1!
                                                       .copyWith(
                                                           color:
-                                                              Color(0xff6C6C6C),
+                                                              const Color(0xff6C6C6C),
                                                           height: 1.4,
                                                           fontSize:
                                                               width * 0.037),

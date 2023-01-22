@@ -55,16 +55,16 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
     await fetchNewEvents(1, 1);
   }
 
-  DateTime helightedDay = DateTime.now().subtract(Duration(days: 50));
+  DateTime helightedDay = DateTime.now().subtract(const Duration(days: 50));
   fetchNewEvents(int year, int month) async {
     setState(() {});
 
     var objCreateEventNotifier =
         Provider.of<CreateEventNotifier>(context, listen: false);
     items = [];
-    objCreateEventNotifier.lstofAllEvents.forEach((element) {
+    for (var element in objCreateEventNotifier.lstofAllEvents) {
       items.add(element);
-    });
+    }
     setState(() {});
     print(items);
   }
@@ -81,8 +81,8 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
     listofEveningWithNotGoing = [];
     resultoflistofEveningWithNotGoing = [];
     finalEventList = [];
-    objCreateEventNotifier.lstofAllEvents.forEach((element) {
-      element.guest!.forEach((guestElement) {
+    for (var element in objCreateEventNotifier.lstofAllEvents) {
+      for (var guestElement in element.guest!) {
         if (DateFormat('aa').format(element.eventStartDate!).toLowerCase() ==
                 "am" &&
             element.eventStartDate!.day == date.day &&
@@ -92,15 +92,15 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
             guestElement.status == 0) {
           listofMorningWithGoing.add("YellowSun");
         }
-      });
-    });
+      }
+    }
     resultoflistofMorningWithGoing = listofMorningWithGoing.toSet().toList();
     if (resultoflistofMorningWithGoing.isNotEmpty) {
       finalEventList.addAll(resultoflistofMorningWithGoing);
     }
 
-    objCreateEventNotifier.lstofAllEvents.forEach((element) {
-      element.guest!.forEach((guestElement) {
+    for (var element in objCreateEventNotifier.lstofAllEvents) {
+      for (var guestElement in element.guest!) {
         if ((DateFormat('aa').format(element.eventStartDate!).toLowerCase() ==
                 "pm") &&
             guestElement.guestID == _auth.currentUser!.uid &&
@@ -110,8 +110,8 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
             guestElement.status == 0) {
           listofeveningWithGoing.add("YellowMoon");
         }
-      });
-    });
+      }
+    }
     resultoflistofeveningWithGoing = listofeveningWithGoing.toSet().toList();
     if (resultoflistofeveningWithGoing.isNotEmpty) {
       finalEventList.addAll(resultoflistofeveningWithGoing);
@@ -119,8 +119,8 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
     print(
         "-------------------------------------------------------------------------------------");
 
-    objCreateEventNotifier.lstofAllEvents.forEach((element) {
-      element.guest!.forEach((guestElement) {
+    for (var element in objCreateEventNotifier.lstofAllEvents) {
+      for (var guestElement in element.guest!) {
         if (DateFormat('aa').format(element.eventStartDate!).toLowerCase() ==
                 "am" &&
             guestElement.guestID == _auth.currentUser!.uid &&
@@ -130,8 +130,8 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
             guestElement.status != 0) {
           listofMorningWithNotGoing.add("GreySun");
         }
-      });
-    });
+      }
+    }
     // print("listofMorningWithNotGoing==> $listofMorningWithNotGoing");
     resultoflistofMorningWithNotGoing =
         listofMorningWithNotGoing.toSet().toList();
@@ -141,8 +141,8 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
       finalEventList.addAll(resultoflistofMorningWithNotGoing);
       // print("finalEventList :- $finalEventList");
     }
-    objCreateEventNotifier.lstofAllEvents.forEach((element) {
-      element.guest!.forEach((guestElement) {
+    for (var element in objCreateEventNotifier.lstofAllEvents) {
+      for (var guestElement in element.guest!) {
         if (DateFormat('aa').format(element.eventStartDate!).toLowerCase() ==
                 "pm" &&
             element.eventStartDate!.day == date.day &&
@@ -152,8 +152,8 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
             guestElement.status != 0) {
           listofEveningWithNotGoing.add("GreyMoon");
         }
-      });
-    });
+      }
+    }
 
     resultoflistofEveningWithNotGoing =
         listofEveningWithNotGoing.toSet().toList();
@@ -161,9 +161,9 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
       finalEventList.addAll(resultoflistofEveningWithNotGoing);
     }
     items = [];
-    objCreateEventNotifier.lstofAllEvents.forEach((element) {
+    for (var element in objCreateEventNotifier.lstofAllEvents) {
       items.add(element);
-    });
+    }
   }
 
   bool iseventSelected = false;
@@ -216,7 +216,7 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
                   context,
                   PageRouteBuilder(
                     pageBuilder: (context, animation1, animation2) =>
-                        BottomNavBarScreen(
+                        const BottomNavBarScreen(
                       index: 1,
                       lastIndex: 1,
                     ),
@@ -257,7 +257,7 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
       body: Stack(
         children: [
           objCreateEventNotifier.isLoading == true && items.isEmpty
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -299,7 +299,7 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
             },
             dayBuilder: (context, date) {
               getevent(date);
-              DateTime now = new DateTime.now();
+              DateTime now = DateTime.now();
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -402,7 +402,7 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
                         child: ListView.builder(
                           itemCount: eventList.length,
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int index) {
                             return Container(
                               decoration: BoxDecoration(
@@ -431,7 +431,7 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
                                             MainAxisAlignment.center,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
-                                        children: [
+                                        children: const [
                                           CircularProgressIndicator(
                                             color: primaryColor,
                                           ),
@@ -482,7 +482,7 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
                                                         fit: BoxFit.cover,
                                                         placeholder: (context,
                                                                 url) =>
-                                                            CircularProgressIndicator(
+                                                            const CircularProgressIndicator(
                                                               color:
                                                                   primaryColor,
                                                             ))),
@@ -514,13 +514,11 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
                                                             top:
                                                                 height * 0.005),
                                                         child: Text(
-                                                          eventList[index]
+                                                          "${eventList[index]
                                                                   .lstUser!
-                                                                  .firstName! +
-                                                              " " +
-                                                              eventList[index]
+                                                                  .firstName!} ${eventList[index]
                                                                   .lstUser!
-                                                                  .lastName!,
+                                                                  .lastName!}",
                                                           style: AppTheme
                                                                   .getTheme()
                                                               .textTheme
@@ -554,12 +552,11 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
                                                       top: width * 0.02,
                                                       left: width * 0.02),
                                                   child: Text(
-                                                    '${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!)[4].toUpperCase()}${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!).substring(5).toLowerCase()}' +
-                                                        DateFormat(' - h:mm aa')
+                                                    '${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!)[4].toUpperCase()}${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!).substring(5).toLowerCase()}${DateFormat(' - h:mm aa')
                                                             .format(eventList[
                                                                     index]
                                                                 .eventEndDate!)
-                                                            .toLowerCase(),
+                                                            .toLowerCase()}',
                                                     maxLines: 2,
                                                     overflow:
                                                         TextOverflow.ellipsis,
@@ -666,7 +663,7 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
       transitionDuration: const Duration(milliseconds: 0),
       pageBuilder: (BuildContext buildContext, Animation animation,
           Animation secondaryAnimation) {
-        return CommonDrawer();
+        return const CommonDrawer();
       },
     );
   }

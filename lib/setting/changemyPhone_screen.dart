@@ -26,7 +26,7 @@ class _ChangeMyPhoneNoScreenState extends State<ChangeMyPhoneNoScreen> {
     super.initState();
   }
 
-  TextEditingController _PhoneController = TextEditingController();
+  final TextEditingController _PhoneController = TextEditingController();
   var formKey = GlobalKey<FormState>();
   CountryCode? pickedCountryCode;
 
@@ -65,9 +65,8 @@ class _ChangeMyPhoneNoScreenState extends State<ChangeMyPhoneNoScreen> {
       ),
       body: Stack(
         children: [
-          objProviderNotifier.objUsers == null ||
-                  objProviderNotifier.objUsers == ""
-              ? Center(
+          objProviderNotifier.objUsers == ""
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -133,7 +132,7 @@ class _ChangeMyPhoneNoScreenState extends State<ChangeMyPhoneNoScreen> {
                                         CountryListPick(
                                           appBar: AppBar(
                                             backgroundColor: Colors.black,
-                                            title: Text('Select Country '),
+                                            title: const Text('Select Country '),
                                           ),
                                           theme: CountryTheme(
                                             isShowFlag: true,
@@ -188,7 +187,7 @@ class _ChangeMyPhoneNoScreenState extends State<ChangeMyPhoneNoScreen> {
                                                         ),
                                                   ),
                                                 ),
-                                                Icon(
+                                                const Icon(
                                                   Icons
                                                       .keyboard_arrow_down_sharp,
                                                   color: ConstColor.white_Color,
@@ -312,9 +311,7 @@ class _ChangeMyPhoneNoScreenState extends State<ChangeMyPhoneNoScreen> {
                                       pickedCountryCode == null
                                   ? "+44"
                                   : pickedCountryCode.toString();
-                              String phoneNo = code +
-                                  " " +
-                                  "${_PhoneController.text.toString()}";
+                              String phoneNo = "$code ${_PhoneController.text.toString()}";
                               final isValid = formKey.currentState!.validate();
 
                               if (isValid &&
@@ -330,7 +327,7 @@ class _ChangeMyPhoneNoScreenState extends State<ChangeMyPhoneNoScreen> {
                                 );
                               }
                             },
-                            child: CommonButton(
+                            child: const CommonButton(
                               name: TextUtils.SaveNumber,
                             )),
                       )

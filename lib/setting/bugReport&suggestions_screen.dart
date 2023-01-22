@@ -60,7 +60,7 @@ class _BugReportScreenState extends State<BugReportScreen> {
                       "" ||
                   objbugReportProvider.objBugsAndReportModel.title == null ||
                   objbugReportProvider.objBugsAndReportModel.title == ""
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -115,7 +115,7 @@ class _BugReportScreenState extends State<BugReportScreen> {
                                   .bodyText1!
                                   .copyWith(
                                       decoration: TextDecoration.underline,
-                                      color: Color(0xff2196f3),
+                                      color: const Color(0xff2196f3),
                                       height: 1.5,
                                       fontSize: width * 0.044),
                             ))

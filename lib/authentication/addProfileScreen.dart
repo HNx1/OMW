@@ -30,9 +30,9 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
   final CurrenyYear = DateFormat('yyyy').format(DateTime.now());
   String selectBirthDate = "";
   var formKey = GlobalKey<FormState>();
-  TextEditingController _firstNameController = TextEditingController();
-  TextEditingController _LastNameController = TextEditingController();
-  TextEditingController _PhoneController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _LastNameController = TextEditingController();
+  final TextEditingController _PhoneController = TextEditingController();
   // TextEditingController _descriptionController = TextEditingController();
 
   String phone = "";
@@ -111,7 +111,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
         alignment: Alignment.center,
         children: [
           objAuthrovider.isLoading == true
-              ? CircularProgressIndicator(
+              ? const CircularProgressIndicator(
                   color: primaryColor,
                 )
               : Container(),
@@ -166,7 +166,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                                     CountryListPick(
                                       appBar: AppBar(
                                         backgroundColor: Colors.black,
-                                        title: Text('Select Country '),
+                                        title: const Text('Select Country '),
                                       ),
                                       theme: CountryTheme(
                                         isShowFlag: true,
@@ -214,7 +214,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                                                     ),
                                               ),
                                             ),
-                                            Icon(
+                                            const Icon(
                                               Icons.keyboard_arrow_down_sharp,
                                               color: ConstColor.white_Color,
                                             ),
@@ -330,7 +330,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                                       await DatePicker.showSimpleDatePicker(
                                           context,
                                           backgroundColor:
-                                              Color.fromARGB(255, 12, 12, 12),
+                                              const Color.fromARGB(255, 12, 12, 12),
                                           initialDate: DateTime(1994),
                                           firstDate: DateTime(1960),
                                           lastDate: DateTime(
@@ -350,7 +350,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
 
                                   setState(() {
                                     selectBirthDate =
-                                        '${DateFormat('MMM dd, yyyy').format(datePicked!)}';
+                                        DateFormat('MMM dd, yyyy').format(datePicked!);
                                   });
                                 },
                                 child: Container(
@@ -414,7 +414,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                               GestureDetector(
                                 onTap: () {
                                   showModalBottomSheet(
-                                    shape: RoundedRectangleBorder(
+                                    shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(20),
                                         topRight: Radius.circular(20),
@@ -447,7 +447,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                                                   ),
                                                 ),
                                               ),
-                                              Divider(
+                                              const Divider(
                                                 thickness: 2,
                                               ),
                                               GestureDetector(
@@ -470,7 +470,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                                                   ),
                                                 ),
                                               ),
-                                              Divider(
+                                              const Divider(
                                                 thickness: 2,
                                               ),
                                               GestureDetector(
@@ -578,7 +578,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                             ? "+44"
                             : pickedCountryCode.toString();
                     String phoneNo =
-                        code + " " + "${_PhoneController.text.toString()}";
+                        "$code ${_PhoneController.text.toString()}";
                     final isValid = formKey.currentState!.validate();
 
                     if (isValid &&
@@ -605,7 +605,7 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                   child: Container(
                     alignment: Alignment.bottomCenter,
                     margin: EdgeInsets.only(bottom: height * 0.02),
-                    child: CommonButton(
+                    child: const CommonButton(
                       name: TextUtils.Save,
                     ),
                   ),

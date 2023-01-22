@@ -46,7 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => IndividualChatScreen()));
+                      builder: (context) => const IndividualChatScreen()));
             },
             child: Image.asset(
               ConstantData.logo,
@@ -113,7 +113,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 0
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 0
@@ -151,7 +151,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                     .bodyText2!
                                     .copyWith(
                                         color: index != 1
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 1
@@ -189,7 +189,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 2
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 2
@@ -204,10 +204,10 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 ),
                 index == 0
-                    ? AllChatScreen()
+                    ? const AllChatScreen()
                     : index == 1
-                        ? GroupChatScreen()
-                        : IndividualChatScreen()
+                        ? const GroupChatScreen()
+                        : const IndividualChatScreen()
               ],
             ),
           ),
@@ -225,7 +225,7 @@ class _ChatScreenState extends State<ChatScreen> {
       transitionDuration: const Duration(milliseconds: 0),
       pageBuilder: (BuildContext buildContext, Animation animation,
           Animation secondaryAnimation) {
-        return CommonDrawer();
+        return const CommonDrawer();
       },
     );
   }

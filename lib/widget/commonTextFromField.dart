@@ -54,31 +54,31 @@ class _CommonTextFromFieldState extends State<CommonTextFromField> {
               ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(height * 0.1),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: ConstColor.textFormFieldColor,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(height * 0.1),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: ConstColor.textFormFieldColor,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(height * 0.1),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: ConstColor.textFormFieldColor,
             ),
           ),
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(height * 0.1),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: ConstColor.textFormFieldColor,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(height * 0.1),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: ConstColor.textFormFieldColor,
             ),
           ),

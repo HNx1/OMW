@@ -20,10 +20,10 @@ class ChnageMyPassword extends StatefulWidget {
 
 class _ChnageMyPasswordState extends State<ChnageMyPassword> {
   var formKey = GlobalKey<FormState>();
-  TextEditingController _currentPasswordController = TextEditingController();
+  final TextEditingController _currentPasswordController = TextEditingController();
 
-  TextEditingController _newPasswordController = TextEditingController();
-  TextEditingController _ConfirmPasswordController = TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
+  final TextEditingController _ConfirmPasswordController = TextEditingController();
   dynamic oldPassVerify;
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class _ChnageMyPasswordState extends State<ChnageMyPassword> {
           alignment: Alignment.center,
           children: [
             objProviderNotifier.isLoading == true
-                ? CircularProgressIndicator(
+                ? const CircularProgressIndicator(
                     color: primaryColor,
                   )
                 : Container(),
@@ -153,7 +153,7 @@ class _ChnageMyPasswordState extends State<ChnageMyPassword> {
                           FocusScope.of(context).requestFocus(FocusNode());
                         }
                       },
-                      child: CommonButton(
+                      child: const CommonButton(
                         name: TextUtils.Save,
                       )),
                 )

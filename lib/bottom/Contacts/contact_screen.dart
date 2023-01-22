@@ -11,7 +11,6 @@ import '../../api/apiProvider.dart';
 import '../../constant/constants.dart';
 import '../../constant/theme.dart';
 import '../../utils/colorUtils.dart';
-import '../../utils/textUtils.dart';
 import '../Profile/drawer.dart';
 import '../Profile/profile_screen.dart';
 import 'createGroup_screen.dart';
@@ -29,7 +28,7 @@ class ContactScreen extends StatefulWidget {
 bool isLoading = true;
 
 class _ContactScreenState extends State<ContactScreen> {
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
   @override
   void initState() {
     isloading();
@@ -149,12 +148,12 @@ class _ContactScreenState extends State<ContactScreen> {
                       return _buildAddPopupDialog();
                     });
               },
-              child: objGroupNotifier.wishListItems.length >= 1
+              child: objGroupNotifier.wishListItems.isNotEmpty
                   ? Container()
                   : Container(
                       margin: EdgeInsets.only(right: width * 0.05),
                       alignment: Alignment.center,
-                      child: Icon(
+                      child: const Icon(
                         Icons.add_circle_outline_sharp,
                         color: primaryColor,
                       )),
@@ -192,7 +191,7 @@ class _ContactScreenState extends State<ContactScreen> {
                       border: InputBorder.none,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(height * 0.1),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: ConstColor.textFormFieldColor,
                         ),
                       ),
@@ -232,25 +231,25 @@ class _ContactScreenState extends State<ContactScreen> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(height * 0.1),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: ConstColor.textFormFieldColor,
                         ),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(height * 0.1),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: ConstColor.textFormFieldColor,
                         ),
                       ),
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(height * 0.1),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: ConstColor.textFormFieldColor,
                         ),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(height * 0.1),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: ConstColor.textFormFieldColor,
                         ),
                       ),
@@ -258,7 +257,7 @@ class _ContactScreenState extends State<ContactScreen> {
                       hintStyle:
                           AppTheme.getTheme().textTheme.bodyText1!.copyWith(
                                 fontSize: width * 0.045,
-                                color: Color(0xff6C6C6C),
+                                color: const Color(0xff6C6C6C),
                               ),
                     ),
                   ),
@@ -266,7 +265,7 @@ class _ContactScreenState extends State<ContactScreen> {
 
                 Expanded(
                     child: isLoading == true && searchList.isEmpty
-                        ? Center(
+                        ? const Center(
                             child: CircularProgressIndicator(
                               color: primaryColor,
                             ),
@@ -305,7 +304,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                     child: Stack(
                                       children: [
                                         objGroupNotifier.isLoading
-                                            ? Center(
+                                            ? const Center(
                                                 child:
                                                     CircularProgressIndicator(
                                                   color: primaryColor,
@@ -364,7 +363,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                                                               fcmtoken: searchList[index].fcmToken!,
                                                                               userId: searchList[index].uid!,
                                                                               isOwnProfile: false,
-                                                                              name: searchList[index].firstName! + " " + searchList[index].lastName!,
+                                                                              name: "${searchList[index].firstName!} ${searchList[index].lastName!}",
                                                                               profile: searchList[index].userProfile!,
                                                                             )));
                                                               },
@@ -393,7 +392,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                                                             .cover,
                                                                         placeholder:
                                                                             (context, url) =>
-                                                                                CircularProgressIndicator(
+                                                                                const CircularProgressIndicator(
                                                                           color:
                                                                               primaryColor,
                                                                         ),
@@ -419,7 +418,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                                                                 EdgeInsets.only(bottom: height * 0.005),
                                                                             child:
                                                                                 Text(
-                                                                              searchList[index].firstName! + " " + searchList[index].lastName!,
+                                                                              "${searchList[index].firstName!} ${searchList[index].lastName!}",
                                                                               style: AppTheme.getTheme().textTheme.bodyText2!.copyWith(color: ConstColor.white_Color, height: 1.4, fontSize: width * 0.043),
                                                                             ),
                                                                           ),
@@ -442,7 +441,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                                         searchList[index]
                                                                     .isSelcetdForGroup ==
                                                                 true
-                                                            ? Icon(Icons.check)
+                                                            ? const Icon(Icons.check)
                                                             : Container(),
                                                       ],
                                                     ),
@@ -477,14 +476,14 @@ class _ContactScreenState extends State<ContactScreen> {
             ),
           ),
         ),
-        objGroupNotifier.wishListItems.length >= 1
+        objGroupNotifier.wishListItems.isNotEmpty
             ? GestureDetector(
                 onTap: () {
-                  objGroupNotifier.wishListItems.length >= 1
+                  objGroupNotifier.wishListItems.isNotEmpty
                       ? Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => CreateGroupScreen())))
+                                  builder: ((context) => const CreateGroupScreen())))
                           .whenComplete(() {
                           if (mounted) {
                             setState(() {});
@@ -498,7 +497,7 @@ class _ContactScreenState extends State<ContactScreen> {
                       left: width * 0.03,
                       right: width * 0.03,
                       bottom: height * 0.02),
-                  child: CommonButton(name: "Create Group"),
+                  child: const CommonButton(name: "Create Group"),
                 ),
               )
             : Container()
@@ -507,7 +506,7 @@ class _ContactScreenState extends State<ContactScreen> {
   }
 
   Widget _buildAddPopupDialog() {
-    return AddpopupDialog();
+    return const AddpopupDialog();
   }
 
   _openDrawer() {
@@ -519,7 +518,7 @@ class _ContactScreenState extends State<ContactScreen> {
       transitionDuration: const Duration(milliseconds: 0),
       pageBuilder: (BuildContext buildContext, Animation animation,
           Animation secondaryAnimation) {
-        return CommonDrawer();
+        return const CommonDrawer();
       },
     );
   }

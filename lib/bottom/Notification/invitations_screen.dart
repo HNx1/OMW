@@ -29,7 +29,7 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
   List<AllChat> chats = [];
   AllChat chat = AllChat("");
   getListOfinvitationsNotification() async {
-    currentuser = await PrefServices().getCurrentUserName();
+    currentuser = PrefServices().getCurrentUserName();
     var objNotificationNotifier =
         Provider.of<NotificationNotifier>(context, listen: false);
 
@@ -59,6 +59,7 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
   }
 
   String currentuser = "";
+  @override
   Widget build(BuildContext context) {
     final objCreateEventNotifier = context.watch<CreateEventNotifier>();
     final objNotificationNotifier = context.watch<NotificationNotifier>();
@@ -74,7 +75,7 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
           objNotificationNotifier.isLoading &&
                   objNotificationNotifier
                       .lstInvitationsNotificationModel.isEmpty
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -109,7 +110,7 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                             child: Stack(
                               children: [
                                 objNotificationNotifier.isLoading
-                                    ? Center(
+                                    ? const Center(
                                         child: CircularProgressIndicator(
                                           color: primaryColor,
                                         ),
@@ -191,17 +192,15 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                               .userDetails!
                                                               .uid!,
                                                           isOwnProfile: false,
-                                                          name: objNotificationNotifier
+                                                          name: "${objNotificationNotifier
                                                                   .lstInvitationsNotificationModel[
                                                                       index]
                                                                   .userDetails!
-                                                                  .firstName! +
-                                                              " " +
-                                                              objNotificationNotifier
+                                                                  .firstName!} ${objNotificationNotifier
                                                                   .lstInvitationsNotificationModel[
                                                                       index]
                                                                   .userDetails!
-                                                                  .lastName!,
+                                                                  .lastName!}",
                                                           profile:
                                                               objNotificationNotifier
                                                                   .lstInvitationsNotificationModel[
@@ -240,7 +239,7 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                                     crossAxisAlignment:
                                                                         CrossAxisAlignment
                                                                             .center,
-                                                                    children: [
+                                                                    children: const [
                                                                       CircularProgressIndicator(
                                                                         color:
                                                                             primaryColor,
@@ -353,11 +352,11 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                                             width *
                                                                                 0.036),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                   text: "\n"),
                                                               TextSpan(
                                                                 text: toBeginningOfSentenceCase(
-                                                                        "${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!)}")
+                                                                        DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!))
                                                                     .toString()
                                                                     .replaceAll(
                                                                         "PM",
@@ -371,7 +370,7 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                                     .textTheme
                                                                     .bodyText1!
                                                                     .copyWith(
-                                                                        color: Color(
+                                                                        color: const Color(
                                                                             0xffCECECE),
                                                                         height:
                                                                             1.4,
@@ -445,12 +444,12 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                                             fontSize:
                                                                                 width * 0.036),
                                                                   ),
-                                                                  TextSpan(
+                                                                  const TextSpan(
                                                                       text:
                                                                           "\n"),
                                                                   TextSpan(
                                                                     text: toBeginningOfSentenceCase(
-                                                                            "${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!)}")
+                                                                            DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!))
                                                                         .toString()
                                                                         .replaceAll(
                                                                             "PM",
@@ -464,7 +463,7 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                                         .textTheme
                                                                         .bodyText1!
                                                                         .copyWith(
-                                                                            color: Color(
+                                                                            color: const Color(
                                                                                 0xffCECECE),
                                                                             height:
                                                                                 1.4,
@@ -513,11 +512,11 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                                             fontSize:
                                                                                 width * 0.036),
                                                                       ),
-                                                                      TextSpan(
+                                                                      const TextSpan(
                                                                           text:
                                                                               "\n"),
                                                                       TextSpan(
-                                                                        text: toBeginningOfSentenceCase("${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!)}")
+                                                                        text: toBeginningOfSentenceCase(DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!))
                                                                             .toString()
                                                                             .replaceAll("PM",
                                                                                 "pm")
@@ -525,7 +524,7 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                                                 "am"),
                                                                         // '${DateFormat('EEE, MMM dd, hh:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!)[0].toUpperCase()}${(DateFormat('EEE, MMM d, h:m aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!).substring(1)).replaceAll("PM", "pm").replaceAll("AM", "am")}',
                                                                         style: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
-                                                                            color: Color(
+                                                                            color: const Color(
                                                                                 0xffCECECE),
                                                                             height:
                                                                                 1.4,
@@ -557,11 +556,11 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                                             fontSize:
                                                                                 width * 0.036),
                                                                       ),
-                                                                      TextSpan(
+                                                                      const TextSpan(
                                                                           text:
                                                                               "\n"),
                                                                       TextSpan(
-                                                                        text: toBeginningOfSentenceCase("${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!)}")
+                                                                        text: toBeginningOfSentenceCase(DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!))
                                                                             .toString()
                                                                             .replaceAll("PM",
                                                                                 "pm")
@@ -569,7 +568,7 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                                                 "am"),
                                                                         // '${DateFormat('EEE, MMM dd, hh:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!)[0].toUpperCase()}${(DateFormat('EEE, MMM d, h:m aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!).substring(1)).replaceAll("PM", "pm").replaceAll("AM", "am")}',
                                                                         style: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
-                                                                            color: Color(
+                                                                            color: const Color(
                                                                                 0xffCECECE),
                                                                             height:
                                                                                 1.4,

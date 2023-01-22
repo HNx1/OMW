@@ -2,10 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
-import 'package:contacts_service/contacts_service.dart';
-import 'package:omw/authentication/loginScreen.dart';
 import 'package:omw/bottom/Events/event/pastFilter.dart';
 import 'package:omw/bottom/Events/event/past_screen.dart';
 import 'package:omw/bottom/Events/event/searchEvent_screen.dart';
@@ -23,7 +20,6 @@ import '../../../constant/theme.dart';
 import '../../../model/createEvent_model.dart';
 import '../../../model/user_model.dart';
 import '../../../notifier/event_notifier.dart';
-import '../../../setting/change_myEmail_screen.dart';
 import '../../../utils/colorUtils.dart';
 import '../../../utils/textUtils.dart';
 import '../../../widget/routesFile.dart';
@@ -53,11 +49,9 @@ class _EventsSceenState extends State<EventsSceen> {
     var objProviderNotifier =
         Provider.of<AuthenicationNotifier>(context, listen: false);
     await objProviderNotifier.getUserDetail();
-    PrefServices().setCurrentUserName(objProviderNotifier.objUsers.firstName! +
-        " " +
-        objProviderNotifier.objUsers.lastName!);
+    PrefServices().setCurrentUserName("${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}");
 
-    currentuser = await PrefServices().getCurrentUserName();
+    currentuser = PrefServices().getCurrentUserName();
     print("currentuser=========>$currentuser");
     await initDynamicLinks();
 
@@ -71,7 +65,7 @@ class _EventsSceenState extends State<EventsSceen> {
     await objCreateEventNotifier.getListOfPastEvent(
       context,
     );
-    print("Bool: ${isDeepLinkLoaded}");
+    print("Bool: $isDeepLinkLoaded");
   }
 
   String isCreateby = "";
@@ -102,20 +96,20 @@ class _EventsSceenState extends State<EventsSceen> {
                   .collection('users')
                   .where("uid", isEqualTo: value.ownerID)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value.lstUser = UserModel.parseSnapshot(docData);
                 }
               }
               print("value=========>");
-              value.allDates!.forEach((element) async {
-                element.guestResponse!.forEach((element2) async {
+              for (var element in value.allDates!) async {
+                for (var element2 in element.guestResponse!) async {
                   if (element2.guestID ==
                       FirebaseAuth.instance.currentUser!.uid) {
                     element.objguest = element2;
                   }
-                });
-              });
+                }
+              }
               print(value);
               setState(() {
                 objCreateEventNotifier.setEventData = value;
@@ -145,16 +139,14 @@ class _EventsSceenState extends State<EventsSceen> {
                       FirebaseAuth.instance.currentUser!.uid,
                     );
 
-                    lstAlldate.forEach(
-                      (element2) {
+                    for (var element2 in lstAlldate) {
                         element2.guestResponse!.add(
                           GuestModel(
                               guestID: FirebaseAuth.instance.currentUser!.uid,
                               status: 2,
                               guestUserName: currentuser),
                         );
-                      },
-                    );
+                      }
                     await objCreateEventNotifier
                         .addGuestList(
                             context, lstguesData, eventid, guestsID, lstAlldate)
@@ -177,16 +169,14 @@ class _EventsSceenState extends State<EventsSceen> {
                       );
                       guestsID.add(FirebaseAuth.instance.currentUser!.uid);
 
-                      lstAlldate.forEach(
-                        (element2) {
+                      for (var element2 in lstAlldate) {
                           element2.guestResponse!.add(
                             GuestModel(
                                 guestID: FirebaseAuth.instance.currentUser!.uid,
                                 status: 2,
                                 guestUserName: currentuser),
                           );
-                        },
-                      );
+                        }
                       await objCreateEventNotifier
                           .addGuestList(context, lstguesData, eventid, guestsID,
                               lstAlldate)
@@ -339,7 +329,7 @@ class _EventsSceenState extends State<EventsSceen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CalenderFilterScreen()));
+                          builder: (context) => const CalenderFilterScreen()));
                 },
                 child: Container(
                   margin: EdgeInsets.only(
@@ -357,7 +347,7 @@ class _EventsSceenState extends State<EventsSceen> {
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => SearchEvent())));
+                      MaterialPageRoute(builder: ((context) => const SearchEvent())));
                 },
                 child: Container(
                   margin: EdgeInsets.only(right: width * 0.03),
@@ -378,7 +368,7 @@ class _EventsSceenState extends State<EventsSceen> {
               child: Stack(
                 children: [
                   isDeepLinkLoaded == true
-                      ? Center(
+                      ? const Center(
                           child: CircularProgressIndicator(
                           color: primaryColor,
                         ))
@@ -427,7 +417,7 @@ class _EventsSceenState extends State<EventsSceen> {
                                         .copyWith(
                                             decoration: TextDecoration.none,
                                             color: tabIndex != 0
-                                                ? Color(0xffA5A5A5)
+                                                ? const Color(0xffA5A5A5)
                                                 : ConstColor.black_Color,
                                             fontSize: width * 0.043,
                                             fontWeight: tabIndex != 0
@@ -466,7 +456,7 @@ class _EventsSceenState extends State<EventsSceen> {
                                         .copyWith(
                                             decoration: TextDecoration.none,
                                             color: tabIndex != 1
-                                                ? Color(0xffA5A5A5)
+                                                ? const Color(0xffA5A5A5)
                                                 : ConstColor.black_Color,
                                             fontSize: width * 0.043,
                                             fontWeight: tabIndex != 1
@@ -541,17 +531,17 @@ class _EventsSceenState extends State<EventsSceen> {
       transitionDuration: const Duration(milliseconds: 0),
       pageBuilder: (BuildContext buildContext, Animation animation,
           Animation secondaryAnimation) {
-        return CommonDrawer();
+        return const CommonDrawer();
       },
     );
   }
 
   Widget upcomingfilterDialog() {
-    return UpComingFilterDialog();
+    return const UpComingFilterDialog();
   }
 
   Widget PastfilterDialog() {
-    return PastFilterDialog();
+    return const PastFilterDialog();
   }
 }
 
