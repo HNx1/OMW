@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../api/apiProvider.dart';
+import '../api/api_provider.dart';
 import '../model/groupModel.dart';
 import '../model/user_model.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 class GroupNotifier extends ChangeNotifier {
   bool isLoading = false;
@@ -142,13 +142,7 @@ class GroupNotifier extends ChangeNotifier {
   }
 
   getFinalAppContactList(BuildContext context, String docId) async {
-    bool devContactList = false;
-    if (devContactList) {
-      finalList = myAppContactList;
-    } else {
-      finalList =
-          myContactList.toSet().intersection(myAppContactList.toSet()).toList();
-    }
+    myContactList.toSet().intersection(myAppContactList.toSet()).toList();
 
     print("Sync Contact List $finalList");
 
