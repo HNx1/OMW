@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../api/apiProvider.dart';
+import '../../api/api_provider.dart';
 import '../../constant/constants.dart';
 import '../../constant/theme.dart';
 import '../../notifier/AllChatingFunctions.dart';
@@ -158,15 +158,8 @@ class _HostingScreenState extends State<HostingScreen> {
                                                               .userDetails!
                                                               .uid!,
                                                           isOwnProfile: false,
-                                                          name: "${objNotificationNotifier
-                                                                  .lstHostingNotificationModel[
-                                                                      index]
-                                                                  .userDetails!
-                                                                  .firstName!} ${objNotificationNotifier
-                                                                  .lstHostingNotificationModel[
-                                                                      index]
-                                                                  .userDetails!
-                                                                  .lastName!}",
+                                                          name:
+                                                              "${objNotificationNotifier.lstHostingNotificationModel[index].userDetails!.firstName!} ${objNotificationNotifier.lstHostingNotificationModel[index].userDetails!.lastName!}",
                                                           profile:
                                                               objNotificationNotifier
                                                                   .lstHostingNotificationModel[
@@ -321,8 +314,10 @@ class _HostingScreenState extends State<HostingScreen> {
                                                               const TextSpan(
                                                                   text: "\n"),
                                                               TextSpan(
-                                                                text: toBeginningOfSentenceCase(
-                                                                        DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!))
+                                                                text: toBeginningOfSentenceCase(DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier
+                                                                        .lstHostingNotificationModel[
+                                                                            index]
+                                                                        .time!))
                                                                     .toString()
                                                                     .replaceAll(
                                                                         "PM",
@@ -414,8 +409,10 @@ class _HostingScreenState extends State<HostingScreen> {
                                                                       text:
                                                                           "\n"),
                                                                   TextSpan(
-                                                                    text: toBeginningOfSentenceCase(
-                                                                            DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstHostingNotificationModel[index].time!))
+                                                                    text: toBeginningOfSentenceCase(DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier
+                                                                            .lstHostingNotificationModel[
+                                                                                index]
+                                                                            .time!))
                                                                         .toString()
                                                                         .replaceAll(
                                                                             "PM",

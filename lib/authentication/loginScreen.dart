@@ -14,7 +14,7 @@ import '../utils/colorUtils.dart';
 import '../utils/textUtils.dart';
 import '../widget/commonButton.dart';
 import '../widget/routesFile.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 import '../widget/validation.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -293,7 +293,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const ForgotPassword(
+                                        builder: (context) =>
+                                            const ForgotPassword(
                                               isSignUp: false,
                                             )));
                               },
@@ -360,16 +361,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Navigator.pushReplacementNamed(
                                       context, Routes.Admin);
                                   PrefServices().setCurrentUserName(
-                                      "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier
-                                              .objUsers.lastName!}");
+                                      "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}");
                                 } else if (objProviderNotifier.objUsers.role ==
                                         "user" &&
                                     objProviderNotifier.objUsers.emailId ==
                                         _emailController.text.toLowerCase()) {
                                   PrefServices().setIsUserLoggedIn(true);
                                   PrefServices().setCurrentUserName(
-                                      "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier
-                                              .objUsers.lastName!}");
+                                      "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}");
                                   PrefServices().setCurrentUserId(
                                       objProviderNotifier.objUsers.uid!);
                                   PrefServices().setCurrentPhoneNumber(

@@ -14,7 +14,7 @@ import 'package:omw/preference/preference.dart';
 import 'package:provider/provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../api/apiProvider.dart';
+import '../../../api/api_provider.dart';
 import '../../../constant/constants.dart';
 import '../../../constant/theme.dart';
 import '../../../model/createEvent_model.dart';

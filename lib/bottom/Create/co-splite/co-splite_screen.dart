@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal/flutter_paypal.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:omw/api/apiProvider.dart';
+import 'package:omw/api/api_provider.dart';
 import 'package:omw/constant/constants.dart';
 import 'package:omw/notifier/payment_notifier.dart';
 import 'package:provider/provider.dart';
@@ -103,9 +103,8 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
                   RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                      text: "${objCreateEventNotifier
-                              .getEventData.lstUser!.firstName!} ${objCreateEventNotifier
-                              .getEventData.lstUser!.lastName!}",
+                      text:
+                          "${objCreateEventNotifier.getEventData.lstUser!.firstName!} ${objCreateEventNotifier.getEventData.lstUser!.lastName!}",
                       style: AppTheme.getTheme().textTheme.bodyText2!.copyWith(
                             color: ConstColor.primaryColor,
                             fontSize: width * 0.046,
@@ -170,10 +169,8 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
                                 ),
                         children: [
                           TextSpan(
-                            text: " £ ${double.parse(objCreateEventNotifier
-                                        .getEventData.costAmount
-                                        .toString())
-                                    .toStringAsFixed(2)} ",
+                            text:
+                                " £ ${double.parse(objCreateEventNotifier.getEventData.costAmount.toString()).toStringAsFixed(2)} ",
                             style: AppTheme.getTheme()
                                 .textTheme
                                 .bodyText1!
@@ -254,9 +251,7 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
                         objPaymentNotifier
                             .doPayment(
                           context,
-                          "${objCreateEventNotifier
-                                  .getEventData.lstUser!.firstName!} ${objCreateEventNotifier
-                                  .getEventData.lstUser!.lastName!}",
+                          "${objCreateEventNotifier.getEventData.lstUser!.firstName!} ${objCreateEventNotifier.getEventData.lstUser!.lastName!}",
                           objCreateEventNotifier.getEventData.docId!,
                           objCreateEventNotifier.getEventData.eventname!,
                           "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
@@ -431,8 +426,7 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
       ))
           .then((newValue) async {
         print('payment intent${paymentIntentData!['id']}');
-        print(
-            'payment intent${paymentIntentData!['client_secret']}');
+        print('payment intent${paymentIntentData!['client_secret']}');
         print('payment intent${paymentIntentData!['amount']}');
         print('payment intent$paymentIntentData');
 

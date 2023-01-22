@@ -14,7 +14,7 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:omw/notifier/group_notifier.dart';
 
-import '../../../api/apiProvider.dart';
+import '../../../api/api_provider.dart';
 import '../../constant/constants.dart';
 import '../../constant/theme.dart';
 import '../../model/createEvent_model.dart';
@@ -723,16 +723,18 @@ class _CreateScreenState extends State<CreateScreen> {
                                   ? Container(
                                       margin:
                                           EdgeInsets.only(top: height * 0.023),
-                                      color: const Color.fromARGB(255, 15, 15, 15),
+                                      color:
+                                          const Color.fromARGB(255, 15, 15, 15),
                                       child: TableCalendar(
                                         calendarStyle: CalendarStyle(
                                           isTodayHighlighted: true,
                                           cellPadding: EdgeInsets.zero,
                                           cellMargin:
                                               EdgeInsets.all(height * 0.014),
-                                          selectedDecoration: const BoxDecoration(
-                                              color: primaryColor,
-                                              shape: BoxShape.rectangle),
+                                          selectedDecoration:
+                                              const BoxDecoration(
+                                                  color: primaryColor,
+                                                  shape: BoxShape.rectangle),
                                           selectedTextStyle: AppTheme.getTheme()
                                               .textTheme
                                               .bodyText1!
@@ -761,8 +763,8 @@ class _CreateScreenState extends State<CreateScreen> {
                                           outsideTextStyle: const TextStyle(
                                             color: Colors.grey,
                                           ),
-                                          weekendTextStyle:
-                                              const TextStyle(color: Colors.white),
+                                          weekendTextStyle: const TextStyle(
+                                              color: Colors.white),
                                         ),
                                         startingDayOfWeek:
                                             StartingDayOfWeek.monday,
@@ -1053,10 +1055,11 @@ class _CreateScreenState extends State<CreateScreen> {
                                                     255, 40, 40, 40),
                                                 borderRadius:
                                                     BorderRadius.vertical(
-                                                        top: Radius.circular(
-                                                            height * 0.03),
-                                                        bottom: const Radius.circular(
-                                                            0))),
+                                                        top:
+                                                            Radius.circular(
+                                                                height * 0.03),
+                                                        bottom: const Radius
+                                                            .circular(0))),
                                             child: Center(
                                               child: Container(
                                                 margin: EdgeInsets.all(
@@ -1088,8 +1091,8 @@ class _CreateScreenState extends State<CreateScreen> {
                                           child: Container(
                                             width: width,
                                             height: height * 0.08,
-                                            color:
-                                                const Color.fromARGB(255, 40, 40, 40),
+                                            color: const Color.fromARGB(
+                                                255, 40, 40, 40),
                                             child: Center(
                                               child: Container(
                                                 margin: EdgeInsets.all(
@@ -1120,8 +1123,8 @@ class _CreateScreenState extends State<CreateScreen> {
                                           child: Container(
                                             width: width,
                                             height: height * 0.08,
-                                            color:
-                                                const Color.fromARGB(255, 40, 40, 40),
+                                            color: const Color.fromARGB(
+                                                255, 40, 40, 40),
                                             child: Center(
                                               child: Container(
                                                 margin: EdgeInsets.all(
@@ -1289,7 +1292,8 @@ class _CreateScreenState extends State<CreateScreen> {
                                   if (hasFocus) {
                                     _scrollController.animateTo(height * 1.6,
                                         curve: Curves.linear,
-                                        duration: const Duration(milliseconds: 500));
+                                        duration:
+                                            const Duration(milliseconds: 500));
                                   }
                                 },
                                 child: TextFormField(
@@ -1368,7 +1372,8 @@ class _CreateScreenState extends State<CreateScreen> {
                             return cohostList.contains(searchList[index])
                                 ? Container()
                                 : Container(
-                                    color: const Color.fromARGB(255, 15, 15, 15),
+                                    color:
+                                        const Color.fromARGB(255, 15, 15, 15),
                                     child: Column(
                                       children: [
                                         GestureDetector(
@@ -1376,7 +1381,8 @@ class _CreateScreenState extends State<CreateScreen> {
                                             setState(() {
                                               print(searchList[index].uid);
                                               cohostList.add(searchList[index]);
-                                              co_host += ", ${searchList[index].firstName!} ${searchList[index].lastName!}";
+                                              co_host +=
+                                                  ", ${searchList[index].firstName!} ${searchList[index].lastName!}";
                                               _addCoHostController.text = "";
                                             });
                                             print(
@@ -1435,7 +1441,8 @@ class _CreateScreenState extends State<CreateScreen> {
                                     children: [
                                       ListView.builder(
                                         shrinkWrap: true,
-                                        physics: const NeverScrollableScrollPhysics(),
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
                                         itemCount: cohostList.length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
@@ -1456,9 +1463,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                                                   .primaryColor),
                                                     )
                                                   : Text(
-                                                      "${cohostList[index]
-                                                              .firstName!} ${cohostList[index]
-                                                              .lastName!}",
+                                                      "${cohostList[index].firstName!} ${cohostList[index].lastName!}",
                                                       style: AppTheme.getTheme()
                                                           .textTheme
                                                           .bodyText2!

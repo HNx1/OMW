@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:omw/api/apiProvider.dart';
+import 'package:omw/api/api_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -325,7 +325,6 @@ class _EditEventScreenState extends State<EditEventScreen> {
   List<UserModel> searchList = [];
   List<UserModel> contactsList = [];
 
-  bool _IsSearching = false;
   String _searchText = "";
   bool isSearch = false;
 
@@ -334,7 +333,6 @@ class _EditEventScreenState extends State<EditEventScreen> {
       if (_addCoHostController.text.isEmpty) {
         setState(
           () {
-            _IsSearching = false;
             _searchText = "";
             _buildSearchList();
           },
@@ -342,7 +340,6 @@ class _EditEventScreenState extends State<EditEventScreen> {
       } else {
         setState(
           () {
-            _IsSearching = true;
             _searchText = _addCoHostController.text;
             _buildSearchList();
           },

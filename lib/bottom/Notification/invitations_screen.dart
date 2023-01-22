@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../api/apiProvider.dart';
+import '../../api/api_provider.dart';
 import '../../constant/constants.dart';
 import '../../constant/theme.dart';
 import '../../notifier/AllChatingFunctions.dart';
@@ -192,15 +192,8 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                               .userDetails!
                                                               .uid!,
                                                           isOwnProfile: false,
-                                                          name: "${objNotificationNotifier
-                                                                  .lstInvitationsNotificationModel[
-                                                                      index]
-                                                                  .userDetails!
-                                                                  .firstName!} ${objNotificationNotifier
-                                                                  .lstInvitationsNotificationModel[
-                                                                      index]
-                                                                  .userDetails!
-                                                                  .lastName!}",
+                                                          name:
+                                                              "${objNotificationNotifier.lstInvitationsNotificationModel[index].userDetails!.firstName!} ${objNotificationNotifier.lstInvitationsNotificationModel[index].userDetails!.lastName!}",
                                                           profile:
                                                               objNotificationNotifier
                                                                   .lstInvitationsNotificationModel[
@@ -355,8 +348,10 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                               const TextSpan(
                                                                   text: "\n"),
                                                               TextSpan(
-                                                                text: toBeginningOfSentenceCase(
-                                                                        DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!))
+                                                                text: toBeginningOfSentenceCase(DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier
+                                                                        .lstInvitationsNotificationModel[
+                                                                            index]
+                                                                        .time!))
                                                                     .toString()
                                                                     .replaceAll(
                                                                         "PM",
@@ -448,8 +443,10 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
                                                                       text:
                                                                           "\n"),
                                                                   TextSpan(
-                                                                    text: toBeginningOfSentenceCase(
-                                                                            DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstInvitationsNotificationModel[index].time!))
+                                                                    text: toBeginningOfSentenceCase(DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier
+                                                                            .lstInvitationsNotificationModel[
+                                                                                index]
+                                                                            .time!))
                                                                         .toString()
                                                                         .replaceAll(
                                                                             "PM",

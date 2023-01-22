@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../api/apiProvider.dart';
+import '../api/api_provider.dart';
 import '../model/block_User_Model.dart';
 import '../model/groupMessage_model.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -188,7 +188,7 @@ class ChattingNotifier extends ChangeNotifier {
       isLoading = true;
       try {
         lstofAllBlockUser = await ApiProvider().getListOfBlockUsers();
-       
+
         print(
             "lstofAllEvents======================>${lstofAllBlockUser.length}");
       } catch (e) {

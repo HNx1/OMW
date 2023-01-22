@@ -5,7 +5,7 @@ import 'package:omw/model/createEvent_model.dart';
 import 'package:omw/utils/textUtils.dart';
 import 'package:provider/provider.dart';
 
-import '../../../api/apiProvider.dart';
+import '../../../api/api_provider.dart';
 import '../../../constant/theme.dart';
 import '../../../notifier/event_notifier.dart';
 import '../../../preference/preference.dart';

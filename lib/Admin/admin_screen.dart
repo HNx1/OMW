@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omw/constant/theme.dart';
-import 'package:omw/admin/bugReport&suggestions_screen.dart';
+import 'package:omw/admin/bug_report_and_suggestions_screen.dart';
 import 'package:omw/admin/edit_terms_and_conditions.dart';
 import 'package:omw/admin/edit_privacy_policy_screen.dart';
 import 'package:omw/utils/colorUtils.dart';
@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import '../constant/constants.dart';
 import '../notifier/authenication_notifier.dart';
 import '../utils/textUtils.dart';
-import 'edit_cookiesPolicy.dart';
+import 'edit_cookies_policy.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({Key? key}) : super(key: key);

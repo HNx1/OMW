@@ -8,9 +8,9 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:omw/model/user_model.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../api/apiProvider.dart';
+import '../api/api_provider.dart';
 import '../model/createEvent_model.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -121,13 +121,8 @@ class CreateEventNotifier extends ChangeNotifier {
 
   bool isAlreadyInvited = false;
   getFinalAppContactList(BuildContext context, String docId) async {
-    bool devContactList = false;
-    if (devContactList) {
-      finalList = myAppContactList;
-    } else {
-      finalList =
-          myContactList.toSet().intersection(myAppContactList.toSet()).toList();
-    }
+    finalList =
+        myContactList.toSet().intersection(myAppContactList.toSet()).toList();
     print(
       "finalList=================>$finalList",
     );
@@ -166,8 +161,8 @@ class CreateEventNotifier extends ChangeNotifier {
                         }
                       },
                     );
-                      }
                   }
+                }
               },
             );
           },

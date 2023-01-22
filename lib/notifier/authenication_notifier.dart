@@ -6,13 +6,13 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:omw/authentication/loginScreen.dart';
 import 'package:omw/constant/constants.dart';
 import 'package:omw/setting/change_myEmail_screen.dart';
-import '../api/apiProvider.dart';
+import '../api/api_provider.dart';
 import '../constant/theme.dart';
 import '../model/user_model.dart';
 import '../preference/preference.dart';
 import '../utils/colorUtils.dart';
 import '../widget/routesFile.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 

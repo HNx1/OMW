@@ -9,7 +9,7 @@ import 'package:omw/bottom/Chat/deleteChatDialog.dart';
 import 'package:omw/constant/constants.dart';
 import 'package:omw/notifier/AllChatingFunctions.dart';
 import 'package:omw/utils/colorUtils.dart';
-import 'package:omw/widget/scaffoldSnackbar.dart';
+import 'package:omw/widget/scaffold_snackbar.dart';
 import 'package:provider/provider.dart';
 import '../../Profile/profile_screen.dart';
 
@@ -752,7 +752,8 @@ class _ChatPageState extends State<IndividualChatRoom> {
                           .textTheme
                           .bodyText1!
                           .copyWith(
-                              fontSize: width * 0.04, color: const Color(0xff888888)),
+                              fontSize: width * 0.04,
+                              color: const Color(0xff888888)),
                     ),
                   ),
                 ),
