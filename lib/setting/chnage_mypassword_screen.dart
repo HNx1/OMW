@@ -9,7 +9,7 @@ import '../../../widget/commonButton.dart';
 import '../../../widget/commonTextFromField.dart';
 import '../../../widget/validation.dart';
 import '../notifier/authenication_notifier.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 class ChnageMyPassword extends StatefulWidget {
   const ChnageMyPassword({Key? key}) : super(key: key);
@@ -20,10 +20,12 @@ class ChnageMyPassword extends StatefulWidget {
 
 class _ChnageMyPasswordState extends State<ChnageMyPassword> {
   var formKey = GlobalKey<FormState>();
-  final TextEditingController _currentPasswordController = TextEditingController();
+  final TextEditingController _currentPasswordController =
+      TextEditingController();
 
   final TextEditingController _newPasswordController = TextEditingController();
-  final TextEditingController _ConfirmPasswordController = TextEditingController();
+  final TextEditingController _ConfirmPasswordController =
+      TextEditingController();
   dynamic oldPassVerify;
   @override
   Widget build(BuildContext context) {

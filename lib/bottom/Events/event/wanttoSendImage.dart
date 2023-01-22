@@ -9,8 +9,7 @@ import 'package:omw/utils/colorUtils.dart';
 
 import '../../../notifier/chatting_notifier.dart';
 import '../../../notifier/notication_notifier.dart';
-import '../../../widget/scaffoldSnackbar.dart';
-
+import '../../../widget/scaffold_snackbar.dart';
 
 class WantSendImage extends StatefulWidget {
   final File? imageFile;
@@ -106,7 +105,7 @@ class _WantSendImageState extends State<WantSendImage> {
                         widget.eventId,
                         widget.senderName,
                         widget.senderprofile);
-                                       Navigator.pop(context);
+                    Navigator.pop(context);
                   }
                 } else {
                   ScaffoldSnackbar.of(context)

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:omw/utils/colorUtils.dart';
-import 'package:omw/widget/scaffoldSnackbar.dart';
+import 'package:omw/widget/scaffold_snackbar.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/constants.dart';
@@ -68,7 +68,8 @@ class _MultiSelectionState extends State<MultiSelection> {
         });
         if (objCreateEventNotifier.getEventDetails.isNotificationSent ==
             false) {
-          for (var element in objCreateEventNotifier.getEventDetails.allDates!) {
+          for (var element
+              in objCreateEventNotifier.getEventDetails.allDates!) {
             for (var element2 in element.guestResponse!) {
               allResponse.add(element2.status);
             }
@@ -278,10 +279,11 @@ class _MultiSelectionState extends State<MultiSelection> {
                                                     .objguest!
                                                     .status = 0;
                                               });
-                                              for (var element in objCreateEventNotifier
-                                                  .getEventDetails
-                                                  .allDates![i]
-                                                  .guestResponse!) {
+                                              for (var element
+                                                  in objCreateEventNotifier
+                                                      .getEventDetails
+                                                      .allDates![i]
+                                                      .guestResponse!) {
                                                 if (element.guestID ==
                                                     _auth.currentUser!.uid) {
                                                   element.status = 0;
@@ -326,10 +328,11 @@ class _MultiSelectionState extends State<MultiSelection> {
                                                     .objguest!
                                                     .status = 2;
                                               });
-                                              for (var element in objCreateEventNotifier
-                                                  .getEventDetails
-                                                  .allDates![i]
-                                                  .guestResponse!) {
+                                              for (var element
+                                                  in objCreateEventNotifier
+                                                      .getEventDetails
+                                                      .allDates![i]
+                                                      .guestResponse!) {
                                                 if (element.guestID ==
                                                     _auth.currentUser!.uid) {
                                                   element.status = 2;
@@ -373,10 +376,11 @@ class _MultiSelectionState extends State<MultiSelection> {
                                                     .objguest!
                                                     .status = 1;
                                               });
-                                              for (var element in objCreateEventNotifier
-                                                  .getEventDetails
-                                                  .allDates![i]
-                                                  .guestResponse!) {
+                                              for (var element
+                                                  in objCreateEventNotifier
+                                                      .getEventDetails
+                                                      .allDates![i]
+                                                      .guestResponse!) {
                                                 if (element.guestID ==
                                                     _auth.currentUser!.uid) {
                                                   element.status = 1;

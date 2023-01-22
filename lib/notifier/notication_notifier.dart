@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:omw/model/notification_model.dart';
 
-import '../api/apiProvider.dart';
+import '../api/api_provider.dart';
 import '../model/user_model.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 class NotificationNotifier extends ChangeNotifier {
   bool isLoading = false;
