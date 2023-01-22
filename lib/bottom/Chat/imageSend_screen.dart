@@ -10,7 +10,7 @@ import 'package:omw/utils/colorUtils.dart';
 
 import '../../notifier/AllChatingFunctions.dart';
 import '../../notifier/notication_notifier.dart';
-import '../../widget/scaffoldSnackbar.dart';
+import '../../widget/scaffold_snackbar.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -22,16 +22,15 @@ class IsImageSending extends StatefulWidget {
   final String senderName;
   final String senderprofile;
 
-  const IsImageSending(
-      {Key? key,
-      this.imageFile,
-      this.chat,
-      required this.isImageOpen,
-      required this.senderName,
-      required this.senderprofile,
-      this.imageUrl,
-    })
-      : super(key: key);
+  const IsImageSending({
+    Key? key,
+    this.imageFile,
+    this.chat,
+    required this.isImageOpen,
+    required this.senderName,
+    required this.senderprofile,
+    this.imageUrl,
+  }) : super(key: key);
 
   @override
   State<IsImageSending> createState() => _IsImageSendingState();
@@ -104,7 +103,7 @@ class _IsImageSendingState extends State<IsImageSending> {
                             [widget.chat!.friendId, _auth.currentUser!.uid],
                             widget.senderName,
                             widget.senderprofile,
-                           false)
+                            false)
                         .whenComplete(() {
                       setState(() {
                         isloader = false;

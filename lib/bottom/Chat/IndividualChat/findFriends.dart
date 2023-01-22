@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:omw/constant/constants.dart';
 import 'package:omw/utils/colorUtils.dart';
 
-import '../../../api/apiProvider.dart';
+import '../../../api/api_provider.dart';
 import '../../../constant/theme.dart';
 import '../../../notifier/group_notifier.dart';
 import '../../../utils/textUtils.dart';
@@ -262,7 +262,6 @@ class _FindFriendPageState extends State<FindFriendPage> {
                                                           )));
                                             } else {
                                               chat = AllChat(
-                                              
                                                 objGroupNotifier
                                                     .searchList[index].uid!,
                                                 friendFCMToken: objGroupNotifier
@@ -270,17 +269,13 @@ class _FindFriendPageState extends State<FindFriendPage> {
                                                 UserProfile: objGroupNotifier
                                                     .searchList[index]
                                                     .userProfile,
-                                                friendUsername: "${objGroupNotifier
-                                                        .searchList[index]
-                                                        .firstName!} ${objGroupNotifier
-                                                        .searchList[index]
-                                                        .lastName!}",
+                                                friendUsername:
+                                                    "${objGroupNotifier.searchList[index].firstName!} ${objGroupNotifier.searchList[index].lastName!}",
                                                 userPhone: objGroupNotifier
                                                     .searchList[index]
                                                     .phoneNumber!,
                                                 isgroup: false,
                                                 messages: [],
-                                                
                                               );
                                               Navigator.pushReplacement(
                                                   context,
@@ -326,11 +321,11 @@ class _FindFriendPageState extends State<FindFriendPage> {
                                                               color:
                                                                   primaryColor,
                                                             ),
-                                                            errorWidget:
-                                                                (context, url,
-                                                                        error) =>
-                                                                    const Icon(Icons
-                                                                        .error),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                const Icon(Icons
+                                                                    .error),
                                                           ),
                                                         ),
                                                         Container(
@@ -350,13 +345,7 @@ class _FindFriendPageState extends State<FindFriendPage> {
                                                                         height *
                                                                             0.005),
                                                                 child: Text(
-                                                                  "${objGroupNotifier
-                                                                          .searchList[
-                                                                              index]
-                                                                          .firstName!} ${objGroupNotifier
-                                                                          .searchList[
-                                                                              index]
-                                                                          .lastName!}",
+                                                                  "${objGroupNotifier.searchList[index].firstName!} ${objGroupNotifier.searchList[index].lastName!}",
                                                                   style: AppTheme
                                                                           .getTheme()
                                                                       .textTheme

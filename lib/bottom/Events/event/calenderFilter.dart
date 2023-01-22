@@ -514,11 +514,7 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
                                                             top:
                                                                 height * 0.005),
                                                         child: Text(
-                                                          "${eventList[index]
-                                                                  .lstUser!
-                                                                  .firstName!} ${eventList[index]
-                                                                  .lstUser!
-                                                                  .lastName!}",
+                                                          "${eventList[index].lstUser!.firstName!} ${eventList[index].lstUser!.lastName!}",
                                                           style: AppTheme
                                                                   .getTheme()
                                                               .textTheme
@@ -552,11 +548,7 @@ class _CalenderFilterScreenState extends State<CalenderFilterScreen> {
                                                       top: width * 0.02,
                                                       left: width * 0.02),
                                                   child: Text(
-                                                    '${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!)[4].toUpperCase()}${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!).substring(5).toLowerCase()}${DateFormat(' - h:mm aa')
-                                                            .format(eventList[
-                                                                    index]
-                                                                .eventEndDate!)
-                                                            .toLowerCase()}',
+                                                    '${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!)[4].toUpperCase()}${DateFormat(TextUtils.dateFormat).format(eventList[index].eventStartDate!).substring(5).toLowerCase()}${DateFormat(' - h:mm aa').format(eventList[index].eventEndDate!).toLowerCase()}',
                                                     maxLines: 2,
                                                     overflow:
                                                         TextOverflow.ellipsis,

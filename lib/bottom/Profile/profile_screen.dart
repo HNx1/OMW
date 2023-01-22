@@ -6,7 +6,7 @@ import 'package:collection/collection.dart';
 import 'package:contacts_service/contacts_service.dart';
 
 import 'package:intl/intl.dart';
-import 'package:omw/api/apiProvider.dart';
+import 'package:omw/api/api_provider.dart';
 import 'package:omw/constant/constants.dart';
 import 'package:omw/model/createEvent_model.dart';
 import 'package:omw/notifier/AllChatingFunctions.dart';
@@ -312,14 +312,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   e.friendId == widget.userId);
 
                                           chat ??= AllChat(
-                                              widget.userId,
-                                              friendFCMToken: widget.fcmtoken,
-                                              UserProfile: widget.profile,
-                                              friendUsername: widget.name,
-                                              // userPhone: widget.ph,
-                                              isgroup: false,
-                                              messages: [],
-                                            );
+                                            widget.userId,
+                                            friendFCMToken: widget.fcmtoken,
+                                            UserProfile: widget.profile,
+                                            friendUsername: widget.name,
+                                            // userPhone: widget.ph,
+                                            isgroup: false,
+                                            messages: [],
+                                          );
 
                                           Navigator.push(
                                               context,
@@ -348,8 +348,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     addedAsContact = true;
                                                   });
                                                 },
-                                                child:
-                                                    const CommonButton(name: 'Add')),
+                                                child: const CommonButton(
+                                                    name: 'Add')),
                                           ),
                                         )
                                 ],
@@ -451,7 +451,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                             height * 0.015),
                                                     border: Border.all(
                                                         width: 2,
-                                                        color: const Color.fromARGB(
+                                                        color: const Color
+                                                                .fromARGB(
                                                             255, 58, 51, 51))),
                                                 child: ClipRRect(
                                                     borderRadius:
@@ -566,11 +567,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                         top: height *
                                                                             0.005),
                                                                     child: Text(
-                                                                      "${eventList[index]
-                                                                              .lstUser!
-                                                                              .firstName!} ${eventList[index]
-                                                                              .lstUser!
-                                                                              .lastName!}",
+                                                                      "${eventList[index].lstUser!.firstName!} ${eventList[index].lstUser!.lastName!}",
                                                                       style: AppTheme
                                                                               .getTheme()
                                                                           .textTheme
@@ -606,11 +603,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                       left: width *
                                                                           0.02),
                                                               child: Text(
-                                                                '${DateFormat('EEE, MMM dd, h:mm aa -').format(eventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, h:mm aa -').format(eventList[index].eventStartDate!).substring(1)).toLowerCase()}${DateFormat(
-                                                                            ' h:mm aa')
-                                                                        .format(
-                                                                            eventList[index].eventEndDate!)
-                                                                        .toLowerCase()}',
+                                                                '${DateFormat('EEE, MMM dd, h:mm aa -').format(eventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, h:mm aa -').format(eventList[index].eventStartDate!).substring(1)).toLowerCase()}${DateFormat(' h:mm aa').format(eventList[index].eventEndDate!).toLowerCase()}',
                                                                 style: AppTheme
                                                                         .getTheme()
                                                                     .textTheme

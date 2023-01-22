@@ -4,10 +4,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:omw/api/apiProvider.dart';
+import 'package:omw/api/api_provider.dart';
 import 'package:omw/notifier/group_notifier.dart';
 import 'package:omw/widget/commonButton.dart';
-import 'package:omw/widget/scaffoldSnackbar.dart';
+import 'package:omw/widget/scaffold_snackbar.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/constants.dart';
@@ -290,11 +290,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                               margin: EdgeInsets.only(
                                                   left: width * 0.03),
                                               child: Text(
-                                                "${objGroupNotifier
-                                                        .wishListItems[index]
-                                                        .firstName!} ${objGroupNotifier
-                                                        .wishListItems[index]
-                                                        .lastName!}",
+                                                "${objGroupNotifier.wishListItems[index].firstName!} ${objGroupNotifier.wishListItems[index].lastName!}",
                                                 style: AppTheme.getTheme()
                                                     .textTheme
                                                     .bodyText1!

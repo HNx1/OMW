@@ -17,14 +17,12 @@ class BlockUserList extends StatefulWidget {
 class _BlockUserListState extends State<BlockUserList> {
   final TextEditingController _searchController = TextEditingController();
 
-  bool _IsSearching = false;
   String _searchText = "";
   _BlockUserListState() {
     _searchController.addListener(() {
       if (_searchController.text.isEmpty) {
         setState(
           () {
-            _IsSearching = false;
             _searchText = "";
             _buildSearchList();
           },
@@ -32,7 +30,6 @@ class _BlockUserListState extends State<BlockUserList> {
       } else {
         setState(
           () {
-            _IsSearching = true;
             _searchText = _searchController.text;
             _buildSearchList();
           },
@@ -278,8 +275,8 @@ class _BlockUserListState extends State<BlockUserList> {
                                                       .textTheme
                                                       .bodyText1!
                                                       .copyWith(
-                                                          color:
-                                                              const Color(0xff6C6C6C),
+                                                          color: const Color(
+                                                              0xff6C6C6C),
                                                           height: 1.4,
                                                           fontSize:
                                                               width * 0.037),

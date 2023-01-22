@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:omw/bottom/Contacts/add_popup.dart';
 import 'package:omw/notifier/group_notifier.dart';
 import 'package:omw/widget/commonButton.dart';
-import 'package:omw/widget/scaffoldSnackbar.dart';
+import 'package:omw/widget/scaffold_snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
-import '../../api/apiProvider.dart';
+import '../../api/api_provider.dart';
 import '../../constant/constants.dart';
 import '../../constant/theme.dart';
 import '../../utils/colorUtils.dart';
@@ -441,7 +441,8 @@ class _ContactScreenState extends State<ContactScreen> {
                                                         searchList[index]
                                                                     .isSelcetdForGroup ==
                                                                 true
-                                                            ? const Icon(Icons.check)
+                                                            ? const Icon(
+                                                                Icons.check)
                                                             : Container(),
                                                       ],
                                                     ),
@@ -481,10 +482,10 @@ class _ContactScreenState extends State<ContactScreen> {
                 onTap: () {
                   objGroupNotifier.wishListItems.isNotEmpty
                       ? Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => const CreateGroupScreen())))
-                          .whenComplete(() {
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) =>
+                                  const CreateGroupScreen()))).whenComplete(() {
                           if (mounted) {
                             setState(() {});
                           }

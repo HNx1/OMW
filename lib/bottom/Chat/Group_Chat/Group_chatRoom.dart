@@ -9,7 +9,7 @@ import 'package:omw/bottom/Chat/deleteChatDialog.dart';
 import 'package:omw/bottom/Chat/imageSend_screen.dart';
 import 'package:omw/constant/constants.dart';
 import 'package:omw/utils/colorUtils.dart';
-import 'package:omw/widget/scaffoldSnackbar.dart';
+import 'package:omw/widget/scaffold_snackbar.dart';
 import 'package:provider/provider.dart';
 
 import 'package:intl/intl.dart';
@@ -326,8 +326,8 @@ class _GropChatPageState extends State<GropChatPage> {
                                   borderRadius:
                                       BorderRadius.circular(height * 0.1),
                                   child: widget.chat.messages![index]
-                                                  .senderProfile ==
-                                              ""
+                                              .senderProfile ==
+                                          ""
                                       ? const CircularProgressIndicator(
                                           color: primaryColor,
                                         )
@@ -361,7 +361,8 @@ class _GropChatPageState extends State<GropChatPage> {
                                             margin: EdgeInsets.only(
                                                 left: width * 0.14),
                                             decoration: BoxDecoration(
-                                                borderRadius: const BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft:
                                                       Radius.circular(10.0),
                                                   topRight:
@@ -831,7 +832,8 @@ class _GropChatPageState extends State<GropChatPage> {
                           .textTheme
                           .bodyText1!
                           .copyWith(
-                              fontSize: width * 0.04, color: const Color(0xff888888)),
+                              fontSize: width * 0.04,
+                              color: const Color(0xff888888)),
                     ),
                   ),
                 ),

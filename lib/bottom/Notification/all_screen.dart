@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:omw/api/apiProvider.dart';
+import 'package:omw/api/api_provider.dart';
 import 'package:omw/bottom/Create/seeMutiSelectedDate_screen.dart';
 import 'package:omw/bottom/Events/event/eventDetails_screen.dart';
 import 'package:omw/bottom/payment/payment_screen.dart';

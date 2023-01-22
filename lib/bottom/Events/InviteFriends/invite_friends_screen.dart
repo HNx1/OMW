@@ -7,7 +7,7 @@ import 'package:omw/bottom/Events/Myevents/myEvent_screen.dart';
 import 'package:omw/constant/theme.dart';
 import 'package:omw/utils/colorUtils.dart';
 import 'package:omw/widget/commonButton.dart';
-import 'package:omw/widget/scaffoldSnackbar.dart';
+import 'package:omw/widget/scaffold_snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -225,7 +225,8 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                   "responseSender":
                       "${objAuthenicationNotifier.objUsers.firstName!} ${objAuthenicationNotifier.objUsers.lastName!}",
                   "eventId": objCreateEventNotifier.EventData.docId!,
-                  "eventHost": "${objAuthenicationNotifier.objUsers.firstName!} ${objAuthenicationNotifier.objUsers.lastName!}",
+                  "eventHost":
+                      "${objAuthenicationNotifier.objUsers.firstName!} ${objAuthenicationNotifier.objUsers.lastName!}",
                   "eventName": objCreateEventNotifier.getEventData.eventname!
                 }
               ]);
@@ -322,34 +323,36 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
         centerTitle: true,
         actions: [
           // widget.isFromAddEvent
-          false
-              ? GestureDetector(
-                  onTap: () {
-                    widget.isFromAddEvent
-                        ? Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const MyEventScreen()))
-                        : Navigator.pop(context);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.only(right: width * 0.02),
-                    child: Center(
-                      child: Text(
-                        "Later",
-                        style: AppTheme.getTheme()
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(
-                                color: ConstColor.primaryColor,
-                                height: 1.4,
-                                decoration: TextDecoration.underline,
-                                fontSize: width * 0.042),
-                      ),
-                    ),
-                  ),
-                )
-              : Container(),
+          //false
+          // The folloowing code isn't used because of the false statement above
+          // ? GestureDetector(
+          //     onTap: () {
+          //       widget.isFromAddEvent
+          //           ? Navigator.pushReplacement(
+          //               context,
+          //               MaterialPageRoute(
+          //                   builder: (context) => const MyEventScreen()))
+          //           : Navigator.pop(context);
+          //     },
+          //     child: Container(
+          //       padding: EdgeInsets.only(right: width * 0.02),
+          //       child: Center(
+          //         child: Text(
+          //           "Later",
+          //           style: AppTheme.getTheme()
+          //               .textTheme
+          //               .bodyText2!
+          //               .copyWith(
+          //                   color: ConstColor.primaryColor,
+          //                   height: 1.4,
+          //                   decoration: TextDecoration.underline,
+          //                   fontSize: width * 0.042),
+          //         ),
+          //       ),
+          //     ),
+          //   )
+          //: Container(),
+          Container(),
         ],
       ),
       body: Stack(
@@ -459,7 +462,8 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                       right: width * 0.033),
                                   width: width * 0.83,
                                   decoration: BoxDecoration(
-                                    color: const Color.fromARGB(255, 26, 26, 26),
+                                    color:
+                                        const Color.fromARGB(255, 26, 26, 26),
                                     borderRadius:
                                         BorderRadius.circular(height * 0.02),
                                   ),
@@ -722,11 +726,11 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                                               color:
                                                                   primaryColor,
                                                             ),
-                                                            errorWidget:
-                                                                (context, url,
-                                                                        error) =>
-                                                                    const Icon(Icons
-                                                                        .error),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                const Icon(Icons
+                                                                    .error),
                                                           ),
                                                         ),
                                                         Expanded(
@@ -736,10 +740,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                                                     left: width *
                                                                         0.05),
                                                             child: Text(
-                                                              "${searchList[index]
-                                                                      .firstName!} ${searchList[
-                                                                          index]
-                                                                      .lastName!}",
+                                                              "${searchList[index].firstName!} ${searchList[index].lastName!}",
                                                               style: AppTheme
                                                                       .getTheme()
                                                                   .textTheme
@@ -848,7 +849,8 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                 ? Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const MyEventScreen()))
+                                        builder: (context) =>
+                                            const MyEventScreen()))
                                 : Navigator.pop(context);
                           });
                           setState(() {
