@@ -1,7 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:omw/constant/theme.dart';
-import 'package:omw/utils/textUtils.dart';
 import 'package:provider/provider.dart';
 
 import '../api/apiProvider.dart';

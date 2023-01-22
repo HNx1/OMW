@@ -10,7 +10,6 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../api/apiProvider.dart';
 import '../model/createEvent_model.dart';
-import '../preference/preference.dart';
 import '../widget/scaffoldSnackbar.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;

@@ -5,10 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:omw/bottom/Events/event/eventDetails_screen.dart';
 import 'package:omw/model/cookie_model.dart';
-import 'package:omw/widget/routesFile.dart';
 
 import '../model/block_User_Model.dart';
 import '../model/bugsAndReport_model.dart';
