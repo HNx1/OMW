@@ -28,7 +28,6 @@ import '../../widget/commonButton.dart';
 import '../../widget/validation.dart';
 import '../Events/InviteFriends/invite_friends_screen.dart';
 import '../Profile/drawer.dart';
-import 'co-splite/co_splite_dialog.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
