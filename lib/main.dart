@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:omw/Admin/admin_screen.dart';
+import 'package:omw/admin/admin_screen.dart';
 import 'package:omw/authentication/WelcomeScreen.dart';
 import 'package:omw/authentication/addProfileScreen.dart';
 import 'package:omw/authentication/signUp.dart';
