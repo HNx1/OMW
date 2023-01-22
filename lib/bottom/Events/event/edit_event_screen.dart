@@ -1272,9 +1272,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    imageFile == null && imageUrl == null
-                                        ? "Upload event photo"
-                                        : "Image Selected",
+                                    "Image Selected",
                                     style: AppTheme.getTheme()
                                         .textTheme
                                         .bodyText1!
