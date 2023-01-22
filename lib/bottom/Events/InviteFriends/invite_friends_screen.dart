@@ -88,14 +88,11 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
   }
 
   String? _linkMessage;
-  bool _isCreatingLink = false;
 
   FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   Future<void> _createDynamicLink(bool short, String id) async {
-    setState(() {
-      _isCreatingLink = true;
-    });
+    setState(() {});
     String urlsss = "https://croelabs.com?ul=$id";
     final DynamicLinkParameters parameters = DynamicLinkParameters(
         uriPrefix: 'https://croelabs.com',
@@ -126,7 +123,6 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
 
     setState(() {
       _linkMessage = url.toString();
-      _isCreatingLink = false;
 
       print("_linkMessage============>$_linkMessage");
     });
@@ -247,7 +243,6 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
 
   final TextEditingController _searchEvent = TextEditingController();
 
-  bool _IsSearching = false;
   String _searchText = "";
   bool isSearch = false;
   _InviteFriendsScreenState() {
@@ -255,7 +250,6 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
       if (_searchEvent.text.isEmpty) {
         setState(
           () {
-            _IsSearching = false;
             _searchText = "";
             _buildSearchList();
           },
@@ -263,7 +257,6 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
       } else {
         setState(
           () {
-            _IsSearching = true;
             _searchText = _searchEvent.text;
             _buildSearchList();
           },
@@ -273,8 +266,6 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
   }
 
   _buildSearchList() {
-    var objCreateEventNotifier =
-        Provider.of<CreateEventNotifier>(context, listen: false);
     searchList = contactsList
         .where(
           (element) =>

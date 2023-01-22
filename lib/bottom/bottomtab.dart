@@ -30,15 +30,8 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen>
   void initState() {
     lastIndex = widget.lastIndex;
     currentIndex = widget.index;
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 400),
-      value: 1,
-    );
     super.initState();
   }
-
-  late final AnimationController _controller;
 
   ///------- tab screen  ----------
   final List<Widget> viewContainer = [

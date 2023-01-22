@@ -100,8 +100,7 @@ class ApiProvider {
   }
 
   Future<TermAndConditionModel> getTermsAndCondition() async {
-    TermAndConditionModel objTermAndConditionModel =
-        TermAndConditionModel();
+    TermAndConditionModel objTermAndConditionModel = TermAndConditionModel();
 
     try {
       QuerySnapshot result = await FirebaseFirestore.instance
@@ -731,8 +730,7 @@ class ApiProvider {
 
   Future getSpecificChat(String user1, String user2) async {
     try {
-      QuerySnapshot querySnapshot;
-      querySnapshot = await FirebaseFirestore.instance
+      await FirebaseFirestore.instance
           .collection('conversations')
           .where("members", arrayContains: user1)
           .where("members", arrayContains: user2)

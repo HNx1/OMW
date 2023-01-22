@@ -283,7 +283,6 @@ class _CreateScreenState extends State<CreateScreen> {
   List<UserModel> searchList = [];
   List<UserModel> contactsList = [];
 
-  bool _IsSearching = false;
   String _searchText = "";
   bool isSearch = false;
 
@@ -292,7 +291,6 @@ class _CreateScreenState extends State<CreateScreen> {
       if (_addCoHostController.text.isEmpty) {
         setState(
           () {
-            _IsSearching = false;
             _searchText = "";
             _buildSearchList();
           },
@@ -300,7 +298,6 @@ class _CreateScreenState extends State<CreateScreen> {
       } else {
         setState(
           () {
-            _IsSearching = true;
             _searchText = _addCoHostController.text;
             _buildSearchList();
           },
@@ -1530,7 +1527,6 @@ class _CreateScreenState extends State<CreateScreen> {
                                   isDateSelected = true;
                                 },
                               );
-                              bool ismultidate = false;
 
                               final isValid = formKey.currentState!.validate();
 

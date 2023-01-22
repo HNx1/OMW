@@ -62,7 +62,6 @@ class _ContactScreenState extends State<ContactScreen> {
     });
   }
 
-  bool _IsSearching = false;
   String _searchText = "";
   _ContactScreenState() {
     _searchController.addListener(() {
@@ -70,7 +69,6 @@ class _ContactScreenState extends State<ContactScreen> {
         if (mounted) {
           setState(
             () {
-              _IsSearching = false;
               _searchText = "";
               _buildSearchList();
             },
@@ -80,7 +78,6 @@ class _ContactScreenState extends State<ContactScreen> {
         if (mounted) {
           setState(
             () {
-              _IsSearching = true;
               _searchText = _searchController.text;
               _buildSearchList();
             },
@@ -91,8 +88,6 @@ class _ContactScreenState extends State<ContactScreen> {
   }
 
   _buildSearchList() {
-    var objGroupNotifier = Provider.of<GroupNotifier>(context, listen: false);
-
     searchList = contactsList
         .where(
           (element) =>
@@ -198,7 +193,6 @@ class _ContactScreenState extends State<ContactScreen> {
                       suffixIcon: GestureDetector(
                         onTap: () {
                           setState(() {
-                            _IsSearching = false;
                             _searchController.clear();
                           });
                           FocusScope.of(context).requestFocus(FocusNode());
