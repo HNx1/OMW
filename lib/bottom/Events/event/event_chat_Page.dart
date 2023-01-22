@@ -175,26 +175,18 @@ class _EventChatPageState extends State<EventChatPage> {
                 ///-------------- profile image------------------
                 ClipRRect(
                     borderRadius: BorderRadius.circular(height * 0.1),
-                    child: objCreateEventNotifier.getEventData == null
-                        ? Image.asset(
-                            ConstantData.addContact,
-                            height: height * 0.055,
-                            color: Colors.white,
-                            fit: BoxFit.cover,
-                          )
-                        : CachedNetworkImage(
-                            imageUrl:
-                                objCreateEventNotifier.getEventData.eventPhoto!,
-                            height: height * 0.052,
-                            width: height * 0.052,
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) =>
-                                const CircularProgressIndicator(
-                              color: primaryColor,
-                            ),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                          )),
+                    child: CachedNetworkImage(
+                      imageUrl: objCreateEventNotifier.getEventData.eventPhoto!,
+                      height: height * 0.052,
+                      width: height * 0.052,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(
+                        color: primaryColor,
+                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    )),
               ],
             ),
 
