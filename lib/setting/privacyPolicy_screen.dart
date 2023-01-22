@@ -64,7 +64,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   objprivacyPolicyProvider.objPrivacyPolicy.description == "" ||
                   objprivacyPolicyProvider.objPrivacyPolicy.title == null ||
                   objprivacyPolicyProvider.objPrivacyPolicy.title == ""
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),

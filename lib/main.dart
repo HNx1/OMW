@@ -51,7 +51,7 @@ AllChat chat = AllChat("");
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await FirebaseAuth.instance;
+  FirebaseAuth.instance;
 
   Stripe.publishableKey =
       'pk_test_51LE9ZpLtPhgIm71dX7m1rLR3B3Vi5exebNDqQATBXNcC1knzvy3tYqt1gfI49geOyiPLXdkUPbyQ7kShg5eCMPSX00qGr7YNGe';
@@ -123,7 +123,7 @@ Future<void> main() async {
         ),
         onSelectNotification: (message) async {
           notificationCounterValueNotifer.value = 0;
-          print("object${message}");
+          print("object$message");
           var data = json.decode(message!);
           if (data["type"] == "Chatting") {
             chat = AllChat(
@@ -134,17 +134,17 @@ Future<void> main() async {
               navigatorKey.currentState!.pushNamed(Routes.chatting);
             });
             print('chatting');
-            return null;
+            return;
           } else if (data["type"] == "eventInvite") {
             navigatorKey.currentState!.pushNamed(Routes.HOME);
-            return null;
+            return;
           } else if (data["type"] == "multiDate") {
             eventId = data["eventId"];
             eventHostUserId = data["eventHostUserId"];
 
             print('goto multidate page');
             navigatorKey.currentState!.pushNamed(Routes.eventDetails);
-            return null;
+            return;
           } else {
             navigatorKey.currentState!.pushNamed(Routes.payment);
           }
@@ -155,7 +155,7 @@ Future<void> main() async {
 
   try {
     await FirebaseDynamicLinks.instance.getInitialLink().then((value) async {
-      print("====link======" + value!.link.query);
+      print("====link======${value!.link.query}");
       if (value != "") {
         if (value.link.query != "") {
           link = value.link.query;
@@ -191,19 +191,19 @@ Future<void> main() async {
         navigatorKey.currentState!.pushNamed(Routes.chatting);
       });
       print('chatting');
-      return null;
+      return;
     } else if (message.data["type"] == "eventInvite") {
-      return null;
+      return;
     } else if (message.data["type"] == "multiDate") {
       eventId = message.data["eventId"];
       eventHostUserId = message.data["eventHostUserId"];
 
       print('goto multidate page');
       navigatorKey.currentState!.pushNamed(Routes.eventDetails);
-      return null;
+      return;
     } else {
       navigatorKey.currentState!.pushNamed(Routes.payment);
-      return null;
+      return;
     }
   });
 
@@ -212,7 +212,7 @@ Future<void> main() async {
     DeviceOrientation.portraitDown
   ]).then(
     (_) => runApp(
-      MyApp(),
+      const MyApp(),
     ),
   );
 }
@@ -276,17 +276,17 @@ class _MyAppState extends State<MyApp> {
   ];
 
   var routes = <String, WidgetBuilder>{
-    Routes.SPLASH: (BuildContext context) => Spalsh(),
-    Routes.Login: (BuildContext context) => LoginScreen(),
-    Routes.Welcome: (BuildContext context) => WelcomeScreen(),
-    Routes.SignUp: (BuildContext context) => SignUpScreen(),
-    Routes.Profile: (BuildContext context) => AddProfileScreen(),
-    Routes.HOME: (BuildContext context) => BottomNavBarScreen(
+    Routes.SPLASH: (BuildContext context) => const Spalsh(),
+    Routes.Login: (BuildContext context) => const LoginScreen(),
+    Routes.Welcome: (BuildContext context) => const WelcomeScreen(),
+    Routes.SignUp: (BuildContext context) => const SignUpScreen(),
+    Routes.Profile: (BuildContext context) => const AddProfileScreen(),
+    Routes.HOME: (BuildContext context) => const BottomNavBarScreen(
           index: 1,
           lastIndex: 1,
         ),
-    Routes.Admin: (BuildContext context) => AdminScreen(),
-    Routes.payment: (BuildContext context) => PaymentScreen(),
+    Routes.Admin: (BuildContext context) => const AdminScreen(),
+    Routes.payment: (BuildContext context) => const PaymentScreen(),
     Routes.chatting: (BuildContext context) => IndividualChatRoom(
           chat: chat,
         ),

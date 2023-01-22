@@ -16,7 +16,7 @@ class CoSpliteDialog extends StatefulWidget {
 }
 
 class _CoSpliteDialogState extends State<CoSpliteDialog> {
-  TextEditingController _enterAmountController = TextEditingController();
+  final TextEditingController _enterAmountController = TextEditingController();
   var popupKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -25,19 +25,19 @@ class _CoSpliteDialogState extends State<CoSpliteDialog> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          color: Color.fromARGB(255, 15, 15, 15),
+          color: const Color.fromARGB(255, 15, 15, 15),
           margin: EdgeInsets.only(
               left: width * 0.03, right: width * 0.03, top: height * 0.02),
           child: AlertDialog(
-            backgroundColor: Color.fromARGB(255, 15, 15, 15),
+            backgroundColor: const Color.fromARGB(255, 15, 15, 15),
             alignment: Alignment.topCenter,
             insetPadding: EdgeInsets.zero,
             actionsPadding:
                 EdgeInsets.only(right: width * 0.03, bottom: height * 0.005),
             scrollable: true,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5))),
-            contentPadding: EdgeInsets.only(top: 10.0),
+            contentPadding: const EdgeInsets.only(top: 10.0),
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -68,7 +68,7 @@ class _CoSpliteDialogState extends State<CoSpliteDialog> {
                             Navigator.pop(context);
                             FocusScope.of(context).requestFocus(FocusNode());
                           },
-                          child: Icon(Icons.clear))
+                          child: const Icon(Icons.clear))
                     ],
                   ),
                 ),
@@ -77,7 +77,7 @@ class _CoSpliteDialogState extends State<CoSpliteDialog> {
                       top: height * 0.022, bottom: height * 0.01),
                   height: 1,
                   width: width,
-                  color: Color.fromARGB(255, 187, 171, 171).withOpacity(0.2),
+                  color: const Color.fromARGB(255, 187, 171, 171).withOpacity(0.2),
                 ),
                 Form(
                   key: popupKey,

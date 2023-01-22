@@ -27,7 +27,7 @@ class GropChatPage extends StatefulWidget {
   final AllChat chat;
   final List<AllChat> groupChats;
 
-  GropChatPage({Key? key, required this.chat, required this.groupChats})
+  const GropChatPage({Key? key, required this.chat, required this.groupChats})
       : super(key: key);
 
   @override
@@ -90,7 +90,7 @@ class _GropChatPageState extends State<GropChatPage> {
           MaterialPageRoute(
               builder: (context) => IsImageSending(
                     senderName:
-                        '${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}',
+                        "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                     senderprofile: objProviderNotifier.objUsers.userProfile!,
                     imageFile: imageFile!,
                     chat: widget.chat,
@@ -120,7 +120,7 @@ class _GropChatPageState extends State<GropChatPage> {
           MaterialPageRoute(
               builder: (context) => IsImageSending(
                     senderName:
-                        '${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}',
+                        "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                     senderprofile: objProviderNotifier.objUsers.userProfile!,
                     imageFile: imageFile!,
                     chat: widget.chat,
@@ -185,11 +185,11 @@ class _GropChatPageState extends State<GropChatPage> {
                             width: height * 0.052,
                             fit: BoxFit.cover,
                             placeholder: (context, url) =>
-                                CircularProgressIndicator(
+                                const CircularProgressIndicator(
                               color: primaryColor,
                             ),
                             errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
+                                const Icon(Icons.error),
                           )),
               ],
             ),
@@ -237,7 +237,7 @@ class _GropChatPageState extends State<GropChatPage> {
                           Container(
                             margin: EdgeInsets.only(
                                 left: width * 0.02, right: width * 0.02),
-                            child: Icon(
+                            child: const Icon(
                               Icons.block_flipped,
                               color: Colors.black,
                             ),
@@ -303,7 +303,7 @@ class _GropChatPageState extends State<GropChatPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.only(
                     left: height * 0.02,
                     right: height * 0.02,
@@ -327,11 +327,8 @@ class _GropChatPageState extends State<GropChatPage> {
                                       BorderRadius.circular(height * 0.1),
                                   child: widget.chat.messages![index]
                                                   .senderProfile ==
-                                              null ||
-                                          widget.chat.messages![index]
-                                                  .senderProfile ==
                                               ""
-                                      ? CircularProgressIndicator(
+                                      ? const CircularProgressIndicator(
                                           color: primaryColor,
                                         )
                                       : CachedNetworkImage(
@@ -341,11 +338,11 @@ class _GropChatPageState extends State<GropChatPage> {
                                           width: height * 0.052,
                                           fit: BoxFit.cover,
                                           placeholder: (context, url) =>
-                                              CircularProgressIndicator(
+                                              const CircularProgressIndicator(
                                             color: primaryColor,
                                           ),
                                           errorWidget: (context, url, error) =>
-                                              Icon(Icons.error),
+                                              const Icon(Icons.error),
                                         ),
                                 ),
                                 widget.chat.messages![index].imageUrl != "" &&
@@ -364,7 +361,7 @@ class _GropChatPageState extends State<GropChatPage> {
                                             margin: EdgeInsets.only(
                                                 left: width * 0.14),
                                             decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius: const BorderRadius.only(
                                                   topLeft:
                                                       Radius.circular(10.0),
                                                   topRight:
@@ -401,7 +398,7 @@ class _GropChatPageState extends State<GropChatPage> {
                                                             builder: (context) =>
                                                                 IsImageSending(
                                                                   senderName:
-                                                                      '${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}',
+                                                                      "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                                                                   senderprofile:
                                                                       objProviderNotifier
                                                                           .objUsers
@@ -488,7 +485,7 @@ class _GropChatPageState extends State<GropChatPage> {
                                               ),
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.only(
+                                                      const BorderRadius.only(
                                                     topLeft:
                                                         Radius.circular(10.0),
                                                     topRight:
@@ -598,7 +595,7 @@ class _GropChatPageState extends State<GropChatPage> {
                                                   builder: (context) =>
                                                       IsImageSending(
                                                         senderName:
-                                                            '${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}',
+                                                            "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                                                         senderprofile:
                                                             objProviderNotifier
                                                                 .objUsers
@@ -747,7 +744,7 @@ class _GropChatPageState extends State<GropChatPage> {
                 right: width * 0.03,
                 top: height * 0.03,
                 bottom: height * 0.03),
-            color: Color(0xff0E0E0E),
+            color: const Color(0xff0E0E0E),
             child: Row(
               children: [
                 Expanded(
@@ -828,13 +825,13 @@ class _GropChatPageState extends State<GropChatPage> {
                         ),
                       ),
                       hintText: TextUtils.type,
-                      fillColor: Color(0xff999999).withOpacity(0.2),
+                      fillColor: const Color(0xff999999).withOpacity(0.2),
                       filled: true,
                       hintStyle: AppTheme.getTheme()
                           .textTheme
                           .bodyText1!
                           .copyWith(
-                              fontSize: width * 0.04, color: Color(0xff888888)),
+                              fontSize: width * 0.04, color: const Color(0xff888888)),
                     ),
                   ),
                 ),
@@ -849,7 +846,7 @@ class _GropChatPageState extends State<GropChatPage> {
                           true,
                           "",
                           widget.chat.Member!,
-                          "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}",
+                          "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                           objProviderNotifier.objUsers.userProfile!,
                           false,
                         )
@@ -929,7 +926,7 @@ class _GropChatPageState extends State<GropChatPage> {
       children: [
         Container(
           padding: EdgeInsets.only(left: width * 0.03, right: width * 0.03),
-          color: Color(0xff0E0E0E),
+          color: const Color(0xff0E0E0E),
           height: height * 0.2,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

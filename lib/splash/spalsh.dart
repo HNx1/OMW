@@ -27,7 +27,7 @@ class _SpalshState extends State<Spalsh> {
         Provider.of<CreateEventNotifier>(context, listen: false);
     await objCreateEventNotifier.checkConnection();
     if (objCreateEventNotifier.isConnected == true) {
-      Future.delayed(Duration(seconds: 1)).then((value) {
+      Future.delayed(const Duration(seconds: 1)).then((value) {
         _messaging = FirebaseMessaging.instance;
         getToken();
       });
@@ -54,10 +54,8 @@ class _SpalshState extends State<Spalsh> {
     try {
       await objProviderNotifier.getUserDetail();
       PrefServices().setCurrentUserName(
-          objProviderNotifier.objUsers.firstName! +
-              " " +
-              objProviderNotifier.objUsers.lastName!);
-      currentuser = await PrefServices().getCurrentUserName();
+          "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}");
+      currentuser = PrefServices().getCurrentUserName();
 
       if (PrefServices().getIsUserLoggedIn() &&
           objProviderNotifier.objUsers != '' &&

@@ -25,7 +25,7 @@ class CreateGroupScreen extends StatefulWidget {
 
 class _CreateGroupScreenState extends State<CreateGroupScreen> {
   var formKey = GlobalKey<FormState>();
-  TextEditingController _groupNameController = TextEditingController();
+  final TextEditingController _groupNameController = TextEditingController();
 
   String imageUrl = "";
   File? imageFile;
@@ -83,9 +83,9 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
         backgroundColor: AppTheme.getTheme().scaffoldBackgroundColor,
         leading: GestureDetector(
           onTap: () {
-            objGroupNotifier.searchList.forEach((element) {
+            for (var element in objGroupNotifier.searchList) {
               element.isSelcetdForGroup = false;
-            });
+            }
             objGroupNotifier.setGroupName = "";
             Navigator.pop(context);
           },
@@ -111,7 +111,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
       body: Stack(
         children: [
           isLoaded
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -154,35 +154,35 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               disabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
@@ -195,7 +195,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                   .bodyText1!
                                   .copyWith(
                                     fontSize: width * 0.045,
-                                    color: Color(0xff6C6C6C),
+                                    color: const Color(0xff6C6C6C),
                                   ),
                             ),
                             validator: validateGropuName,
@@ -228,7 +228,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                 margin: EdgeInsets.only(
                                     right: width * 0.05, bottom: height * 0.01),
                                 alignment: Alignment.topRight,
-                                child: Text(
+                                child: const Text(
                                   TextUtils.ADD,
                                   style: TextStyle(color: primaryColor),
                                 )),
@@ -240,7 +240,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                   right: width * 0.03,
                                   bottom: height * 0.02),
                               decoration: objGroupNotifier.wishListItems.isEmpty
-                                  ? BoxDecoration()
+                                  ? const BoxDecoration()
                                   : BoxDecoration(
                                       border: Border.all(
                                         color: ConstColor.textFormFieldColor,
@@ -252,7 +252,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                 shrinkWrap: true,
                                 itemCount:
                                     objGroupNotifier.wishListItems.length,
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder: (BuildContext context, int index) {
                                   return Column(
                                     children: [
@@ -275,12 +275,12 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                                 width: height * 0.045,
                                                 fit: BoxFit.cover,
                                                 placeholder: (context, url) =>
-                                                    CircularProgressIndicator(
+                                                    const CircularProgressIndicator(
                                                   color: primaryColor,
                                                 ),
                                                 errorWidget:
                                                     (context, url, error) =>
-                                                        Icon(Icons.error),
+                                                        const Icon(Icons.error),
                                               ),
                                             ),
 
@@ -290,13 +290,11 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                               margin: EdgeInsets.only(
                                                   left: width * 0.03),
                                               child: Text(
-                                                objGroupNotifier
+                                                "${objGroupNotifier
                                                         .wishListItems[index]
-                                                        .firstName! +
-                                                    " " +
-                                                    objGroupNotifier
+                                                        .firstName!} ${objGroupNotifier
                                                         .wishListItems[index]
-                                                        .lastName!,
+                                                        .lastName!}",
                                                 style: AppTheme.getTheme()
                                                     .textTheme
                                                     .bodyText1!
@@ -386,7 +384,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                       GestureDetector(
                                         onTap: () {
                                           showModalBottomSheet(
-                                            shape: RoundedRectangleBorder(
+                                            shape: const RoundedRectangleBorder(
                                               borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(20),
                                                 topRight: Radius.circular(20),
@@ -423,7 +421,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                                           ),
                                                         ),
                                                       ),
-                                                      Divider(
+                                                      const Divider(
                                                         thickness: 2,
                                                       ),
                                                       GestureDetector(
@@ -450,7 +448,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                                           ),
                                                         ),
                                                       ),
-                                                      Divider(
+                                                      const Divider(
                                                         thickness: 2,
                                                       ),
                                                       GestureDetector(
@@ -509,7 +507,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                             .bodyText1!
                                             .copyWith(
                                               fontSize: width * 0.043,
-                                              color: Color(0xff6C6C6C),
+                                              color: const Color(0xff6C6C6C),
                                             ),
                                       ),
                                     ],
@@ -550,12 +548,12 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                         setState(() {
                           isLoaded = true;
                         });
-                        objGroupNotifier.wishListItems.forEach((element) {
+                        for (var element in objGroupNotifier.wishListItems) {
                           setState(() {
                             lstGroupUser.add(element.uid!);
                             print(lstGroupUser);
                           });
-                        });
+                        }
                         lstGroupUser
                             .add(FirebaseAuth.instance.currentUser!.uid);
                         var imgurl = imageUrl == "" ? url : imageUrl;
@@ -576,9 +574,9 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                             objGroupNotifier.objGroupModel.docID!,
                             lstGroupUser,
                           );
-                          objGroupNotifier.searchList.forEach((element) {
+                          for (var element in objGroupNotifier.searchList) {
                             element.isSelcetdForGroup = false;
-                          });
+                          }
 
                           objGroupNotifier.setGroupName = "";
                           setState(() {
@@ -589,7 +587,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                       }
                     }
                   },
-                  child: CommonButton(
+                  child: const CommonButton(
                     name: TextUtils.Create,
                   ),
                 )

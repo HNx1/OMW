@@ -26,8 +26,8 @@ class _ChangeMyNameState extends State<ChangeMyName> {
     super.initState();
   }
 
-  TextEditingController _firstnameController = TextEditingController();
-  TextEditingController _lastnameController = TextEditingController();
+  final TextEditingController _firstnameController = TextEditingController();
+  final TextEditingController _lastnameController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
 
@@ -67,7 +67,7 @@ class _ChangeMyNameState extends State<ChangeMyName> {
           objProviderNotifier.isLoading == true ||
                  
                   objProviderNotifier.objUsers == ""
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -102,9 +102,7 @@ class _ChangeMyNameState extends State<ChangeMyName> {
 
                                     ///-----------------Old name ---------------
                                     Text(
-                                  objProviderNotifier.objUsers.firstName! +
-                                      " " +
-                                      objProviderNotifier.objUsers.lastName!,
+                                  "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                                   style: AppTheme.getTheme()
                                       .textTheme
                                       .bodyText2!
@@ -161,7 +159,7 @@ class _ChangeMyNameState extends State<ChangeMyName> {
                                     .requestFocus(FocusNode());
                               }
                             },
-                            child: CommonButton(
+                            child: const CommonButton(
                               name: TextUtils.SaveName,
                             )),
                       )

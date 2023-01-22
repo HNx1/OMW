@@ -2,12 +2,13 @@ import 'package:omw/utils/textUtils.dart';
 
 String? isValidEmail(String? email) {
   RegExp regex = RegExp(r'.+@.+\..+');
-  if (email!.isEmpty)
+  if (email!.isEmpty) {
     return TextUtils.enterEmailMessage;
-  else if (!regex.hasMatch(email))
+  } else if (!regex.hasMatch(email)) {
     return TextUtils.validEmail;
-  else
+  } else {
     return null;
+  }
 }
 
 String? validatFirstName(String? name) {
@@ -98,26 +99,28 @@ String? validateAmount(String? name) {
 }
 
 String? isvalidOtp(String? Otp) {
-  if (Otp == null || Otp.isEmpty)
+  if (Otp == null || Otp.isEmpty) {
     return TextUtils.enterOtp;
-  else if (Otp.length < 6)
+  } else if (Otp.length < 6) {
     return TextUtils.validOtp;
-  else
+  } else {
     return null;
+  }
 }
 
 String? isvalidcode(String? Otp) {
-  if (Otp == null || Otp.isEmpty)
+  if (Otp == null || Otp.isEmpty) {
     return TextUtils.enterOtp;
-  else if (Otp.length < 4)
+  } else if (Otp.length < 4) {
     return TextUtils.validOtp;
-  else
+  } else {
     return null;
+  }
 }
 
 String? validateMobile(String? mbno) {
   String patttern = r'(^(?:[+0]9)?[0-9]{10}$)';
-  RegExp regExp = new RegExp(patttern);
+  RegExp regExp = RegExp(patttern);
   if (mbno!.isEmpty) {
     return TextUtils.entermobile;
   } else if (!regExp.hasMatch(mbno)) {
@@ -130,21 +133,22 @@ String? validateMobile(String? mbno) {
 String? validateEmailOrPhone(String? value) {
   String pattern =
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-  RegExp regex = new RegExp(pattern);
+  RegExp regex = RegExp(pattern);
   if (value!.isEmpty) {
     return TextUtils.EnterEmailOrPHone;
-  } else if (regex.hasMatch(value))
+  } else if (regex.hasMatch(value)) {
     return null;
-  else {
-    if (value.length == 10)
+  } else {
+    if (value.length == 10) {
       try {
         int.parse(value);
         return null;
       } catch (e) {
         return TextUtils.EntervalidEmailOrPHone;
       }
-    else
+    } else {
       return TextUtils.EntervalidEmailOrPHone;
+    }
   }
 }
 
@@ -157,10 +161,10 @@ String? isValidpassword(String? password) {
     Pattern hasLettersPattern = r".*[A-Za-z].*";
     Pattern hasDigitsPattern = r".*\d.*";
     Pattern hasSpecialCharactersPattern = r".*[@$!%*#?&-_].*";
-    RegExp LettersRegex = new RegExp(hasLettersPattern as String);
-    RegExp DigitsRegex = new RegExp(hasDigitsPattern as String);
+    RegExp LettersRegex = RegExp(hasLettersPattern as String);
+    RegExp DigitsRegex = RegExp(hasDigitsPattern as String);
     RegExp SpecialCharactersRegex =
-        new RegExp(hasSpecialCharactersPattern as String);
+        RegExp(hasSpecialCharactersPattern as String);
     print(password);
 
     bool hasLetters = LettersRegex.hasMatch(password);
@@ -170,30 +174,34 @@ String? isValidpassword(String? password) {
         hasLetters &&
         hasDigits &&
         hasSpecialCharacters;
-    if (!validpwd)
+    if (!validpwd) {
       return TextUtils.notValidPassword;
-    else
+    } else {
       return null;
+    }
   }
 }
 
 String? isvalidinformation(String? information) {
-  if (information == null || information.isEmpty)
+  if (information == null || information.isEmpty) {
     return TextUtils.enterInfo;
-  else
+  } else {
     return null;
+  }
 }
 
 String? isvalidPassword(String? pwd) {
-  if (pwd == null || pwd.isEmpty)
+  if (pwd == null || pwd.isEmpty) {
     return TextUtils.enterPassword;
-  else
+  } else {
     return null;
+  }
 }
 
 String? isvalidDescription(String? description) {
-  if (description == null || description.isEmpty)
+  if (description == null || description.isEmpty) {
     return TextUtils.enterDescription;
-  else
+  } else {
     return null;
+  }
 }

@@ -47,9 +47,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   var formKey = GlobalKey<FormState>();
   var formKey1 = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  ScrollController _scrollController = ScrollController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             alignment: Alignment.center,
             children: [
               objAuthProvider.isLoading == true
-                  ? CircularProgressIndicator(
+                  ? const CircularProgressIndicator(
                       color: primaryColor,
                     )
                   : Container(),
@@ -135,11 +135,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   child: TextFormField(
                                     onChanged: (value) {
                                       RegExp letterRegex =
-                                          new RegExp(letterPattern as String);
+                                          RegExp(letterPattern as String);
                                       RegExp numberRegex =
-                                          new RegExp(numberPattern as String);
+                                          RegExp(numberPattern as String);
                                       RegExp charRegex =
-                                          new RegExp(charPattern as String);
+                                          RegExp(charPattern as String);
                                       setState(() {
                                         lengthBool =
                                             value.length >= 8 ? true : false;
@@ -190,35 +190,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(height * 0.1),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: ConstColor.textFormFieldColor,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(height * 0.1),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: ConstColor.textFormFieldColor,
                                         ),
                                       ),
                                       errorBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(height * 0.1),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: ConstColor.textFormFieldColor,
                                         ),
                                       ),
                                       disabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(height * 0.1),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: ConstColor.textFormFieldColor,
                                         ),
                                       ),
                                       focusedErrorBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(height * 0.1),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: ConstColor.textFormFieldColor,
                                         ),
                                       ),
@@ -355,13 +355,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                   context: context,
                                                   builder:
                                                       (BuildContext context) {
-                                                    return VerifyEmailPopUp();
+                                                    return const VerifyEmailPopUp();
                                                   });
                                             }
                                           });
                                         }
                                       },
-                                      child: CommonButton(
+                                      child: const CommonButton(
                                         name: TextUtils.Signup,
                                       )),
                                 )
@@ -434,35 +434,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(height * 0.1),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: ConstColor.textFormFieldColor,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(height * 0.1),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: ConstColor.textFormFieldColor,
                                         ),
                                       ),
                                       errorBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(height * 0.1),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: ConstColor.textFormFieldColor,
                                         ),
                                       ),
                                       disabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(height * 0.1),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: ConstColor.textFormFieldColor,
                                         ),
                                       ),
                                       focusedErrorBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(height * 0.1),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: ConstColor.textFormFieldColor,
                                         ),
                                       ),
@@ -499,7 +499,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       });
                                     }
                                   },
-                                  child: CommonButton(
+                                  child: const CommonButton(
                                     name: "Continue",
                                   )),
                             ),
@@ -512,7 +512,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: RichText(
                                 textAlign: TextAlign.center,
                                 text: TextSpan(
-                                  text: TextUtils.Already + " ",
+                                  text: "${TextUtils.Already} ",
                                   style: AppTheme.getTheme()
                                       .textTheme
                                       .bodyText1!

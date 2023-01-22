@@ -9,10 +9,9 @@ class Routes {
   static const Profile = "authentication/profileScreen.dart";
 
   static const HOME = "Home/bottomtab.dart";
-  static const Admin = "Admin/admin_screen.dart";
+  static const Admin = "admin/admin_screen.dart";
   static const payment = "payment/payment_screen.dart";
   static const chatting = "Chat/IndividualChat/individual_chat_Room.dart";
   static const eventDetails = "Events/event/eventDetails_screen.dart";
-   static const viewMultidate = "Create/seeMutiSelectedDate_screen.dart";
-
+  static const viewMultidate = "Create/seeMutiSelectedDate_screen.dart";
 }

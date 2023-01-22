@@ -42,7 +42,7 @@ class _SearchEventState extends State<SearchEvent> {
   List<CreateEventModel> searchList = [];
 
   getListOfEvents() async {
-    currentuser = await PrefServices().getCurrentUserName();
+    currentuser = PrefServices().getCurrentUserName();
     var objCreateEventNotifier =
         Provider.of<CreateEventNotifier>(context, listen: false);
     if (mounted) {
@@ -179,31 +179,31 @@ class _SearchEventState extends State<SearchEvent> {
                     ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(height * 0.1),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: ConstColor.textFormFieldColor,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(height * 0.1),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: ConstColor.textFormFieldColor,
                   ),
                 ),
                 errorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(height * 0.1),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: ConstColor.textFormFieldColor,
                   ),
                 ),
                 disabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(height * 0.1),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: ConstColor.textFormFieldColor,
                   ),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(height * 0.1),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: ConstColor.textFormFieldColor,
                   ),
                 ),
@@ -218,7 +218,7 @@ class _SearchEventState extends State<SearchEvent> {
           ),
         ),
         body: objCreateEventNotifier.isLoading == true && searchList.isEmpty
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(
                   color: primaryColor,
                 ),
@@ -250,7 +250,7 @@ class _SearchEventState extends State<SearchEvent> {
                         child: Stack(
                           children: [
                             objCreateEventNotifier.isLoading
-                                ? Center(
+                                ? const Center(
                                     child: CircularProgressIndicator(
                                       color: primaryColor,
                                     ),
@@ -318,12 +318,12 @@ class _SearchEventState extends State<SearchEvent> {
                                                 width: height * 0.06,
                                                 fit: BoxFit.cover,
                                                 placeholder: (context, url) =>
-                                                    CircularProgressIndicator(
+                                                    const CircularProgressIndicator(
                                                   color: primaryColor,
                                                 ),
                                                 errorWidget:
                                                     (context, url, error) =>
-                                                        Icon(Icons.error),
+                                                        const Icon(Icons.error),
                                               ),
                                             ),
                                             Expanded(

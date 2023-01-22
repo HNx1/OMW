@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:omw/constant/theme.dart';
 import 'package:omw/utils/colorUtils.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -40,7 +39,7 @@ class SingleDateSelection extends StatefulWidget {
 }
 
 class _SingleDateSelectionState extends State<SingleDateSelection> {
-  DateRangePickerController _controller = DateRangePickerController();
+  final DateRangePickerController _controller = DateRangePickerController();
   @override
   void initState() {
     _controller.view = DateRangePickerView.month;
@@ -59,7 +58,7 @@ class _SingleDateSelectionState extends State<SingleDateSelection> {
               right: width * 0.02),
           padding: EdgeInsets.all(height * 0.01),
           decoration: BoxDecoration(
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                   blurRadius: 0.7,
                   spreadRadius: 0.7,
@@ -69,7 +68,7 @@ class _SingleDateSelectionState extends State<SingleDateSelection> {
               color: ConstColor.textFormFieldColor,
             ),
             borderRadius: BorderRadius.circular(20),
-            color: Color.fromARGB(255, 15, 15, 15),
+            color: const Color.fromARGB(255, 15, 15, 15),
           ),
           width: width,
           child: Column(

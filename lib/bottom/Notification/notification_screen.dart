@@ -105,7 +105,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 0
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 0
@@ -143,7 +143,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                     .bodyText2!
                                     .copyWith(
                                         color: index != 1
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 1
@@ -181,7 +181,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 2
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 2
@@ -197,10 +197,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 ),
                 Expanded(
                     child: index == 0
-                        ? AllScreen()
+                        ? const AllScreen()
                         : index == 1
-                            ? HostingScreen()
-                            : InvitationsScreen())
+                            ? const HostingScreen()
+                            : const InvitationsScreen())
               ],
             ),
           ),
@@ -218,7 +218,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       transitionDuration: const Duration(milliseconds: 0),
       pageBuilder: (BuildContext buildContext, Animation animation,
           Animation secondaryAnimation) {
-        return CommonDrawer();
+        return const CommonDrawer();
       },
     );
   }

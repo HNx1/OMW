@@ -97,7 +97,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => TermsAndCondition(
+                                  builder: (context) => const TermsAndCondition(
                                     isfromWelcome: true,
                                   ),
                                 ),
@@ -129,7 +129,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => PrivacyPolicyScreen(
+                                  builder: (context) => const PrivacyPolicyScreen(
                                     isfromWelcome: true,
                                   ),
                                 ),
@@ -161,7 +161,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => CookiesPolicy(
+                                  builder: (context) => const CookiesPolicy(
                                     isfromWelcome: true,
                                   ),
                                 ),
@@ -178,7 +178,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   },
                   child: Container(
                     margin: EdgeInsets.only(top: height * 0.068),
-                    child: CommonButton(name: TextUtils.signin),
+                    child: const CommonButton(name: TextUtils.signin),
                   ),
                 ),
 
@@ -191,7 +191,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     onTap: () {
                       Navigator.pushReplacementNamed(context, Routes.SignUp);
                     },
-                    child: CommonOutLineButton(
+                    child: const CommonOutLineButton(
                       name: TextUtils.createAccount,
                     ),
                   ),

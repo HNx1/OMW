@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:omw/setting/blockUser_List.dart';
-import 'package:omw/setting/notificationsSettings.dart';
 
 import 'package:provider/provider.dart';
 
@@ -10,7 +9,6 @@ import '../../../../utils/colorUtils.dart';
 import '../../../../utils/textUtils.dart';
 import '../../../notifier/authenication_notifier.dart';
 
-import '../authentication/loginScreen.dart';
 import 'change_myEmail_screen.dart';
 import 'change_my_Name.dart';
 import 'changemyPhone_screen.dart';
@@ -104,7 +102,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => ChangeMyName())));
+                                  builder: ((context) => const ChangeMyName())));
                         },
                         child: CoomanNameText(TextUtils.ChangeMyName)),
 
@@ -114,7 +112,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: ((context) => ChangeMyPhoneNoScreen()),
+                              builder: ((context) => const ChangeMyPhoneNoScreen()),
                             ),
                           );
                         },
@@ -127,7 +125,7 @@ class _SettingScreenState extends State<SettingScreen> {
                               context,
                               MaterialPageRoute(
                                   builder: ((context) =>
-                                      ChangeMyEmailScreen())));
+                                      const ChangeMyEmailScreen())));
                         },
                         child: CoomanNameText(TextUtils.ChangeMyEmail)),
 
@@ -137,7 +135,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => ChnageMyPassword())));
+                                  builder: ((context) => const ChnageMyPassword())));
                         },
                         child: CoomanNameText(TextUtils.ChangeMypassword)),
 
@@ -147,7 +145,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => ChangeUserProfile())));
+                                  builder: ((context) => const ChangeUserProfile())));
                         },
                         child: CoomanNameText(TextUtils.updateProfile)),
                   ],
@@ -157,7 +155,7 @@ class _SettingScreenState extends State<SettingScreen> {
               Container(
                 height: 0.8,
                 width: width,
-                color: Color(0xff5B5B5B).withOpacity(0.56),
+                color: const Color(0xff5B5B5B).withOpacity(0.56),
                 margin: EdgeInsets.only(
                     top: height * 0.026, bottom: height * 0.026),
               ),
@@ -168,7 +166,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: ((context) => BlockUserList()),
+                      builder: ((context) => const BlockUserList()),
                     ),
                   );
                 },
@@ -185,7 +183,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: ((context) => TermsAndCondition(
+                      builder: ((context) => const TermsAndCondition(
                             isfromWelcome: false,
                           )),
                     ),
@@ -204,7 +202,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: ((context) => PrivacyPolicyScreen(
+                      builder: ((context) => const PrivacyPolicyScreen(
                             isfromWelcome: false,
                           )),
                     ),
@@ -223,7 +221,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: ((context) => CookiesPolicy(
+                          builder: ((context) => const CookiesPolicy(
                                 isfromWelcome: false,
                               ))));
                 },
@@ -272,7 +270,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     barrierDismissible: false,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        backgroundColor: Color.fromARGB(255, 15, 15, 15),
+                        backgroundColor: const Color.fromARGB(255, 15, 15, 15),
                         title: Container(
                           margin: EdgeInsets.only(
                               left: width * 0.03, right: width * 0.03),
@@ -379,7 +377,7 @@ class _SettingScreenState extends State<SettingScreen> {
               ? Container(
                   height: 1,
                   width: width,
-                  color: Color(0xff5B5B5B).withOpacity(0.56),
+                  color: const Color(0xff5B5B5B).withOpacity(0.56),
                   margin: EdgeInsets.only(
                       top: height * 0.026, bottom: height * 0.026),
                 )

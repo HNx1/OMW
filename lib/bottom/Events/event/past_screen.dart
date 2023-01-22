@@ -68,7 +68,7 @@ class _PastScreenState extends State<PastScreen> {
     return Expanded(
       child: objCreateEventNotifier.isLoading == true &&
               objCreateEventNotifier.getpastEventList.isEmpty
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
                 color: primaryColor,
               ),
@@ -180,7 +180,7 @@ class _PastScreenState extends State<PastScreen> {
                                                   MainAxisAlignment.center,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
-                                              children: [
+                                              children: const [
                                                 CircularProgressIndicator(
                                                   color: primaryColor,
                                                 ),
@@ -246,9 +246,7 @@ class _PastScreenState extends State<PastScreen> {
                                                                   left: height *
                                                                       0.005),
                                                           child: Text(
-                                                            "${objCreateEventNotifier.getpastEventList[index].lstUser!.firstName![0].toUpperCase()}${objCreateEventNotifier.getpastEventList[index].lstUser!.firstName!.substring(1).toLowerCase()}" +
-                                                                " " +
-                                                                "${objCreateEventNotifier.getpastEventList[index].lstUser!.lastName![0].toUpperCase()}${objCreateEventNotifier.getpastEventList[index].lstUser!.lastName!.substring(1).toLowerCase()}",
+                                                            "${objCreateEventNotifier.getpastEventList[index].lstUser!.firstName![0].toUpperCase()}${objCreateEventNotifier.getpastEventList[index].lstUser!.firstName!.substring(1).toLowerCase()} ${objCreateEventNotifier.getpastEventList[index].lstUser!.lastName![0].toUpperCase()}${objCreateEventNotifier.getpastEventList[index].lstUser!.lastName!.substring(1).toLowerCase()}",
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
@@ -293,14 +291,13 @@ class _PastScreenState extends State<PastScreen> {
                                                                   left: width *
                                                                       0.02),
                                                           child: Text(
-                                                            '${DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getpastEventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getpastEventList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getpastEventList[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getpastEventList[index].eventStartDate!).substring(5)).toLowerCase()}' +
-                                                                DateFormat(
+                                                            '${DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getpastEventList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getpastEventList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getpastEventList[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(objCreateEventNotifier.getpastEventList[index].eventStartDate!).substring(5)).toLowerCase()}${DateFormat(
                                                                         ' - h:mm aa')
                                                                     .format(objCreateEventNotifier
                                                                         .getpastEventList[
                                                                             index]
                                                                         .eventEndDate!)
-                                                                    .toLowerCase(),
+                                                                    .toLowerCase()}',
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
@@ -380,7 +377,7 @@ class _PastScreenState extends State<PastScreen> {
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                             height: height * 0.15,
                                             child: objCreateEventNotifier
                                                             .getpastEventList[
@@ -431,7 +428,7 @@ class _PastScreenState extends State<PastScreen> {
   Widget filteredPastList(CreateEventNotifier objCreateEventNotifier) {
     return Expanded(
       child: widget.isLoading == true && widget.getList.isEmpty
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
                 color: primaryColor,
               ),
@@ -533,7 +530,7 @@ class _PastScreenState extends State<PastScreen> {
                                                   MainAxisAlignment.center,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
-                                              children: [
+                                              children: const [
                                                 CircularProgressIndicator(
                                                   color: primaryColor,
                                                 ),
@@ -552,7 +549,7 @@ class _PastScreenState extends State<PastScreen> {
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.end,
-                                                  children: [],
+                                                  children: const [],
                                                 ),
                                                 Text(
                                                   widget.getList[index]
@@ -601,9 +598,7 @@ class _PastScreenState extends State<PastScreen> {
                                                                   left: height *
                                                                       0.005),
                                                           child: Text(
-                                                            "${widget.getList[index].lstUser!.firstName![0].toUpperCase()}${widget.getList[index].lstUser!.firstName!.substring(1).toLowerCase()}" +
-                                                                " " +
-                                                                "${widget.getList[index].lstUser!.lastName![0].toUpperCase()}${widget.getList[index].lstUser!.lastName!.substring(1).toLowerCase()}",
+                                                            "${widget.getList[index].lstUser!.firstName![0].toUpperCase()}${widget.getList[index].lstUser!.firstName!.substring(1).toLowerCase()} ${widget.getList[index].lstUser!.lastName![0].toUpperCase()}${widget.getList[index].lstUser!.lastName!.substring(1).toLowerCase()}",
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
@@ -648,14 +643,13 @@ class _PastScreenState extends State<PastScreen> {
                                                                   left: width *
                                                                       0.02),
                                                           child: Text(
-                                                            '${DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!).substring(5)).toLowerCase()}' +
-                                                                DateFormat(
+                                                            '${DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!)[0].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!).substring(1, 4)).toLowerCase()}${DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!)[4].toUpperCase()}${(DateFormat(TextUtils.dateFormat).format(widget.getList[index].eventStartDate!).substring(5)).toLowerCase()}${DateFormat(
                                                                         '- h:mm aa')
                                                                     .format(widget
                                                                         .getList[
                                                                             index]
                                                                         .eventEndDate!)
-                                                                    .toLowerCase(),
+                                                                    .toLowerCase()}',
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
@@ -734,7 +728,7 @@ class _PastScreenState extends State<PastScreen> {
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                             height: height * 0.15,
                                             child: widget.getList[index]
                                                             .cohostList ==

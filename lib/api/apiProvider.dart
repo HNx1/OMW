@@ -62,14 +62,14 @@ class ApiProvider {
   }
 
   Future<UserModel> getUserDetail(String userId) async {
-    UserModel objUsers = new UserModel();
+    UserModel objUsers = UserModel();
     try {
       QuerySnapshot result = await FirebaseFirestore.instance
           .collection('users')
           .where("uid", isEqualTo: userId)
           .limit(1)
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
           objUsers = UserModel.parseSnapshot(docData);
         }
@@ -82,12 +82,12 @@ class ApiProvider {
   }
 
   Future<PrivacyPolicyModel> getPrivacyPolicy() async {
-    PrivacyPolicyModel objPrivacyPolicy = new PrivacyPolicyModel();
+    PrivacyPolicyModel objPrivacyPolicy = PrivacyPolicyModel();
 
     try {
       QuerySnapshot result =
           await FirebaseFirestore.instance.collection('privacyPolicy').get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
           objPrivacyPolicy = PrivacyPolicyModel.parseSnapshot(docData);
         }
@@ -101,13 +101,13 @@ class ApiProvider {
 
   Future<TermAndConditionModel> getTermsAndCondition() async {
     TermAndConditionModel objTermAndConditionModel =
-        new TermAndConditionModel();
+        TermAndConditionModel();
 
     try {
       QuerySnapshot result = await FirebaseFirestore.instance
           .collection('termsAndConditions')
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
           objTermAndConditionModel =
               TermAndConditionModel.parseSnapshot(docData);
@@ -121,11 +121,11 @@ class ApiProvider {
   }
 
   Future<CookieModel> getCookie() async {
-    CookieModel objCookieModel = new CookieModel();
+    CookieModel objCookieModel = CookieModel();
     try {
       QuerySnapshot result =
           await FirebaseFirestore.instance.collection('cookie').get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
           objCookieModel = CookieModel.parseSnapshot(docData);
         }
@@ -138,11 +138,11 @@ class ApiProvider {
   }
 
   Future<BugsAndReportModel> getBugAndReport() async {
-    BugsAndReportModel objBugsAndReportModel = new BugsAndReportModel();
+    BugsAndReportModel objBugsAndReportModel = BugsAndReportModel();
     try {
       QuerySnapshot result =
           await FirebaseFirestore.instance.collection('bugsAndReports').get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
           objBugsAndReportModel = BugsAndReportModel.parseSnapshot(docData);
         }
@@ -329,9 +329,9 @@ class ApiProvider {
           .where("guestsID", arrayContains: _auth.currentUser!.uid)
           .where("eventEndDate", isGreaterThanOrEqualTo: DateTime.now().toUtc())
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
-          CreateEventModel objCreateEventModel = new CreateEventModel();
+          CreateEventModel objCreateEventModel = CreateEventModel();
           objCreateEventModel = CreateEventModel.parseSnapshot(docData);
           lstCreateEventModel.add(objCreateEventModel);
         }
@@ -356,9 +356,9 @@ class ApiProvider {
             isLessThan: DateTime.now().toUtc(),
           )
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
-          CreateEventModel objCreateEventModel = new CreateEventModel();
+          CreateEventModel objCreateEventModel = CreateEventModel();
           objCreateEventModel = CreateEventModel.parseSnapshot(docData);
           lstCreateEventModel.add(objCreateEventModel);
         }
@@ -378,9 +378,9 @@ class ApiProvider {
           .where("ownerID", isEqualTo: _auth.currentUser!.uid)
           .where("eventEndDate", isLessThan: DateTime.now().toUtc())
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
-          CreateEventModel objCreateEventModel = new CreateEventModel();
+          CreateEventModel objCreateEventModel = CreateEventModel();
           objCreateEventModel = CreateEventModel.parseSnapshot(docData);
           lstCreateEventModel.add(objCreateEventModel);
         }
@@ -399,9 +399,9 @@ class ApiProvider {
           .collection('events')
           .where("docId", isEqualTo: docId)
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
-          CreateEventModel objEvent = new CreateEventModel();
+          CreateEventModel objEvent = CreateEventModel();
           objEvent = CreateEventModel.parseSnapshot(docData);
           objCreateEventModel.add(objEvent);
         }
@@ -414,13 +414,13 @@ class ApiProvider {
   }
 
   Future<CreateEventModel> eventDetails(String eventid) async {
-    CreateEventModel objEvent = new CreateEventModel();
+    CreateEventModel objEvent = CreateEventModel();
     try {
       QuerySnapshot result = await FirebaseFirestore.instance
           .collection('events')
           .where("docId", isEqualTo: eventid)
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
           objEvent = CreateEventModel.parseSnapshot(docData);
         }
@@ -434,13 +434,13 @@ class ApiProvider {
 
   Future<CreateEventModel> getNotificationEventDetails(
       String notificationId) async {
-    CreateEventModel objEvent = new CreateEventModel();
+    CreateEventModel objEvent = CreateEventModel();
     try {
       QuerySnapshot result = await FirebaseFirestore.instance
           .collection('events')
           .where("docId", isEqualTo: notificationId)
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
           objEvent = CreateEventModel.parseSnapshot(docData);
         }
@@ -481,9 +481,9 @@ class ApiProvider {
           .where("guestsID", arrayContains: userId)
           .where("eventEndDate", isLessThan: DateTime.now().toUtc())
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
-          CreateEventModel objCreateEventModel = new CreateEventModel();
+          CreateEventModel objCreateEventModel = CreateEventModel();
           objCreateEventModel = CreateEventModel.parseSnapshot(docData);
           lstCreateEventModel.add(objCreateEventModel);
         }
@@ -497,7 +497,7 @@ class ApiProvider {
   }
 
   Future getGuestList(List<Object?>? guestId) async {
-    print("Guest ID List: ${guestId}");
+    print("Guest ID List: $guestId");
     try {
       QuerySnapshot<Map<String, dynamic>> snapshot =
           await FirebaseFirestore.instance.collection("users").get();
@@ -607,7 +607,7 @@ class ApiProvider {
     String eventId,
     String eventHostUserId,
   ) async {
-    if (token == null || token == "") {
+    if (token == "") {
       print('Unable to send FCM message, no token exists.');
       return;
     }
@@ -685,9 +685,9 @@ class ApiProvider {
           .where("ownerID", isEqualTo: _auth.currentUser!.uid)
           .where("eventEndDate", isGreaterThanOrEqualTo: DateTime.now().toUtc())
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
-          CreateEventModel objCreateEventModel = new CreateEventModel();
+          CreateEventModel objCreateEventModel = CreateEventModel();
           objCreateEventModel = CreateEventModel.parseSnapshot(docData);
           lstCreateEventModel.add(objCreateEventModel);
         }
@@ -709,9 +709,9 @@ class ApiProvider {
           .get();
       print(
           "getting snapshot of upcoming events ===> Length:${result.docs.length}");
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
-          CreateEventModel objCreateEventModel = new CreateEventModel();
+          CreateEventModel objCreateEventModel = CreateEventModel();
           print("event model datum 1");
           objCreateEventModel = CreateEventModel.parseSnapshot(docData);
 
@@ -720,7 +720,7 @@ class ApiProvider {
           print("event model datum 3");
         }
 
-        print("Event model found: ${lstCreateEventModel}");
+        print("Event model found: $lstCreateEventModel");
         return lstCreateEventModel;
       }
     } catch (e) {
@@ -788,7 +788,7 @@ class ApiProvider {
             .where('title', isEqualTo: "Response to your Invitation")
             .limit(pazeSize)
             .get();
-        print("Query Snapshot: ${querySnapshot}");
+        print("Query Snapshot: $querySnapshot");
       } else {
         querySnapshot = await FirebaseFirestore.instance
             .collection('notifications')
@@ -921,9 +921,9 @@ class ApiProvider {
           .where("ownerID", isEqualTo: userId)
           .where("eventEndDate", isLessThan: DateTime.now().toUtc())
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
-          CreateEventModel objCreateEventModel = new CreateEventModel();
+          CreateEventModel objCreateEventModel = CreateEventModel();
           objCreateEventModel = CreateEventModel.parseSnapshot(docData);
           lstCreateEventModel.add(objCreateEventModel);
         }
@@ -942,9 +942,9 @@ class ApiProvider {
           .collection('payments')
           .where("paymentToUserId", isEqualTo: _auth.currentUser!.uid)
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
-          PaymentModel objPaymentModel = new PaymentModel();
+          PaymentModel objPaymentModel = PaymentModel();
           objPaymentModel = PaymentModel.parseSnapshot(docData);
           lstPaymentModel.add(objPaymentModel);
         }
@@ -964,9 +964,9 @@ class ApiProvider {
           .collection('payments')
           .where("paymentByUserId", isEqualTo: _auth.currentUser!.uid)
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
-          PaymentModel objPaymentModel = new PaymentModel();
+          PaymentModel objPaymentModel = PaymentModel();
           objPaymentModel = PaymentModel.parseSnapshot(docData);
           lstPaymentModel.add(objPaymentModel);
         }
@@ -1026,7 +1026,7 @@ class ApiProvider {
   }
 
   Future<BlockUserModel> getBlockUserDetail(String userId) async {
-    BlockUserModel blockUserModel = new BlockUserModel();
+    BlockUserModel blockUserModel = BlockUserModel();
     try {
       QuerySnapshot result = await FirebaseFirestore.instance
           .collection('blockUser')
@@ -1034,7 +1034,7 @@ class ApiProvider {
           .where("blockBy", isEqualTo: _auth.currentUser!.uid)
           .limit(1)
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
           blockUserModel = BlockUserModel.parseSnapshot(docData);
         }
@@ -1047,7 +1047,7 @@ class ApiProvider {
   }
 
   Future<BlockUserModel> checkThatCurrentUserBlcokOrNot(String userId) async {
-    BlockUserModel blockUserModel = new BlockUserModel();
+    BlockUserModel blockUserModel = BlockUserModel();
     try {
       QuerySnapshot result = await FirebaseFirestore.instance
           .collection('blockUser')
@@ -1055,7 +1055,7 @@ class ApiProvider {
           .where("blockBy", isEqualTo: userId)
           .limit(1)
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
           blockUserModel = BlockUserModel.parseSnapshot(docData);
         }

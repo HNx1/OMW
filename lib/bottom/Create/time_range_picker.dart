@@ -21,7 +21,7 @@ class TimeRangePicker extends StatefulWidget {
   final Function(DateTime)? onStartDateTimeChanged;
   final bool isToggleDisable;
 
-  TimeRangePicker({
+  const TimeRangePicker({
     Key? key,
     required this.selectToTime,
     required this.selectFromTime,
@@ -57,7 +57,7 @@ class _TimeRangePickerState extends State<TimeRangePicker> {
             border: Border.all(
               color: ConstColor.textFormFieldColor,
             ),
-            color: Color.fromARGB(255, 15, 15, 15),
+            color: const Color.fromARGB(255, 15, 15, 15),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,7 +175,7 @@ class _TimeRangePickerState extends State<TimeRangePicker> {
                         children: [
                           Expanded(
                             child: CupertinoTheme(
-                              data: CupertinoThemeData(
+                              data: const CupertinoThemeData(
                                 brightness: Brightness.dark,
                               ),
                               child: CupertinoDatePicker(
@@ -237,7 +237,7 @@ class _TimeRangePickerState extends State<TimeRangePicker> {
                         children: [
                           Expanded(
                             child: CupertinoTheme(
-                              data: CupertinoThemeData(
+                              data: const CupertinoThemeData(
                                 brightness: Brightness.dark,
                               ),
                               child: CupertinoDatePicker(

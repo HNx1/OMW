@@ -104,13 +104,13 @@ class NotificationNotifier extends ChangeNotifier {
         isLoading = true;
         loadedNotification =
             await ApiProvider().getListOfAllNotification().then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].createdBy)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].userDetails = UserModel.parseSnapshot(docData);
                 }
@@ -118,6 +118,7 @@ class NotificationNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
 
           return value;
         });
@@ -155,13 +156,13 @@ class NotificationNotifier extends ChangeNotifier {
         loadedNotification = await ApiProvider()
             .getListOfHostingAllNotification()
             .then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].createdBy)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].userDetails = UserModel.parseSnapshot(docData);
                 }
@@ -169,6 +170,7 @@ class NotificationNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
 
           return value;
         });
@@ -207,13 +209,13 @@ class NotificationNotifier extends ChangeNotifier {
         loadedNotification = await ApiProvider()
             .getInvitationsNotification()
             .then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].createdBy)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].userDetails = UserModel.parseSnapshot(docData);
                 }
@@ -221,6 +223,7 @@ class NotificationNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
 
           return value;
         });

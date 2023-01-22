@@ -48,28 +48,28 @@ class _MyEvetnCo_SplitScreenState extends State<MyEvetnCo_SplitScreen> {
     await objCreateEventNotifier.getAllGuestUserList(
         context, objCreateEventNotifier.getEventDetails.guestsID!);
     setState(() {
-      objCreateEventNotifier.getEventDetails.guest!.forEach((e) {
+      for (var e in objCreateEventNotifier.getEventDetails.guest!) {
         setState(() {
           goingGuest.addAll(objCreateEventNotifier.retrievedGuestUserList
               .where((element) => element.uid == e.guestID && e.status == 0));
         });
-      });
+      }
     });
     setState(() {
-      objCreateEventNotifier.getEventDetails.guest!.forEach((e) {
+      for (var e in objCreateEventNotifier.getEventDetails.guest!) {
         setState(() {
           maybeGuest.addAll(objCreateEventNotifier.retrievedGuestUserList
               .where((element) => element.uid == e.guestID && e.status == 2));
         });
-      });
+      }
     });
     setState(() {
-      objCreateEventNotifier.getEventDetails.guest!.forEach((e) {
+      for (var e in objCreateEventNotifier.getEventDetails.guest!) {
         setState(() {
           notGoingGuest.addAll(objCreateEventNotifier.retrievedGuestUserList
               .where((element) => element.uid == e.guestID && e.status == 1));
         });
-      });
+      }
     });
     setState(() {
       isDataLoad = false;
@@ -102,7 +102,7 @@ class _MyEvetnCo_SplitScreenState extends State<MyEvetnCo_SplitScreen> {
 
               ///--------------------Guest List text  ---------------------
               Text(
-            "My Event " + TextUtils.GuestList,
+            "My Event ${TextUtils.GuestList}",
             style: AppTheme.getTheme().textTheme.bodyText2!.copyWith(
                 color: ConstColor.primaryColor,
                 height: 1.4,
@@ -159,7 +159,7 @@ class _MyEvetnCo_SplitScreenState extends State<MyEvetnCo_SplitScreen> {
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 0
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 0
@@ -167,13 +167,13 @@ class _MyEvetnCo_SplitScreenState extends State<MyEvetnCo_SplitScreen> {
                                             : FontWeight.w700),
                               ),
                               Text(
-                                " (" + goingGuest.length.toString() + ")",
+                                " (${goingGuest.length})",
                                 style: AppTheme.getTheme()
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 0
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 0
@@ -216,7 +216,7 @@ class _MyEvetnCo_SplitScreenState extends State<MyEvetnCo_SplitScreen> {
                                     .bodyText2!
                                     .copyWith(
                                         color: index != 1
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 1
@@ -224,13 +224,13 @@ class _MyEvetnCo_SplitScreenState extends State<MyEvetnCo_SplitScreen> {
                                             : FontWeight.w700),
                               ),
                               Text(
-                                " (" + maybeGuest.length.toString() + ")",
+                                " (${maybeGuest.length})",
                                 style: AppTheme.getTheme()
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 1
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 1
@@ -273,7 +273,7 @@ class _MyEvetnCo_SplitScreenState extends State<MyEvetnCo_SplitScreen> {
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 2
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 2
@@ -281,13 +281,13 @@ class _MyEvetnCo_SplitScreenState extends State<MyEvetnCo_SplitScreen> {
                                             : FontWeight.w700),
                               ),
                               Text(
-                                " (" + notGoingGuest.length.toString() + ")",
+                                " (${notGoingGuest.length})",
                                 style: AppTheme.getTheme()
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
                                         color: index != 2
-                                            ? Color(0xffA5A5A5)
+                                            ? const Color(0xffA5A5A5)
                                             : ConstColor.black_Color,
                                         fontSize: width * 0.043,
                                         fontWeight: index != 2

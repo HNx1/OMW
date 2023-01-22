@@ -32,7 +32,7 @@ class _AllScreenState extends State<AllScreen> {
   AllChat chat = AllChat("");
   String ConversationId = "";
   getListOfNotification() async {
-    currentuser = await PrefServices().getCurrentUserName();
+    currentuser = PrefServices().getCurrentUserName();
     if (mounted) {
       setState(() {
         notificationCounterValueNotifer.value = 0;
@@ -84,7 +84,7 @@ class _AllScreenState extends State<AllScreen> {
           ///---------- List OF Today's Data ------------
           objNotificationNotifier.isLoading &&
                   objNotificationNotifier.lstNotificationModel.isEmpty
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -119,7 +119,7 @@ class _AllScreenState extends State<AllScreen> {
                             child: Stack(
                               children: [
                                 objNotificationNotifier.isLoading
-                                    ? Center(
+                                    ? const Center(
                                         child: CircularProgressIndicator(
                                           color: primaryColor,
                                         ),
@@ -189,7 +189,7 @@ class _AllScreenState extends State<AllScreen> {
                                             context,
                                             MaterialPageRoute(
                                               builder: ((context) =>
-                                                  PaymentScreen()),
+                                                  const PaymentScreen()),
                                             ),
                                           );
                                         } else if (objNotificationNotifier
@@ -294,17 +294,15 @@ class _AllScreenState extends State<AllScreen> {
                                                                       "multiDate"
                                                                   ? true
                                                                   : false,
-                                                              name: objNotificationNotifier
+                                                              name: "${objNotificationNotifier
                                                                       .lstNotificationModel[
                                                                           index]
                                                                       .userDetails!
-                                                                      .firstName! +
-                                                                  " " +
-                                                                  objNotificationNotifier
+                                                                      .firstName!} ${objNotificationNotifier
                                                                       .lstNotificationModel[
                                                                           index]
                                                                       .userDetails!
-                                                                      .lastName!,
+                                                                      .lastName!}",
                                                               profile: objNotificationNotifier
                                                                   .lstNotificationModel[
                                                                       index]
@@ -342,7 +340,7 @@ class _AllScreenState extends State<AllScreen> {
                                                                     crossAxisAlignment:
                                                                         CrossAxisAlignment
                                                                             .center,
-                                                                    children: [
+                                                                    children: const [
                                                                       CircularProgressIndicator(
                                                                         color:
                                                                             primaryColor,
@@ -455,11 +453,11 @@ class _AllScreenState extends State<AllScreen> {
                                                                             width *
                                                                                 0.036),
                                                               ),
-                                                              TextSpan(
+                                                              const TextSpan(
                                                                   text: "\n"),
                                                               TextSpan(
                                                                 text: toBeginningOfSentenceCase(
-                                                                        "${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstNotificationModel[index].time!)}")
+                                                                        DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstNotificationModel[index].time!))
                                                                     .toString()
                                                                     .replaceAll(
                                                                         "PM",
@@ -473,7 +471,7 @@ class _AllScreenState extends State<AllScreen> {
                                                                     .textTheme
                                                                     .bodyText1!
                                                                     .copyWith(
-                                                                        color: Color(
+                                                                        color: const Color(
                                                                             0xffCECECE),
                                                                         height:
                                                                             1.4,
@@ -547,12 +545,12 @@ class _AllScreenState extends State<AllScreen> {
                                                                             fontSize:
                                                                                 width * 0.036),
                                                                   ),
-                                                                  TextSpan(
+                                                                  const TextSpan(
                                                                       text:
                                                                           "\n"),
                                                                   TextSpan(
                                                                     text: toBeginningOfSentenceCase(
-                                                                            "${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstNotificationModel[index].time!)}")
+                                                                            DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstNotificationModel[index].time!))
                                                                         .toString()
                                                                         .replaceAll(
                                                                             "PM",
@@ -566,7 +564,7 @@ class _AllScreenState extends State<AllScreen> {
                                                                         .textTheme
                                                                         .bodyText1!
                                                                         .copyWith(
-                                                                            color: Color(
+                                                                            color: const Color(
                                                                                 0xffCECECE),
                                                                             height:
                                                                                 1.4,
@@ -615,11 +613,11 @@ class _AllScreenState extends State<AllScreen> {
                                                                             fontSize:
                                                                                 width * 0.036),
                                                                       ),
-                                                                      TextSpan(
+                                                                      const TextSpan(
                                                                           text:
                                                                               "\n"),
                                                                       TextSpan(
-                                                                        text: toBeginningOfSentenceCase("${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstNotificationModel[index].time!)}")
+                                                                        text: toBeginningOfSentenceCase(DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstNotificationModel[index].time!))
                                                                             .toString()
                                                                             .replaceAll("PM",
                                                                                 "pm")
@@ -627,7 +625,7 @@ class _AllScreenState extends State<AllScreen> {
                                                                                 "am"),
                                                                         // '${DateFormat('EEE, MMM dd, hh:mm aa ').format(objNotificationNotifier.lstNotificationModel[index].time!)[0].toUpperCase()}${(DateFormat('EEE, MMM d, h:m aa ').format(objNotificationNotifier.lstNotificationModel[index].time!).substring(1)).replaceAll("PM", "pm").replaceAll("AM", "am")}',
                                                                         style: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
-                                                                            color: Color(
+                                                                            color: const Color(
                                                                                 0xffCECECE),
                                                                             height:
                                                                                 1.4,
@@ -659,11 +657,11 @@ class _AllScreenState extends State<AllScreen> {
                                                                             fontSize:
                                                                                 width * 0.036),
                                                                       ),
-                                                                      TextSpan(
+                                                                      const TextSpan(
                                                                           text:
                                                                               "\n"),
                                                                       TextSpan(
-                                                                        text: toBeginningOfSentenceCase("${DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstNotificationModel[index].time!)}")
+                                                                        text: toBeginningOfSentenceCase(DateFormat('EEE MMM d, h:mm aa ').format(objNotificationNotifier.lstNotificationModel[index].time!))
                                                                             .toString()
                                                                             .replaceAll("PM",
                                                                                 "pm")
@@ -671,7 +669,7 @@ class _AllScreenState extends State<AllScreen> {
                                                                                 "am"),
                                                                         // '${DateFormat('EEE, MMM dd, hh:mm aa ').format(objNotificationNotifier.lstNotificationModel[index].time!)[0].toUpperCase()}${(DateFormat('EEE, MMM d, h:m aa ').format(objNotificationNotifier.lstNotificationModel[index].time!).substring(1)).replaceAll("PM", "pm").replaceAll("AM", "am")}',
                                                                         style: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
-                                                                            color: Color(
+                                                                            color: const Color(
                                                                                 0xffCECECE),
                                                                             height:
                                                                                 1.4,

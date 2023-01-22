@@ -123,5 +123,6 @@ class ProviderNotifier extends ChangeNotifier {
     {"name": TextUtils.removeFilter, "isSelect": false},
   ];
 
+  @override
   notifyListeners();
 }

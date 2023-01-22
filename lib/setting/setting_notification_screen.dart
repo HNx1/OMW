@@ -293,7 +293,7 @@ class _settingNotificationScreenState extends State<settingNotificationScreen> {
                                 .bodyText1!
                                 .copyWith(
                                     fontSize: width * 0.044,
-                                    color: Color(0xff6C6C6C),
+                                    color: const Color(0xff6C6C6C),
                                     fontWeight: FontWeight.w400),
                           ),
                           trailing: Icon(

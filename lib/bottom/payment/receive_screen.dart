@@ -30,7 +30,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
     final objPaymentNotifier = context.watch<PaymentNotifier>();
     return objPaymentNotifier.isLoading &&
             objPaymentNotifier.lstofOfReceivedpayments.isEmpty
-        ? Center(
+        ? const Center(
             child: CircularProgressIndicator(
               color: primaryColor,
             ),
@@ -57,7 +57,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                   padding: EdgeInsets.zero,
                   itemCount: objPaymentNotifier.lstofOfReceivedpayments.length,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
                       margin: EdgeInsets.only(
@@ -79,11 +79,11 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                                     width: height * 0.058,
                                     fit: BoxFit.cover,
                                     placeholder: (context, url) =>
-                                        CircularProgressIndicator(
+                                        const CircularProgressIndicator(
                                       color: primaryColor,
                                     ),
                                     errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
+                                        const Icon(Icons.error),
                                   )),
                             ],
                           ),
@@ -103,7 +103,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                                             height: 1.4,
                                             fontSize: width * 0.04),
                                     children: [
-                                      TextSpan(text: " "),
+                                      const TextSpan(text: " "),
                                       TextSpan(
                                         text: "has paid you ",
                                         style: AppTheme.getTheme()
@@ -115,13 +115,12 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                                                 fontSize: width * 0.036),
                                       ),
                                       TextSpan(
-                                        text: "£" +
-                                            double.parse(objPaymentNotifier
+                                        text: "£${double.parse(objPaymentNotifier
                                                     .lstofOfReceivedpayments[
                                                         index]
                                                     .amount
                                                     .toString())
-                                                .toStringAsFixed(2),
+                                                .toStringAsFixed(2)}",
                                         style: AppTheme.getTheme()
                                             .textTheme
                                             .bodyText2!
@@ -130,7 +129,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                                                 height: 1.4,
                                                 fontSize: width * 0.046),
                                       ),
-                                      TextSpan(text: " "),
+                                      const TextSpan(text: " "),
                                       TextSpan(
                                         text: "for the event of ",
                                         style: AppTheme.getTheme()
@@ -141,7 +140,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                                                 height: 1.4,
                                                 fontSize: width * 0.036),
                                       ),
-                                      TextSpan(text: " "),
+                                      const TextSpan(text: " "),
                                       TextSpan(
                                         text: objPaymentNotifier
                                             .lstofOfReceivedpayments[index]
@@ -154,7 +153,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                                                 height: 1.4,
                                                 fontSize: width * 0.04),
                                       ),
-                                      TextSpan(text: "\n"),
+                                      const TextSpan(text: "\n"),
                                       TextSpan(
                                         text:
                                             '${DateFormat('EEE, MMM dd, hh:mm aa ').format(objPaymentNotifier.lstofOfReceivedpayments[index].paymentTime!)[0].toUpperCase()}${(DateFormat('EEE, MMM dd, hh:mm aa ').format(objPaymentNotifier.lstofOfReceivedpayments[index].paymentTime!).substring(1)).toLowerCase()}',
@@ -162,7 +161,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
                                             .textTheme
                                             .bodyText1!
                                             .copyWith(
-                                                color: Color(0xffCECECE),
+                                                color: const Color(0xffCECECE),
                                                 height: 1.4,
                                                 fontSize: width * 0.036),
                                       ),

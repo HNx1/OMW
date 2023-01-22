@@ -44,7 +44,7 @@ class AllChat {
         0;
   }
 
-  UserModel objUsers = new UserModel();
+  UserModel objUsers = UserModel();
   getUserData() async {
     try {
       isLoading = true;
@@ -52,10 +52,10 @@ class AllChat {
           .collection('users')
           .where("uid", isEqualTo: friendId)
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
           objUsers = UserModel.parseSnapshot(docData);
-          friendUsername = objUsers.firstName! + " " + objUsers.lastName!;
+          friendUsername = "${objUsers.firstName!} ${objUsers.lastName!}";
           UserProfile = objUsers.userProfile!;
           friendFCMToken = objUsers.fcmToken!;
           userPhone = objUsers.phoneNumber!;
@@ -74,7 +74,7 @@ class AllChat {
           .collection('groups')
           .where("docID", isEqualTo: conversationId)
           .get();
-      if (result.docs.length > 0) {
+      if (result.docs.isNotEmpty) {
         for (var docData in result.docs) {
           GroupModel objGroupModel = GroupModel.parseSnapshot(docData);
           friendUsername = objGroupModel.groupName;
@@ -238,16 +238,16 @@ class AllChat {
           .where('readAt', isNull: true)
           .get();
 
-      snapshot.docs.forEach((document) {
+      for (var document in snapshot.docs) {
         batch.update(document.reference, {'readAt': now});
-      });
+      }
 
       await batch.commit();
       await conversationUpdated();
 
-      messages!.forEach((element) {
+      for (var element in messages!) {
         element.readAt ??= now.toDate();
-      });
+      }
     }
   }
 

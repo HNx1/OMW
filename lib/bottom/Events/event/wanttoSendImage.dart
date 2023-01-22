@@ -129,7 +129,7 @@ class _WantSendImageState extends State<WantSendImage> {
                     ),
                   ),
                   isloader == true
-                      ? Center(
+                      ? const Center(
                           child: CircularProgressIndicator(
                             color: primaryColor,
                           ),

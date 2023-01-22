@@ -8,10 +8,8 @@ import 'package:provider/provider.dart';
 import '../../constant/constants.dart';
 import '../../constant/theme.dart';
 import '../../model/createEvent_model.dart';
-import '../../notifier/authenication_notifier.dart';
 import '../../notifier/event_notifier.dart';
 import '../../notifier/notication_notifier.dart';
-import '../../utils/textUtils.dart';
 import '../../widget/commonButton.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -70,19 +68,19 @@ class _MultiSelectionState extends State<MultiSelection> {
         });
         if (objCreateEventNotifier.getEventDetails.isNotificationSent ==
             false) {
-          objCreateEventNotifier.getEventDetails.allDates!.forEach((element) {
-            element.guestResponse!.forEach((element2) {
+          for (var element in objCreateEventNotifier.getEventDetails.allDates!) {
+            for (var element2 in element.guestResponse!) {
               allResponse.add(element2.status);
-            });
+            }
             setState(() {});
             stackofAnswerIsFull.add(allResponse);
             allResponse = [];
-          });
-          stackofAnswerIsFull.forEach((element) {
+          }
+          for (var element in stackofAnswerIsFull) {
             if (element.every((e) => e == 0)) {
               lstofgoingresponse.addAll([element]);
             }
-          });
+          }
           print("stackofAnswerIsFull=>$stackofAnswerIsFull");
 
           print("lstofgoingresponse===>$lstofgoingresponse");
@@ -181,7 +179,7 @@ class _MultiSelectionState extends State<MultiSelection> {
         children: [
           Expanded(
             child: isLoading
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                       color: primaryColor,
                     ),
@@ -217,11 +215,11 @@ class _MultiSelectionState extends State<MultiSelection> {
                               ),
                               child: Table(
                                 border: TableBorder.symmetric(
-                                  inside: BorderSide(
+                                  inside: const BorderSide(
                                       color: ConstColor.textFormFieldColor,
                                       width: 1.2),
                                 ),
-                                columnWidths: {
+                                columnWidths: const {
                                   0: FlexColumnWidth(50),
                                   1: FlexColumnWidth(20),
                                   2: FlexColumnWidth(20),
@@ -241,12 +239,12 @@ class _MultiSelectionState extends State<MultiSelection> {
                                             height * 0.03,
                                           ),
                                           child: Text(
-                                            "${DateFormat('d MMM - yyyy').format(
+                                            DateFormat('d MMM - yyyy').format(
                                               objCreateEventNotifier
                                                   .getEventDetails
                                                   .allDates![i]
                                                   .selectedDate!,
-                                            )}",
+                                            ),
                                             style: AppTheme.getTheme()
                                                 .textTheme
                                                 .bodyText1!
@@ -280,16 +278,15 @@ class _MultiSelectionState extends State<MultiSelection> {
                                                     .objguest!
                                                     .status = 0;
                                               });
-                                              objCreateEventNotifier
+                                              for (var element in objCreateEventNotifier
                                                   .getEventDetails
                                                   .allDates![i]
-                                                  .guestResponse!
-                                                  .forEach((element) {
+                                                  .guestResponse!) {
                                                 if (element.guestID ==
                                                     _auth.currentUser!.uid) {
                                                   element.status = 0;
                                                 }
-                                              });
+                                              }
                                             }
                                           },
                                           child: Container(
@@ -329,16 +326,15 @@ class _MultiSelectionState extends State<MultiSelection> {
                                                     .objguest!
                                                     .status = 2;
                                               });
-                                              objCreateEventNotifier
+                                              for (var element in objCreateEventNotifier
                                                   .getEventDetails
                                                   .allDates![i]
-                                                  .guestResponse!
-                                                  .forEach((element) {
+                                                  .guestResponse!) {
                                                 if (element.guestID ==
                                                     _auth.currentUser!.uid) {
                                                   element.status = 2;
                                                 }
-                                              });
+                                              }
                                             }
                                           },
                                           child: Container(
@@ -377,16 +373,15 @@ class _MultiSelectionState extends State<MultiSelection> {
                                                     .objguest!
                                                     .status = 1;
                                               });
-                                              objCreateEventNotifier
+                                              for (var element in objCreateEventNotifier
                                                   .getEventDetails
                                                   .allDates![i]
-                                                  .guestResponse!
-                                                  .forEach((element) {
+                                                  .guestResponse!) {
                                                 if (element.guestID ==
                                                     _auth.currentUser!.uid) {
                                                   element.status = 1;
                                                 }
-                                              });
+                                              }
                                             }
                                           },
                                           child: Container(
@@ -421,7 +416,7 @@ class _MultiSelectionState extends State<MultiSelection> {
           Stack(
             children: [
               isLoad
-                  ? Center(
+                  ? const Center(
                       child: CircularProgressIndicator(
                         color: primaryColor,
                       ),
@@ -446,7 +441,7 @@ class _MultiSelectionState extends State<MultiSelection> {
                         bottom: height * 0.02,
                         left: width * 0.03,
                         right: width * 0.03),
-                    child: CommonButton(name: "Submit"),
+                    child: const CommonButton(name: "Submit"),
                   ),
                 ),
               ),

@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -81,12 +80,12 @@ class _EditEventScreenState extends State<EditEventScreen> {
               oldCohostList.contains(e.uid) || e.uid == _auth.currentUser!.uid)
           .toList();
       cohostList.sort((a, b) => a.uid == _auth.currentUser!.uid ? -1 : 1);
-      print('Cohost list: ${oldCohostList}');
+      print('Cohost list: $oldCohostList');
       print('Cohost list: ${cohostList.map((e) => e.firstName)}');
-      selectedStartDate =
-          '${DateFormat('MMM dd, yyyy').format(objCreateEventNotifier.getEventData.eventStartDate!)}';
-      selectedEndDate =
-          '${DateFormat('MMM dd, yyyy').format(objCreateEventNotifier.getEventData.eventEndDate!)}';
+      selectedStartDate = DateFormat('MMM dd, yyyy')
+          .format(objCreateEventNotifier.getEventData.eventStartDate!);
+      selectedEndDate = DateFormat('MMM dd, yyyy')
+          .format(objCreateEventNotifier.getEventData.eventEndDate!);
       eventStartDate = objCreateEventNotifier.getEventData.eventStartDate!;
       eventEndDate = objCreateEventNotifier.getEventData.eventEndDate!;
       inviteFriends = objCreateEventNotifier.getEventData.inviteFriends!;
@@ -112,10 +111,10 @@ class _EditEventScreenState extends State<EditEventScreen> {
 
   var formKey = GlobalKey<FormState>();
   bool isLoader = false;
-  TextEditingController _eventnameController = TextEditingController();
-  TextEditingController _LocationController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
-  TextEditingController _addCoHostController = TextEditingController();
+  final TextEditingController _eventnameController = TextEditingController();
+  final TextEditingController _LocationController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _addCoHostController = TextEditingController();
 
   DateTime eventStartDate = DateTime.now();
   DateTime eventEndDate = DateTime.now();
@@ -138,7 +137,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
 
   onStartDateSubmit(val) {
     setState(() {
-      selectedStartDate = '${DateFormat('MMM dd, yyyy').format(val)}';
+      selectedStartDate = DateFormat('MMM dd, yyyy').format(val);
       eventStartDate = val;
 
       print(eventStartDate);
@@ -152,18 +151,20 @@ class _EditEventScreenState extends State<EditEventScreen> {
     var objCreateEventNotifier =
         Provider.of<CreateEventNotifier>(context, listen: false);
     setState(() {
-      selectedStartDate = '${DateFormat('MMM dd, yyyy').format(args.value)}';
+      selectedStartDate = DateFormat('MMM dd, yyyy').format(args.value);
       eventStartDate = args.value;
       if (selectedEndDate ==
-          '${DateFormat('MMM dd, yyyy').format(objCreateEventNotifier.getEventData.eventEndDate!)}')
+          DateFormat('MMM dd, yyyy')
+              .format(objCreateEventNotifier.getEventData.eventEndDate!)) {
         selectedEndDate = "";
+      }
       print(eventStartDate);
     });
   }
 
   void onEndDateChanged(DateRangePickerSelectionChangedArgs args) {
     setState(() {
-      selectedEndDate = '${DateFormat('MMM dd, yyyy').format(args.value)}';
+      selectedEndDate = DateFormat('MMM dd, yyyy').format(args.value);
       eventEndDate = args.value;
       print(eventEndDate);
     });
@@ -185,7 +186,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
 
   onEndDateSubmit(val) {
     setState(() {
-      selectedEndDate = '${DateFormat('MMM dd, yyyy').format(val)}';
+      selectedEndDate = DateFormat('MMM dd, yyyy').format(val);
       eventEndDate = val;
 
       print(eventEndDate);
@@ -254,7 +255,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
     }
   }
 
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   CalendarFormat _calendarFormat = CalendarFormat.week;
   DateTime _focusedDay = DateTime.now();
 
@@ -439,8 +440,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                     barrierDismissible: false,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        backgroundColor:
-                                            Color.fromARGB(255, 15, 15, 15),
+                                        backgroundColor: const Color.fromARGB(
+                                            255, 15, 15, 15),
                                         title: Container(
                                           margin: EdgeInsets.only(
                                               left: width * 0.03,
@@ -511,7 +512,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                     },
                                   );
                                 },
-                                child: ErrorButton(name: "Delete Event"))
+                                child: const ErrorButton(name: "Delete Event"))
                             : GestureDetector(
                                 onTap: () async {
                                   cohostList.removeWhere((element) =>
@@ -524,7 +525,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                   );
                                   Navigator.pop(context);
                                 },
-                                child: CommonButton(name: "Leave as Co-Host")),
+                                child: const CommonButton(
+                                    name: "Leave as Co-Host")),
 
                         ///------------ event name textfield----------
 
@@ -553,35 +555,35 @@ class _EditEventScreenState extends State<EditEventScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               disabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
@@ -594,7 +596,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                   .bodyText1!
                                   .copyWith(
                                     fontSize: width * 0.038,
-                                    color: Color(0xff6C6C6C),
+                                    color: const Color(0xff6C6C6C),
                                   ),
                             ),
                             validator: validateName,
@@ -661,15 +663,15 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                                             ? (selectedStartDate ==
                                                                     selectedEndDate
                                                                 ? selectedStartDate
-                                                                : selectedStartDate +
-                                                                    " -\n" +
-                                                                    selectedEndDate)
+                                                                : "$selectedStartDate -\n$selectedEndDate")
                                                             : TextUtils
                                                                 .Enterdate,
                                                   )
-                                                : CommanLabeltext2(
-                                                    '${DateFormat('MMM dd, yyyy').format(allChoosingDates.first)}' +
-                                                        '-\n${DateFormat('MMM dd, yyyy').format(allChoosingDates.last)}'),
+                                                : CommanLabeltext2(DateFormat(
+                                                            'MMM dd, yyyy')
+                                                        .format(allChoosingDates
+                                                            .first) +
+                                                    '-\n${DateFormat('MMM dd, yyyy').format(allChoosingDates.last)}'),
                                             // allChoosingDates.isEmpty ||
                                             //         allChoosingDates.length == 1
                                             //     ? CommanLabeltext2(
@@ -781,9 +783,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                                     ? selectStartTime
                                                     : selectStartTime != "" &&
                                                             selectEndTime != ""
-                                                        ? selectStartTime +
-                                                            " -\n" +
-                                                            selectEndTime
+                                                        ? "$selectStartTime -\n$selectEndTime"
                                                         : TextUtils.time,
                                               ),
                                             ),
@@ -883,16 +883,18 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                   ? Container(
                                       margin:
                                           EdgeInsets.only(top: height * 0.023),
-                                      color: Color.fromARGB(255, 15, 15, 15),
+                                      color:
+                                          const Color.fromARGB(255, 15, 15, 15),
                                       child: TableCalendar(
                                         calendarStyle: CalendarStyle(
                                           isTodayHighlighted: true,
                                           cellPadding: EdgeInsets.zero,
                                           cellMargin:
                                               EdgeInsets.all(height * 0.014),
-                                          selectedDecoration: BoxDecoration(
-                                              color: primaryColor,
-                                              shape: BoxShape.rectangle),
+                                          selectedDecoration:
+                                              const BoxDecoration(
+                                                  color: primaryColor,
+                                                  shape: BoxShape.rectangle),
                                           selectedTextStyle: AppTheme.getTheme()
                                               .textTheme
                                               .bodyText1!
@@ -908,25 +910,25 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                                   color:
                                                       ConstColor.primaryColor,
                                                   fontWeight: FontWeight.w400),
-                                          todayDecoration: BoxDecoration(
+                                          todayDecoration: const BoxDecoration(
                                               color: Color.fromARGB(
                                                   255, 15, 15, 15),
                                               shape: BoxShape.circle),
-                                          disabledTextStyle: TextStyle(
+                                          disabledTextStyle: const TextStyle(
                                             color: Colors.grey,
                                           ),
-                                          defaultTextStyle: TextStyle(
+                                          defaultTextStyle: const TextStyle(
                                             color: Colors.white,
                                           ),
-                                          outsideTextStyle: TextStyle(
+                                          outsideTextStyle: const TextStyle(
                                             color: Colors.grey,
                                           ),
-                                          weekendTextStyle:
-                                              TextStyle(color: Colors.white),
+                                          weekendTextStyle: const TextStyle(
+                                              color: Colors.white),
                                         ),
                                         startingDayOfWeek:
                                             StartingDayOfWeek.monday,
-                                        daysOfWeekStyle: DaysOfWeekStyle(
+                                        daysOfWeekStyle: const DaysOfWeekStyle(
                                           weekdayStyle:
                                               TextStyle(color: Colors.white),
                                           weekendStyle:
@@ -936,12 +938,12 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                           formatButtonVisible: false,
                                           leftChevronVisible: true,
                                           rightChevronVisible: true,
-                                          leftChevronIcon: Icon(
+                                          leftChevronIcon: const Icon(
                                             Icons.keyboard_arrow_left,
                                             color: ConstColor.white_Color,
                                           ),
                                           titleCentered: true,
-                                          rightChevronIcon: Icon(
+                                          rightChevronIcon: const Icon(
                                             Icons.keyboard_arrow_right,
                                             color: ConstColor.white_Color,
                                           ),
@@ -954,7 +956,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                         ),
                                         firstDay: DateTime.now(),
                                         lastDay: DateTime.now().add(
-                                          Duration(days: 500),
+                                          const Duration(days: 500),
                                         ),
                                         focusedDay: _focusedDay,
                                         calendarFormat: _calendarFormat,
@@ -1047,35 +1049,35 @@ class _EditEventScreenState extends State<EditEventScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               disabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.1),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
@@ -1088,7 +1090,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                   .bodyText1!
                                   .copyWith(
                                     fontSize: width * 0.038,
-                                    color: Color(0xff6C6C6C),
+                                    color: const Color(0xff6C6C6C),
                                   ),
                             ),
                           ),
@@ -1122,35 +1124,35 @@ class _EditEventScreenState extends State<EditEventScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               disabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
@@ -1163,7 +1165,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                   .bodyText1!
                                   .copyWith(
                                     fontSize: width * 0.038,
-                                    color: Color(0xff6C6C6C),
+                                    color: const Color(0xff6C6C6C),
                                   ),
                             ),
                             validator: validateDescription,
@@ -1174,7 +1176,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                         GestureDetector(
                           onTap: () {
                             showModalBottomSheet(
-                              shape: RoundedRectangleBorder(
+                              shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(20),
                                   topRight: Radius.circular(20),
@@ -1206,7 +1208,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                             ),
                                           ),
                                         ),
-                                        Divider(
+                                        const Divider(
                                           thickness: 2,
                                         ),
                                         GestureDetector(
@@ -1228,7 +1230,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                             ),
                                           ),
                                         ),
-                                        Divider(
+                                        const Divider(
                                           thickness: 2,
                                         ),
                                         GestureDetector(
@@ -1281,7 +1283,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                         .bodyText1!
                                         .copyWith(
                                           fontSize: width * 0.038,
-                                          color: Color(0xff6C6C6C),
+                                          color: const Color(0xff6C6C6C),
                                         ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -1415,7 +1417,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                   if (hasFocus) {
                                     _scrollController.animateTo(height * 1.6,
                                         curve: Curves.linear,
-                                        duration: Duration(milliseconds: 500));
+                                        duration:
+                                            const Duration(milliseconds: 500));
                                   }
                                 },
                                 child: TextFormField(
@@ -1487,14 +1490,15 @@ class _EditEventScreenState extends State<EditEventScreen> {
                         //     : Container(),
                         ListView.builder(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           padding: EdgeInsets.zero,
                           itemCount: min(searchList.length, 5),
                           itemBuilder: (BuildContext context, int index) {
                             return cohostList.contains(searchList[index])
                                 ? Container()
                                 : Container(
-                                    color: Color.fromARGB(255, 15, 15, 15),
+                                    color:
+                                        const Color.fromARGB(255, 15, 15, 15),
                                     child: Column(
                                       children: [
                                         GestureDetector(
@@ -1502,14 +1506,12 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                             setState(() {
                                               print(searchList[index].uid);
                                               cohostList.add(searchList[index]);
-                                              co_host += ", " +
-                                                  searchList[index].firstName! +
-                                                  " " +
-                                                  searchList[index].lastName!;
+                                              co_host +=
+                                                  ", ${searchList[index].firstName!} ${searchList[index].lastName!}";
                                               _addCoHostController.text = "";
                                             });
                                             print(
-                                                "Co host list ====> ${cohostList}");
+                                                "Co host list ====> $cohostList");
 
                                             FocusScope.of(context)
                                                 .requestFocus(FocusNode());
@@ -1523,9 +1525,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                               margin: EdgeInsets.only(
                                                   left: width * 0.05),
                                               child: CommanLabeltext(
-                                                searchList[index].firstName! +
-                                                    " " +
-                                                    searchList[index].lastName!,
+                                                "${searchList[index].firstName!} ${searchList[index].lastName!}",
                                               ),
                                             ),
                                           ),
@@ -1567,7 +1567,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                     children: [
                                       ListView.builder(
                                         shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
                                         itemCount: cohostList.length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
@@ -1588,11 +1589,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                                                   .primaryColor),
                                                     )
                                                   : Text(
-                                                      cohostList[index]
-                                                              .firstName! +
-                                                          " " +
-                                                          cohostList[index]
-                                                              .lastName!,
+                                                      "${cohostList[index].firstName!} ${cohostList[index].lastName!}",
                                                       style: AppTheme.getTheme()
                                                           .textTheme
                                                           .bodyText2!
@@ -1651,7 +1648,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                         Stack(
                           children: [
                             isLoader == true
-                                ? Center(
+                                ? const Center(
                                     child: CircularProgressIndicator(
                                       color: primaryColor,
                                     ),
@@ -1726,7 +1723,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                         ? "11:59 PM"
                                         : selectEndTime;
                                     var selectedTime =
-                                        selectStartTime + " - " + endTime;
+                                        "$selectStartTime - $endTime";
 
                                     await geteventStartDateFromString();
                                     await geteventEndDateFromString();
@@ -1822,7 +1819,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                     });
                                   }
                                 },
-                                child: CommonButton(
+                                child: const CommonButton(
                                   name: "Update",
                                 ),
                               ),
@@ -1882,7 +1879,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
       onFromOKTap: () {
         if (selectStartTime == "") {
           setState(() {
-            selectStartTime = '${DateFormat('h:mm aa').format(DateTime.now())}';
+            selectStartTime = DateFormat('h:mm aa').format(DateTime.now());
           });
         }
         Navigator.pop(context);
@@ -1895,14 +1892,14 @@ class _EditEventScreenState extends State<EditEventScreen> {
       onToOkTap: () {
         setState(() {
           if (selectEndTime == "") {
-            selectEndTime = '${DateFormat('h:mm aa').format(DateTime.now())}';
+            selectEndTime = DateFormat('h:mm aa').format(DateTime.now());
           }
           setState(() {
             selectEndTime;
           });
         });
         Navigator.pop(context);
-        print('================>${selectEndTime}');
+        print('================>$selectEndTime');
       },
       onToCancelTap: () {
         if (selectEndTime != "") {
@@ -1914,18 +1911,18 @@ class _EditEventScreenState extends State<EditEventScreen> {
         }
         Navigator.pop(context);
 
-        print('================>${selectEndTime}');
+        print('================>$selectEndTime');
       },
       onEndDateTimeChanged: (newDateTime) {
         setState(() {
-          selectEndTime = '${DateFormat('h:mm aa').format(newDateTime)}';
+          selectEndTime = DateFormat('h:mm aa').format(newDateTime);
           currentTime2 = newDateTime;
           print(newDateTime);
         });
       },
       onStartDateTimeChanged: (newDateTime) {
         setState(() {
-          selectStartTime = '${DateFormat('h:mm aa').format(newDateTime)}';
+          selectStartTime = DateFormat('h:mm aa').format(newDateTime);
 
           currentTime = newDateTime;
         });

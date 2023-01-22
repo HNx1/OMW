@@ -45,9 +45,9 @@ class _CoHostEditEventScreenState extends State<CoHostEditEventScreen> {
           objCreateEventNotifier.getEventData.description!;
       _addCoHostController.text = objCreateEventNotifier.getEventData.coHost!;
       selectedStartDate =
-          '${DateFormat('MMM dd, yyyy').format(objCreateEventNotifier.getEventData.eventStartDate!)}';
+          DateFormat('MMM dd, yyyy').format(objCreateEventNotifier.getEventData.eventStartDate!);
       selectedEndDate =
-          '${DateFormat('MMM dd, yyyy').format(objCreateEventNotifier.getEventData.eventEndDate!)}';
+          DateFormat('MMM dd, yyyy').format(objCreateEventNotifier.getEventData.eventEndDate!);
       eventStartDate = objCreateEventNotifier.getEventData.eventStartDate!;
       eventEndDate = objCreateEventNotifier.getEventData.eventEndDate!;
       inviteFriends = objCreateEventNotifier.getEventData.inviteFriends!;
@@ -65,10 +65,10 @@ class _CoHostEditEventScreenState extends State<CoHostEditEventScreen> {
   }
 
   var formKey = GlobalKey<FormState>();
-  TextEditingController _eventnameController = TextEditingController();
-  TextEditingController _LocationController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
-  TextEditingController _addCoHostController = TextEditingController();
+  final TextEditingController _eventnameController = TextEditingController();
+  final TextEditingController _LocationController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _addCoHostController = TextEditingController();
 
   DateTime eventStartDate = DateTime.now();
   DateTime eventEndDate = DateTime.now();
@@ -176,35 +176,35 @@ class _CoHostEditEventScreenState extends State<CoHostEditEventScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               disabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.circular(height * 0.03),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: ConstColor.textFormFieldColor,
                                 ),
                               ),
@@ -217,7 +217,7 @@ class _CoHostEditEventScreenState extends State<CoHostEditEventScreen> {
                                   .bodyText1!
                                   .copyWith(
                                     fontSize: width * 0.038,
-                                    color: Color(0xff6C6C6C),
+                                    color: const Color(0xff6C6C6C),
                                   ),
                             ),
                             validator: validateDescription,
@@ -301,7 +301,7 @@ class _CoHostEditEventScreenState extends State<CoHostEditEventScreen> {
                                     ? "11:59 PM"
                                     : selectEndTime;
                                 var selectedTime =
-                                    selectStartTime + " - " + endTime;
+                                    "$selectStartTime - $endTime";
 
                                 if (imageFile != null && imageFile != "") {
                                   var imageName =
@@ -385,7 +385,7 @@ class _CoHostEditEventScreenState extends State<CoHostEditEventScreen> {
                                 });
                               }
                             },
-                            child: CommonButton(
+                            child: const CommonButton(
                               name: "Update",
                             ),
                           ),

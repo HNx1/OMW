@@ -23,7 +23,7 @@ class FindFriendPage extends StatefulWidget {
 }
 
 class _FindFriendPageState extends State<FindFriendPage> {
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
   bool isLoading = true;
   @override
   void initState() {
@@ -140,7 +140,7 @@ class _FindFriendPageState extends State<FindFriendPage> {
                   border: InputBorder.none,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(height * 0.1),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: ConstColor.textFormFieldColor,
                     ),
                   ),
@@ -158,32 +158,32 @@ class _FindFriendPageState extends State<FindFriendPage> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(height * 0.1),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: ConstColor.textFormFieldColor,
                     ),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(height * 0.1),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: ConstColor.textFormFieldColor,
                     ),
                   ),
                   disabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(height * 0.1),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: ConstColor.textFormFieldColor,
                     ),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(height * 0.1),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: ConstColor.textFormFieldColor,
                     ),
                   ),
                   hintText: TextUtils.Nameorphone,
                   hintStyle: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
                         fontSize: width * 0.045,
-                        color: Color(0xff6C6C6C),
+                        color: const Color(0xff6C6C6C),
                       ),
                 ),
               ),
@@ -191,7 +191,7 @@ class _FindFriendPageState extends State<FindFriendPage> {
 
             Expanded(
                 child: isLoading == true && objGroupNotifier.searchList.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(
                           color: primaryColor,
                         ),
@@ -230,7 +230,7 @@ class _FindFriendPageState extends State<FindFriendPage> {
                                 child: Stack(
                                   children: [
                                     objGroupNotifier.isLoading
-                                        ? Center(
+                                        ? const Center(
                                             child: CircularProgressIndicator(
                                               color: primaryColor,
                                             ),
@@ -270,13 +270,11 @@ class _FindFriendPageState extends State<FindFriendPage> {
                                                 UserProfile: objGroupNotifier
                                                     .searchList[index]
                                                     .userProfile,
-                                                friendUsername: objGroupNotifier
+                                                friendUsername: "${objGroupNotifier
                                                         .searchList[index]
-                                                        .firstName! +
-                                                    " " +
-                                                    objGroupNotifier
+                                                        .firstName!} ${objGroupNotifier
                                                         .searchList[index]
-                                                        .lastName!,
+                                                        .lastName!}",
                                                 userPhone: objGroupNotifier
                                                     .searchList[index]
                                                     .phoneNumber!,
@@ -324,14 +322,14 @@ class _FindFriendPageState extends State<FindFriendPage> {
                                                             fit: BoxFit.cover,
                                                             placeholder: (context,
                                                                     url) =>
-                                                                CircularProgressIndicator(
+                                                                const CircularProgressIndicator(
                                                               color:
                                                                   primaryColor,
                                                             ),
                                                             errorWidget:
                                                                 (context, url,
                                                                         error) =>
-                                                                    Icon(Icons
+                                                                    const Icon(Icons
                                                                         .error),
                                                           ),
                                                         ),
@@ -352,15 +350,13 @@ class _FindFriendPageState extends State<FindFriendPage> {
                                                                         height *
                                                                             0.005),
                                                                 child: Text(
-                                                                  objGroupNotifier
+                                                                  "${objGroupNotifier
                                                                           .searchList[
                                                                               index]
-                                                                          .firstName! +
-                                                                      " " +
-                                                                      objGroupNotifier
+                                                                          .firstName!} ${objGroupNotifier
                                                                           .searchList[
                                                                               index]
-                                                                          .lastName!,
+                                                                          .lastName!}",
                                                                   style: AppTheme
                                                                           .getTheme()
                                                                       .textTheme

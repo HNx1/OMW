@@ -21,7 +21,7 @@ class _DeleteChatMessageState extends State<DeleteChatMessage> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Color.fromARGB(255, 15, 15, 15),
+      backgroundColor: const Color.fromARGB(255, 15, 15, 15),
       title: Container(
         margin: EdgeInsets.only(left: width * 0.02, right: width * 0.02),
         child: Text(

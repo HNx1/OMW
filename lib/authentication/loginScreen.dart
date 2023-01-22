@@ -36,8 +36,8 @@ class _LoginScreenState extends State<LoginScreen> {
   dynamic passwordMatch;
   late final FirebaseMessaging _messaging;
   String? token;
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
   @override
@@ -156,35 +156,35 @@ class _LoginScreenState extends State<LoginScreen> {
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.circular(height * 0.1),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: ConstColor.textFormFieldColor,
                                   ),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.circular(height * 0.1),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: ConstColor.textFormFieldColor,
                                   ),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.circular(height * 0.1),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: ConstColor.textFormFieldColor,
                                   ),
                                 ),
                                 disabledBorder: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.circular(height * 0.1),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: ConstColor.textFormFieldColor,
                                   ),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.circular(height * 0.1),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: ConstColor.textFormFieldColor,
                                   ),
                                 ),
@@ -239,35 +239,35 @@ class _LoginScreenState extends State<LoginScreen> {
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.circular(height * 0.1),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: ConstColor.textFormFieldColor,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.circular(height * 0.1),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: ConstColor.textFormFieldColor,
                                     ),
                                   ),
                                   errorBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.circular(height * 0.1),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: ConstColor.textFormFieldColor,
                                     ),
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.circular(height * 0.1),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: ConstColor.textFormFieldColor,
                                     ),
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.circular(height * 0.1),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: ConstColor.textFormFieldColor,
                                     ),
                                   ),
@@ -293,7 +293,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ForgotPassword(
+                                        builder: (context) => const ForgotPassword(
                                               isSignUp: false,
                                             )));
                               },
@@ -321,7 +321,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   //-------------------------------Login Button View------------------------
                   objProviderNotifier.isLoading == true
-                      ? Center(
+                      ? const Center(
                           child: CircularProgressIndicator(
                             color: primaryColor,
                           ),
@@ -360,20 +360,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Navigator.pushReplacementNamed(
                                       context, Routes.Admin);
                                   PrefServices().setCurrentUserName(
-                                      objProviderNotifier.objUsers.firstName! +
-                                          " " +
-                                          objProviderNotifier
-                                              .objUsers.lastName!);
+                                      "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier
+                                              .objUsers.lastName!}");
                                 } else if (objProviderNotifier.objUsers.role ==
                                         "user" &&
                                     objProviderNotifier.objUsers.emailId ==
                                         _emailController.text.toLowerCase()) {
                                   PrefServices().setIsUserLoggedIn(true);
                                   PrefServices().setCurrentUserName(
-                                      objProviderNotifier.objUsers.firstName! +
-                                          " " +
-                                          objProviderNotifier
-                                              .objUsers.lastName!);
+                                      "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier
+                                              .objUsers.lastName!}");
                                   PrefServices().setCurrentUserId(
                                       objProviderNotifier.objUsers.uid!);
                                   PrefServices().setCurrentPhoneNumber(
@@ -391,7 +387,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                           }
                         },
-                        child: CommonButton(
+                        child: const CommonButton(
                           name: TextUtils.Login,
                         )),
                   )
@@ -404,7 +400,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                        text: TextUtils.DonthvAccount + " ",
+                        text: "${TextUtils.DonthvAccount} ",
                         style:
                             AppTheme.getTheme().textTheme.bodyText1!.copyWith(
                                   color: ConstColor.white_Color,

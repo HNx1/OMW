@@ -166,8 +166,8 @@ class CreateEventNotifier extends ChangeNotifier {
                         }
                       },
                     );
+                      }
                   }
-                }
               },
             );
           },
@@ -188,13 +188,13 @@ class CreateEventNotifier extends ChangeNotifier {
       try {
         getMyupcomingEventList =
             await ApiProvider().getListOfMyUpcomingEvents().then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].ownerID)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].lstUser = UserModel.parseSnapshot(docData);
                 }
@@ -202,6 +202,7 @@ class CreateEventNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
           return value;
         });
         print(
@@ -229,13 +230,13 @@ class CreateEventNotifier extends ChangeNotifier {
         getListOfMyUpcomingEventswithCoHostList = await ApiProvider()
             .getListOfMyUpcomingEventswithCoHost(name)
             .then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].ownerID)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].lstUser = UserModel.parseSnapshot(docData);
                 }
@@ -243,6 +244,7 @@ class CreateEventNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
           return value;
         });
         print(
@@ -270,13 +272,13 @@ class CreateEventNotifier extends ChangeNotifier {
         getListOfPastEventswithCoHostList = await ApiProvider()
             .getListOfMyPastEventswithCoHost(name)
             .then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].ownerID)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].lstUser = UserModel.parseSnapshot(docData);
                 }
@@ -284,6 +286,7 @@ class CreateEventNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
 
           return List.from(value.reversed);
         });
@@ -313,13 +316,13 @@ class CreateEventNotifier extends ChangeNotifier {
       try {
         getMyPastEventList =
             await ApiProvider().getListOfMyPastEvents().then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].ownerID)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].lstUser = UserModel.parseSnapshot(docData);
                 }
@@ -327,6 +330,7 @@ class CreateEventNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
 
           return value;
         });
@@ -407,27 +411,28 @@ class CreateEventNotifier extends ChangeNotifier {
 
         getupcomingEventList =
             await ApiProvider().getListOfUpcomingEvents().then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].ownerID)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].lstUser = UserModel.parseSnapshot(docData);
                 }
               }
-              value[i].allDates!.forEach((element) {
-                element.guestResponse!.forEach((element2) {
+              for (var element in value[i].allDates!) {
+                for (var element2 in element.guestResponse!) {
                   if (element2.guestID == _auth.currentUser!.uid) {
                     element.objguest = element2;
                   } else {}
-                });
-              });
+                }
+              }
             } catch (e) {
               print(e);
             }
+          }
           return value;
         });
 
@@ -462,7 +467,7 @@ class CreateEventNotifier extends ChangeNotifier {
                 .collection('users')
                 .where("uid", isEqualTo: eventHostUserId)
                 .get();
-            if (result.docs.length > 0) {
+            if (result.docs.isNotEmpty) {
               for (var docData in result.docs) {
                 value.lstUser = UserModel.parseSnapshot(docData);
               }
@@ -506,13 +511,13 @@ class CreateEventNotifier extends ChangeNotifier {
         getpastEventList = await ApiProvider()
             .getListOfpastEvents(_auth.currentUser!.uid)
             .then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].ownerID)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].lstUser = UserModel.parseSnapshot(docData);
                 }
@@ -520,6 +525,7 @@ class CreateEventNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
           return value;
         });
         getpastEventList
@@ -550,13 +556,13 @@ class CreateEventNotifier extends ChangeNotifier {
       try {
         loadAllEvents =
             await ApiProvider().getAllEventList().then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].ownerID)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].lstUser = UserModel.parseSnapshot(docData);
                 }
@@ -565,6 +571,7 @@ class CreateEventNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
           return value;
         });
         if (loadAllEvents.isNotEmpty) {
@@ -769,7 +776,7 @@ class CreateEventNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  CreateEventModel EventData = new CreateEventModel();
+  CreateEventModel EventData = CreateEventModel();
   CreateEventModel get getEventData => EventData;
   set setEventData(CreateEventModel val) {
     EventData = val;
@@ -1000,7 +1007,7 @@ class CreateEventNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  CreateEventModel objEvent = new CreateEventModel();
+  CreateEventModel objEvent = CreateEventModel();
   Future getNotificationEventDetails(String notificationId) async {
     isLoading = true;
 
@@ -1013,7 +1020,7 @@ class CreateEventNotifier extends ChangeNotifier {
               .collection('users')
               .where("uid", isEqualTo: value.ownerID)
               .get();
-          if (result.docs.length > 0) {
+          if (result.docs.isNotEmpty) {
             for (var docData in result.docs) {
               value.lstUser = UserModel.parseSnapshot(docData);
             }
@@ -1042,13 +1049,13 @@ class CreateEventNotifier extends ChangeNotifier {
         getMyPastEventList = await ApiProvider()
             .getListOfProfilePastEvent(userId)
             .then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].ownerID)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].lstUser = UserModel.parseSnapshot(docData);
                 }
@@ -1056,6 +1063,7 @@ class CreateEventNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
 
           return value;
         });
@@ -1085,13 +1093,13 @@ class CreateEventNotifier extends ChangeNotifier {
       try {
         list1 =
             await ApiProvider().getListOfpastEvents(user1).then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].ownerID)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].lstUser = UserModel.parseSnapshot(docData);
                 }
@@ -1099,6 +1107,7 @@ class CreateEventNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
 
           return value;
         });
@@ -1106,13 +1115,13 @@ class CreateEventNotifier extends ChangeNotifier {
         print("list1=====>${list1.map((e) => e.eventname).toSet()}");
         list2 =
             await ApiProvider().getListOfpastEvents(user2).then((value) async {
-          for (var i = 0; i < value.length; i++)
+          for (var i = 0; i < value.length; i++) {
             try {
               QuerySnapshot result = await FirebaseFirestore.instance
                   .collection('users')
                   .where("uid", isEqualTo: value[i].ownerID)
                   .get();
-              if (result.docs.length > 0) {
+              if (result.docs.isNotEmpty) {
                 for (var docData in result.docs) {
                   value[i].lstUser = UserModel.parseSnapshot(docData);
                 }
@@ -1120,17 +1129,17 @@ class CreateEventNotifier extends ChangeNotifier {
             } catch (e) {
               print(e);
             }
+          }
 
           return value;
         });
-        ;
         print("list2=====>${list2.map((e) => e.eventname).toSet()}");
         stringIntersection = list1
             .map((e) => e.docId)
             .toSet()
             .intersection(list2.map((e) => e.docId).toSet())
             .toList();
-        print("intersection:${stringIntersection}");
+        print("intersection:$stringIntersection");
         eventIntersection =
             List.from(list1.where((e) => stringIntersection.contains(e.docId)));
         eventIntersection

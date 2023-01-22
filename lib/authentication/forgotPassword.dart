@@ -24,7 +24,7 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   var formKey = GlobalKey<FormState>();
-  TextEditingController _EmailController = TextEditingController();
+  final TextEditingController _EmailController = TextEditingController();
 
   bool isTappedWay = false;
   bool isRetun = true;
@@ -76,7 +76,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             alignment: Alignment.center,
             children: [
               objAuthrovider.isLoading == true
-                  ? CircularProgressIndicator(
+                  ? const CircularProgressIndicator(
                       color: primaryColor,
                     )
                   : Container(),
@@ -144,7 +144,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         
                       }
                     },
-                    child: CommonButton(
+                    child: const CommonButton(
                       name: TextUtils.Send,
                     ),
                   )

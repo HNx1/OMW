@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:omw/model/user_model.dart';
@@ -66,7 +65,7 @@ class CreateEventModel {
       print(snapshot["docId"]);
       List<String> cohostListEl =
           snapshot.data().toString().contains('cohostList')
-              ? new List<String>.from(snapshot["cohostList"])
+              ? List<String>.from(snapshot["cohostList"])
               : [snapshot["ownerID"]];
       bool datePollEl = snapshot["selectedDate"].length > 1 ? true : false;
 
@@ -125,7 +124,7 @@ class CreateEventModel {
         "eventEndDate": eventEndDate,
         "guestsID": guestsID,
         "isNotificationSent": isNotificationSent,
-        "cohostList": cohostList == null ? [""] : cohostList,
+        "cohostList": cohostList ?? [""],
       };
 }
 
@@ -143,10 +142,10 @@ class GuestModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['guestID'] = this.guestID;
-    data['status'] = this.status;
-    data['guestUserName'] = this.guestUserName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['guestID'] = guestID;
+    data['status'] = status;
+    data['guestUserName'] = guestUserName;
 
     return data;
   }

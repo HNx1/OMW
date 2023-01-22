@@ -133,7 +133,7 @@ class _IsImageSendingState extends State<IsImageSending> {
                     ),
                   ),
                   isloader == true
-                      ? Center(
+                      ? const Center(
                           child: CircularProgressIndicator(
                             color: primaryColor,
                           ),

@@ -52,7 +52,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
         GestureDetector(
           onTap: () {
             showModalBottomSheet(
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
@@ -82,7 +82,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
                             ),
                           ),
                         ),
-                        Divider(
+                        const Divider(
                           thickness: 2,
                         ),
                         GestureDetector(
@@ -102,7 +102,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
                             ),
                           ),
                         ),
-                        Divider(
+                        const Divider(
                           thickness: 2,
                         ),
                         GestureDetector(

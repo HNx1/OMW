@@ -29,7 +29,7 @@ class _Myevent_Maybe_ScreenState extends State<Myevent_Maybe_Screen> {
         children: [
           ///---------- List OF Going's Data ------------
           widget.isLoading == true && widget.maybeGuest.isEmpty
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),
@@ -52,7 +52,7 @@ class _Myevent_Maybe_ScreenState extends State<Myevent_Maybe_Screen> {
                       padding: EdgeInsets.only(bottom: height * 0.02),
                       itemCount: widget.maybeGuest.length,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
@@ -74,12 +74,12 @@ class _Myevent_Maybe_ScreenState extends State<Myevent_Maybe_Screen> {
                                               width: height * 0.068,
                                               fit: BoxFit.cover,
                                               placeholder: (context, url) =>
-                                                  CircularProgressIndicator(
+                                                  const CircularProgressIndicator(
                                                 color: primaryColor,
                                               ),
                                               errorWidget:
                                                   (context, url, error) =>
-                                                      Icon(Icons.error),
+                                                      const Icon(Icons.error),
                                             )),
                                         Container(
                                           margin: EdgeInsets.only(
@@ -93,11 +93,9 @@ class _Myevent_Maybe_ScreenState extends State<Myevent_Maybe_Screen> {
                                                 margin: EdgeInsets.only(
                                                     bottom: height * 0.005),
                                                 child: Text(
-                                                  widget.maybeGuest[index]
-                                                          .firstName! +
-                                                      " " +
-                                                      widget.maybeGuest[index]
-                                                          .lastName!,
+                                                  "${widget.maybeGuest[index]
+                                                          .firstName!} ${widget.maybeGuest[index]
+                                                          .lastName!}",
                                                   style: AppTheme.getTheme()
                                                       .textTheme
                                                       .bodyText2!

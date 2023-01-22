@@ -63,7 +63,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   objCookieProvider.objCookieModel.description == "" ||
                   objCookieProvider.objCookieModel.title == null ||
                   objCookieProvider.objCookieModel.title == ""
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                     color: primaryColor,
                   ),

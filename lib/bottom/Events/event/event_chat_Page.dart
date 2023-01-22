@@ -72,9 +72,7 @@ class _EventChatPageState extends State<EventChatPage> {
               builder: (context) => WantSendImage(
                     imageFile: imageFile!,
                     isImageOpen: false,
-                    senderName: objProviderNotifier.objUsers.firstName! +
-                        " " +
-                        objProviderNotifier.objUsers.lastName!,
+                    senderName: "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                     senderprofile: objProviderNotifier.objUsers.userProfile!,
                     eventId: objCreateEventNotifier.EventData.docId!,
                   ))).then((value) {
@@ -105,9 +103,7 @@ class _EventChatPageState extends State<EventChatPage> {
               builder: (context) => WantSendImage(
                     imageFile: imageFile!,
                     isImageOpen: false,
-                    senderName: objProviderNotifier.objUsers.firstName! +
-                        " " +
-                        objProviderNotifier.objUsers.lastName!,
+                    senderName: "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                     senderprofile: objProviderNotifier.objUsers.userProfile!,
                     eventId: objCreateEventNotifier.EventData.docId!,
                   ))).then((value) {
@@ -191,11 +187,11 @@ class _EventChatPageState extends State<EventChatPage> {
                             width: height * 0.052,
                             fit: BoxFit.cover,
                             placeholder: (context, url) =>
-                                CircularProgressIndicator(
+                                const CircularProgressIndicator(
                               color: primaryColor,
                             ),
                             errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
+                                const Icon(Icons.error),
                           )),
               ],
             ),
@@ -245,7 +241,7 @@ class _EventChatPageState extends State<EventChatPage> {
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             listMessage = snapshot.data!.docs;
-            if (listMessage.length > 0) {
+            if (listMessage.isNotEmpty) {
               return ListView.builder(
                 padding: EdgeInsets.only(
                     left: height * 0.02,
@@ -253,7 +249,7 @@ class _EventChatPageState extends State<EventChatPage> {
                     bottom: height * 0.01),
                 itemCount: listMessage.length,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   GroupMessageModel messageChat =
                       GroupMessageModel.parseSnapshot(
@@ -273,7 +269,7 @@ class _EventChatPageState extends State<EventChatPage> {
                                       BorderRadius.circular(height * 0.1),
                                   child: messageChat.senderProfile == null ||
                                           messageChat.senderProfile == ""
-                                      ? CircularProgressIndicator(
+                                      ? const CircularProgressIndicator(
                                           color: primaryColor,
                                         )
                                       : CachedNetworkImage(
@@ -282,11 +278,11 @@ class _EventChatPageState extends State<EventChatPage> {
                                           width: height * 0.052,
                                           fit: BoxFit.cover,
                                           placeholder: (context, url) =>
-                                              CircularProgressIndicator(
+                                              const CircularProgressIndicator(
                                             color: primaryColor,
                                           ),
                                           errorWidget: (context, url, error) =>
-                                              Icon(Icons.error),
+                                              const Icon(Icons.error),
                                         ),
                                 ),
                                 messageChat.imageUrl != "" &&
@@ -304,7 +300,7 @@ class _EventChatPageState extends State<EventChatPage> {
                                             margin: EdgeInsets.only(
                                                 left: width * 0.14),
                                             decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius: const BorderRadius.only(
                                                   topLeft:
                                                       Radius.circular(10.0),
                                                   topRight:
@@ -340,7 +336,7 @@ class _EventChatPageState extends State<EventChatPage> {
                                                             builder: (context) =>
                                                                 WantSendImage(
                                                                   senderName:
-                                                                      '${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}',
+                                                                      "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                                                                   senderprofile:
                                                                       objProviderNotifier
                                                                           .objUsers
@@ -420,7 +416,7 @@ class _EventChatPageState extends State<EventChatPage> {
                                               ),
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.only(
+                                                      const BorderRadius.only(
                                                     topLeft:
                                                         Radius.circular(10.0),
                                                     topRight:
@@ -508,13 +504,11 @@ class _EventChatPageState extends State<EventChatPage> {
                                                   builder: (context) =>
                                                       WantSendImage(
                                                         senderName:
-                                                            objProviderNotifier
+                                                            "${objProviderNotifier
                                                                     .objUsers
-                                                                    .firstName! +
-                                                                " " +
-                                                                objProviderNotifier
+                                                                    .firstName!} ${objProviderNotifier
                                                                     .objUsers
-                                                                    .lastName!,
+                                                                    .lastName!}",
                                                         senderprofile:
                                                             objProviderNotifier
                                                                 .objUsers
@@ -611,7 +605,7 @@ class _EventChatPageState extends State<EventChatPage> {
                 },
               );
             } else {
-              return Center(child: Text("No message here yet..."));
+              return const Center(child: Text("No message here yet..."));
             }
           } else {
             return Container();
@@ -637,7 +631,7 @@ class _EventChatPageState extends State<EventChatPage> {
                     right: width * 0.03,
                     top: height * 0.03,
                     bottom: height * 0.03),
-                color: Color(0xff0E0E0E),
+                color: const Color(0xff0E0E0E),
                 child: Row(
                   children: [
                     Expanded(
@@ -721,14 +715,14 @@ class _EventChatPageState extends State<EventChatPage> {
                             ),
                           ),
                           hintText: TextUtils.type,
-                          fillColor: Color(0xff999999).withOpacity(0.2),
+                          fillColor: const Color(0xff999999).withOpacity(0.2),
                           filled: true,
                           hintStyle: AppTheme.getTheme()
                               .textTheme
                               .bodyText1!
                               .copyWith(
                                   fontSize: width * 0.04,
-                                  color: Color(0xff888888)),
+                                  color: const Color(0xff888888)),
                         ),
                       ),
                     ),
@@ -738,9 +732,7 @@ class _EventChatPageState extends State<EventChatPage> {
                           onSendMessage(
                               _message.text,
                               objCreateEventNotifier.EventData.docId!,
-                              objProviderNotifier.objUsers.firstName! +
-                                  " " +
-                                  objProviderNotifier.objUsers.lastName!,
+                              "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
                               objProviderNotifier.objUsers.userProfile!);
                         } else {
                           ScaffoldSnackbar.of(context)
@@ -763,7 +755,7 @@ class _EventChatPageState extends State<EventChatPage> {
                   ],
                 )),
             isLoading
-                ? CircularProgressIndicator(
+                ? const CircularProgressIndicator(
                     color: primaryColor,
                   )
                 : Container(),
@@ -816,7 +808,7 @@ class _EventChatPageState extends State<EventChatPage> {
       children: [
         Container(
           padding: EdgeInsets.only(left: width * 0.03, right: width * 0.03),
-          color: Color(0xff0E0E0E),
+          color: const Color(0xff0E0E0E),
           height: height * 0.2,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
