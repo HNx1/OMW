@@ -419,10 +419,9 @@ class _CoSpliteScreeenState extends State<CoSpliteScreeen> {
       NotificationNotifier objNotificationNotifier) async {
     try {
       await Stripe.instance
-          .presentPaymentSheet(
-              parameters: PresentPaymentSheetParameters(
-        clientSecret: paymentIntentData!['client_secret'],
-        confirmPayment: true,
+          .initPaymentSheet(
+              paymentSheetParameters: SetupPaymentSheetParameters(
+        paymentIntentClientSecret: paymentIntentData!['client_secret'],
       ))
           .then((newValue) async {
         print('payment intent${paymentIntentData!['id']}');
