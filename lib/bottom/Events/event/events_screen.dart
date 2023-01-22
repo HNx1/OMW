@@ -49,7 +49,8 @@ class _EventsSceenState extends State<EventsSceen> {
     var objProviderNotifier =
         Provider.of<AuthenicationNotifier>(context, listen: false);
     await objProviderNotifier.getUserDetail();
-    PrefServices().setCurrentUserName("${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}");
+    PrefServices().setCurrentUserName(
+        "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}");
 
     currentuser = PrefServices().getCurrentUserName();
     print("currentuser=========>$currentuser");
@@ -102,14 +103,14 @@ class _EventsSceenState extends State<EventsSceen> {
                 }
               }
               print("value=========>");
-              for (var element in value.allDates!) async {
-                for (var element2 in element.guestResponse!) async {
+              value.allDates!.forEach((element) async {
+                element.guestResponse!.forEach((element2) async {
                   if (element2.guestID ==
                       FirebaseAuth.instance.currentUser!.uid) {
                     element.objguest = element2;
                   }
-                }
-              }
+                });
+              });
               print(value);
               setState(() {
                 objCreateEventNotifier.setEventData = value;
@@ -140,13 +141,13 @@ class _EventsSceenState extends State<EventsSceen> {
                     );
 
                     for (var element2 in lstAlldate) {
-                        element2.guestResponse!.add(
-                          GuestModel(
-                              guestID: FirebaseAuth.instance.currentUser!.uid,
-                              status: 2,
-                              guestUserName: currentuser),
-                        );
-                      }
+                      element2.guestResponse!.add(
+                        GuestModel(
+                            guestID: FirebaseAuth.instance.currentUser!.uid,
+                            status: 2,
+                            guestUserName: currentuser),
+                      );
+                    }
                     await objCreateEventNotifier
                         .addGuestList(
                             context, lstguesData, eventid, guestsID, lstAlldate)
@@ -170,13 +171,13 @@ class _EventsSceenState extends State<EventsSceen> {
                       guestsID.add(FirebaseAuth.instance.currentUser!.uid);
 
                       for (var element2 in lstAlldate) {
-                          element2.guestResponse!.add(
-                            GuestModel(
-                                guestID: FirebaseAuth.instance.currentUser!.uid,
-                                status: 2,
-                                guestUserName: currentuser),
-                          );
-                        }
+                        element2.guestResponse!.add(
+                          GuestModel(
+                              guestID: FirebaseAuth.instance.currentUser!.uid,
+                              status: 2,
+                              guestUserName: currentuser),
+                        );
+                      }
                       await objCreateEventNotifier
                           .addGuestList(context, lstguesData, eventid, guestsID,
                               lstAlldate)
@@ -346,8 +347,10 @@ class _EventsSceenState extends State<EventsSceen> {
               ///------------------------ Search---------------------
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => const SearchEvent())));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const SearchEvent())));
                 },
                 child: Container(
                   margin: EdgeInsets.only(right: width * 0.03),

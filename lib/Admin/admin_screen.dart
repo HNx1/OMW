@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:omw/constant/theme.dart';
-import 'package:omw/Admin/bugReport&suggestions_screen.dart';
+import 'package:omw/admin/bugReport&suggestions_screen.dart';
+import 'package:omw/admin/edit_terms_and_conditions.dart';
+import 'package:omw/admin/edit_privacy_policy_screen.dart';
 import 'package:omw/utils/colorUtils.dart';
 import 'package:provider/provider.dart';
 
@@ -8,8 +10,6 @@ import '../constant/constants.dart';
 import '../notifier/authenication_notifier.dart';
 import '../utils/textUtils.dart';
 import 'edit_cookiesPolicy.dart';
-import 'edit_privacyPolicy_screen.dart';
-import 'edit_termsAndConditions.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({Key? key}) : super(key: key);
@@ -65,7 +65,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: ((context) => const EditCookiesPolicy())));
+                          builder: ((context) => EditCookiesPolicy())));
                 },
                 child: commanSetting(
                   ConstantData.cookie,
@@ -97,7 +97,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: ((context) => const EditBugReportAndSuggestion()),
+                      builder: ((context) => EditBugReportAndSuggestion()),
                     ),
                   );
                 },
@@ -163,7 +163,7 @@ class _AdminScreenState extends State<AdminScreen> {
               ? Container(
                   height: 0.8,
                   width: width,
-                  color: const Color(0xff5B5B5B).withOpacity(0.56),
+                  color: Color(0xff5B5B5B).withOpacity(0.56),
                   margin: EdgeInsets.only(
                       top: height * 0.026, bottom: height * 0.026),
                 )
