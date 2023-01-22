@@ -50,7 +50,6 @@ class _FindFriendPageState extends State<FindFriendPage> {
     });
   }
 
-  bool _IsSearching = false;
   String _searchText = "";
 
   _FindFriendPageState() {
@@ -58,7 +57,6 @@ class _FindFriendPageState extends State<FindFriendPage> {
       if (_searchController.text.isEmpty) {
         setState(
           () {
-            _IsSearching = false;
             _searchText = "";
             _buildSearchList();
           },
@@ -66,7 +64,6 @@ class _FindFriendPageState extends State<FindFriendPage> {
       } else {
         setState(
           () {
-            _IsSearching = true;
             _searchText = _searchController.text;
             _buildSearchList();
           },

@@ -26,11 +26,10 @@ class AuthenicationNotifier extends ChangeNotifier {
       isLoading = true;
       await ApiProvider().checkConnection();
       isLoading = true;
-      final User user = (await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: email.trim(),
         password: password.trim(),
-      ))
-          .user!;
+      );
       isCurretPassword = true;
       isSignUp = true;
       if (isupdateEmail == true) {
@@ -417,7 +416,7 @@ class AuthenicationNotifier extends ChangeNotifier {
         var email = FirebaseAuth.instance.currentUser!.email;
         AuthCredential auth = EmailAuthProvider.credential(
             email: email!, password: enterPassword);
-        UserCredential a = await FirebaseAuth.instance.currentUser!
+        await FirebaseAuth.instance.currentUser!
             .reauthenticateWithCredential(auth);
 
         return true;

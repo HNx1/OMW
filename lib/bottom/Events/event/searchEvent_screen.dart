@@ -63,14 +63,12 @@ class _SearchEventState extends State<SearchEvent> {
     }
   }
 
-  bool _IsSearching = false;
   String _searchText = "";
   _SearchEventState() {
     _searchEvent.addListener(() {
       if (_searchEvent.text.isEmpty) {
         setState(
           () {
-            _IsSearching = false;
             _searchText = "";
             _buildSearchList();
           },
@@ -78,7 +76,6 @@ class _SearchEventState extends State<SearchEvent> {
       } else {
         setState(
           () {
-            _IsSearching = true;
             _searchText = _searchEvent.text;
             _buildSearchList();
           },
