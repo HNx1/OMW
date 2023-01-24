@@ -30,7 +30,6 @@ linter:
     camel_case_types: false
     constant_identifier_names: false
     curly_braces_in_flow_control_structures: false
-    dead_code: false
     depend_on_referenced_packages: false
     deprecated_member_use: false
     file_names: false
