@@ -45,7 +45,6 @@ linter:
     unused_field: false
     unused_local_variable: false
     undefined_method: false
-    uri_does_not_exist: false
     use_build_context_synchronously: false
     use_key_in_widget_constructors: false
 
