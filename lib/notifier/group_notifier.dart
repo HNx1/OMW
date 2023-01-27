@@ -105,7 +105,6 @@ class GroupNotifier extends ChangeNotifier {
 
     try {
       contacts = await ContactsService.getContacts(
-        photoHighResolution: true,
         orderByGivenName: true,
       );
 

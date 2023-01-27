@@ -87,7 +87,7 @@ class CreateEventNotifier extends ChangeNotifier {
 
   Future getDeviceContactList() async {
     contacts = await ContactsService.getContacts(
-      photoHighResolution: true,
+      orderByGivenName: true,
     );
     contacts!.forEach((element) {
       element.phones!.forEach((element) {
