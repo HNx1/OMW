@@ -758,25 +758,6 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   ),
                                 ),
                               ),
-                              Container(
-                                margin: EdgeInsets.only(top: height * 0.02),
-                                child: isMyEvent
-                                    ? Text(
-                                        "You are hosting",
-                                        textAlign: TextAlign.center,
-                                        maxLines: 2,
-                                        style: AppTheme.getTheme()
-                                            .textTheme
-                                            .bodyText1!
-                                            .copyWith(
-                                                height: 1.2,
-                                                overflow: TextOverflow.ellipsis,
-                                                decoration: TextDecoration.none,
-                                                color: ConstColor.primaryColor,
-                                                fontSize: width * 0.036),
-                                      )
-                                    : Container(),
-                              )
                             ],
                           ),
 
