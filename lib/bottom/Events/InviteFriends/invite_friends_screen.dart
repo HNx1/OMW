@@ -7,7 +7,7 @@ import 'package:omw/bottom/Events/Myevents/myEvent_screen.dart';
 import 'package:omw/constant/theme.dart';
 import 'package:omw/utils/colorUtils.dart';
 import 'package:omw/widget/commonButton.dart';
-import 'package:omw/widget/scaffoldSnackbar.dart';
+import 'package:omw/widget/scaffold_snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:omw/notifier/group_notifier.dart';
@@ -59,6 +59,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
         Provider.of<AuthenicationNotifier>(context, listen: false);
     await objCreateEventNotifier.getinvitatedFriendData(
         context, objCreateEventNotifier.getEventData.docId!);
+
     var objGroupNotifier = Provider.of<GroupNotifier>(context, listen: false);
 
     await objAuthenicationNotifier.getUserDetail();
@@ -76,9 +77,9 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
           .where((e) =>
               oldCohostList.contains(e.uid) || e.uid == _auth.currentUser!.uid)
           .toList();
-      cohostList.forEach((element) {
+      for (var element in cohostList) {
         element.isInvite = true;
-      });
+      }
       lstofAddGuest.addAll(cohostList.where(
         (element) => element.uid != _auth.currentUser!.uid,
       ));
@@ -91,14 +92,11 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
   }
 
   String? _linkMessage;
-  bool _isCreatingLink = false;
 
   FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   Future<void> _createDynamicLink(bool short, String id) async {
-    setState(() {
-      _isCreatingLink = true;
-    });
+    setState(() {});
     String urlsss = "https://croelabs.com?ul=$id";
     final DynamicLinkParameters parameters = DynamicLinkParameters(
         uriPrefix: 'https://croelabs.com',
@@ -106,14 +104,14 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
           'https://croelabs.com?ul=$id',
         ),
         link: Uri.parse(urlsss),
-        androidParameters: AndroidParameters(
+        androidParameters: const AndroidParameters(
           packageName: 'h.omw',
           minimumVersion: 0,
         ),
-        iosParameters: IOSParameters(
+        iosParameters: const IOSParameters(
             bundleId: 'h.omw', minimumVersion: '0', appStoreId: '6443660731'),
         navigationInfoParameters:
-            NavigationInfoParameters(forcedRedirectEnabled: true));
+            const NavigationInfoParameters(forcedRedirectEnabled: true));
 
     Uri url;
     if (short) {
@@ -129,9 +127,8 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
 
     setState(() {
       _linkMessage = url.toString();
-      _isCreatingLink = false;
 
-      print("_linkMessage============>${_linkMessage}");
+      print("_linkMessage============>$_linkMessage");
     });
   }
 
@@ -189,28 +186,28 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
     var objAuthenicationNotifier =
         Provider.of<AuthenicationNotifier>(context, listen: false);
     if (lstofAddGuest.isNotEmpty) {
-      lstofAddGuest.forEach((element) {
+      for (var element in lstofAddGuest) {
         addGuest.add(
           GuestModel(
               guestID: element.uid,
               status: oldCohostList.contains(element.uid) ? 0 : 2,
-              guestUserName: element.firstName! + " " + element.lastName!),
+              guestUserName: "${element.firstName!} ${element.lastName!}"),
         );
-        lstAlldate.forEach((element2) {
+        for (var element2 in lstAlldate) {
           element2.guestResponse!.add(
             GuestModel(
                 guestID: element.uid,
                 status: oldCohostList.contains(element.uid) ? 0 : 2,
-                guestUserName: element.firstName! + " " + element.lastName!),
+                guestUserName: "${element.firstName!} ${element.lastName!}"),
           );
-        });
+        }
         if (element.isAlreadyinvited != true && element.isInvite) {
           print(element.firstName);
           objNotificationNotifier.sendPushNotification(
               context,
               element.fcmToken!,
               "Event Invitation",
-              "${objAuthenicationNotifier.objUsers.firstName! + " " + objAuthenicationNotifier.objUsers.lastName!} has invited you to an event",
+              "${"${objAuthenicationNotifier.objUsers.firstName!} ${objAuthenicationNotifier.objUsers.lastName!}"} has invited you to an event",
               "eventInvite",
               "",
               "",
@@ -219,18 +216,17 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
               context: context,
               title: "Event Invitation",
               description:
-                  "${objAuthenicationNotifier.objUsers.firstName! + " " + objAuthenicationNotifier.objUsers.lastName!} has invited you to an event",
+                  "${"${objAuthenicationNotifier.objUsers.firstName!} ${objAuthenicationNotifier.objUsers.lastName!}"} has invited you to an event",
               userId: element.uid,
               type: "eventInvite",
               typeOfData: [
                 {
                   "notificationType": "Invitation",
                   "responseSender":
-                      "${objAuthenicationNotifier.objUsers.firstName! + " " + objAuthenicationNotifier.objUsers.lastName!}",
+                      "${objAuthenicationNotifier.objUsers.firstName!} ${objAuthenicationNotifier.objUsers.lastName!}",
                   "eventId": objCreateEventNotifier.EventData.docId!,
-                  "eventHost": objAuthenicationNotifier.objUsers.firstName! +
-                      " " +
-                      objAuthenicationNotifier.objUsers.lastName!,
+                  "eventHost":
+                      "${objAuthenicationNotifier.objUsers.firstName!} ${objAuthenicationNotifier.objUsers.lastName!}",
                   "eventName": objCreateEventNotifier.getEventData.eventname!
                 }
               ]);
@@ -241,7 +237,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
         setState(() {
           guestId.add(element.uid);
         });
-      });
+      }
     }
   }
 
@@ -251,7 +247,6 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
 
   final TextEditingController _searchEvent = TextEditingController();
 
-  bool _IsSearching = false;
   String _searchText = "";
   bool isSearch = false;
   _InviteFriendsScreenState() {
@@ -259,7 +254,6 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
       if (_searchEvent.text.isEmpty) {
         setState(
           () {
-            _IsSearching = false;
             _searchText = "";
             _buildSearchList();
           },
@@ -267,7 +261,6 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
       } else {
         setState(
           () {
-            _IsSearching = true;
             _searchText = _searchEvent.text;
             _buildSearchList();
           },
@@ -277,8 +270,6 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
   }
 
   _buildSearchList() {
-    var objCreateEventNotifier =
-        Provider.of<CreateEventNotifier>(context, listen: false);
     searchList = contactsList
         .where(
           (element) =>
@@ -327,40 +318,42 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
         centerTitle: true,
         actions: [
           // widget.isFromAddEvent
-          false
-              ? GestureDetector(
-                  onTap: () {
-                    widget.isFromAddEvent
-                        ? Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MyEventScreen()))
-                        : Navigator.pop(context);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.only(right: width * 0.02),
-                    child: Center(
-                      child: Text(
-                        "Later",
-                        style: AppTheme.getTheme()
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(
-                                color: ConstColor.primaryColor,
-                                height: 1.4,
-                                decoration: TextDecoration.underline,
-                                fontSize: width * 0.042),
-                      ),
-                    ),
-                  ),
-                )
-              : Container(),
+          //false
+          // The folloowing code isn't used because of the false statement above
+          // ? GestureDetector(
+          //     onTap: () {
+          //       widget.isFromAddEvent
+          //           ? Navigator.pushReplacement(
+          //               context,
+          //               MaterialPageRoute(
+          //                   builder: (context) => const MyEventScreen()))
+          //           : Navigator.pop(context);
+          //     },
+          //     child: Container(
+          //       padding: EdgeInsets.only(right: width * 0.02),
+          //       child: Center(
+          //         child: Text(
+          //           "Later",
+          //           style: AppTheme.getTheme()
+          //               .textTheme
+          //               .bodyText2!
+          //               .copyWith(
+          //                   color: ConstColor.primaryColor,
+          //                   height: 1.4,
+          //                   decoration: TextDecoration.underline,
+          //                   fontSize: width * 0.042),
+          //         ),
+          //       ),
+          //     ),
+          //   )
+          //: Container(),
+          Container(),
         ],
       ),
       body: Stack(
         children: [
           isShareClick
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(
                   color: primaryColor,
                 ))
@@ -409,31 +402,31 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(height * 0.1),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: ConstColor.textFormFieldColor,
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(height * 0.1),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: ConstColor.textFormFieldColor,
                               ),
                             ),
                             errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(height * 0.1),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: ConstColor.textFormFieldColor,
                               ),
                             ),
                             disabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(height * 0.1),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: ConstColor.textFormFieldColor,
                               ),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(height * 0.1),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: ConstColor.textFormFieldColor,
                               ),
                             ),
@@ -444,14 +437,14 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                 .bodyText1!
                                 .copyWith(
                                   fontSize: width * 0.045,
-                                  color: Color(0xff6C6C6C),
+                                  color: const Color(0xff6C6C6C),
                                 ),
                           ),
                         ),
                       ),
 
                       ///------------------ invite friends------------------
-                      !_searchEvent.text.isEmpty
+                      _searchEvent.text.isNotEmpty
                           ? Container()
                           : Row(children: [
                               GestureDetector(
@@ -464,7 +457,8 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                       right: width * 0.033),
                                   width: width * 0.83,
                                   decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 26, 26, 26),
+                                    color:
+                                        const Color.fromARGB(255, 26, 26, 26),
                                     borderRadius:
                                         BorderRadius.circular(height * 0.02),
                                   ),
@@ -475,7 +469,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                       Expanded(
                                         child: Row(
                                           children: [
-                                            Icon(
+                                            const Icon(
                                               Icons.file_upload_outlined,
                                               color: ConstColor.white_Color,
                                             ),
@@ -541,7 +535,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                       EdgeInsets.only(bottom: height * 0.005),
                                   child: GestureDetector(
                                     onTap: _copyToClipboard,
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.content_copy_outlined,
                                       color: ConstColor.white_Color,
                                     ),
@@ -549,7 +543,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                             ]),
 
                       isLoading == true && searchList.isEmpty
-                          ? Center(
+                          ? const Center(
                               child: CircularProgressIndicator(
                               color: primaryColor,
                             ))
@@ -723,15 +717,15 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                                             fit: BoxFit.cover,
                                                             placeholder: (context,
                                                                     url) =>
-                                                                CircularProgressIndicator(
+                                                                const CircularProgressIndicator(
                                                               color:
                                                                   primaryColor,
                                                             ),
-                                                            errorWidget:
-                                                                (context, url,
-                                                                        error) =>
-                                                                    Icon(Icons
-                                                                        .error),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                const Icon(Icons
+                                                                    .error),
                                                           ),
                                                         ),
                                                         Expanded(
@@ -741,12 +735,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                                                     left: width *
                                                                         0.05),
                                                             child: Text(
-                                                              searchList[index]
-                                                                      .firstName! +
-                                                                  " " +
-                                                                  searchList[
-                                                                          index]
-                                                                      .lastName!,
+                                                              "${searchList[index].firstName!} ${searchList[index].lastName!}",
                                                               style: AppTheme
                                                                       .getTheme()
                                                                   .textTheme
@@ -855,7 +844,8 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                                 ? Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => MyEventScreen()))
+                                        builder: (context) =>
+                                            const MyEventScreen()))
                                 : Navigator.pop(context);
                           });
                           setState(() {
@@ -868,7 +858,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                       },
                       child: Container(
                         margin: EdgeInsets.only(bottom: height * 0.02),
-                        child: CommonButton(name: "Done"),
+                        child: const CommonButton(name: "Done"),
                       ),
                     ),
                   ],
