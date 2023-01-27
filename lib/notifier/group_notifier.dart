@@ -8,7 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../api/apiProvider.dart';
 import '../model/groupModel.dart';
 import '../model/user_model.dart';
-import '../widget/scaffold_snackbar.dart';
+import '../widget/scaffoldSnackbar.dart';
 
 class GroupNotifier extends ChangeNotifier {
   bool isLoading = false;
