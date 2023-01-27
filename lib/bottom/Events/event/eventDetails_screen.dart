@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:omw/bottom/Events/event/edit_event_screen.dart';
-import 'package:omw/bottom/Events/event/event_chat_page.dart';
 import 'package:omw/bottom/Profile/profile_screen.dart';
 import 'package:omw/bottom/bottomtab.dart';
 import 'package:omw/bottom/common_BottomTab.dart';
@@ -25,6 +24,8 @@ import '../../Create/multiSelectionDate.dart';
 
 import '../../Create/seeMutiSelectedDate_screen.dart';
 import '../guestList/guestList_screen.dart';
+import 'co-host_edit_event_screen.dart';
+import 'event_chat_page.dart';
 import 'package:intl/intl.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -71,7 +72,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
     setState(() {
       isDataLoad = true;
     });
-    currentuser = PrefServices().getCurrentUserName();
+    currentuser = await PrefServices().getCurrentUserName();
     var objCreateEventNotifier =
         Provider.of<CreateEventNotifier>(context, listen: false);
     allResponse = [];
@@ -94,17 +95,26 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
         objCreateEventNotifier.getEventDetails.docId!,
       );
     }
-
+    print("uid======>${_auth.currentUser!.uid}");
     addGuest = objCreateEventNotifier.getEventDetails.guest!;
     lstAlldate = objCreateEventNotifier.getEventDetails.allDates!;
     guestId = objCreateEventNotifier.getEventDetails.guestsID!;
-    for (var element in lstAlldate) {
-      for (var element2 in element.guestResponse!) {
+    lstAlldate.forEach((element) {
+      element.guestResponse!.forEach((element2) {
         if (element2.guestID == _auth.currentUser!.uid) {
           allResponse.add(element2.status);
         }
-      }
+      });
+    });
+    if (lstAlldate.length == 0) {
+      guestList = objCreateEventNotifier.getEventDetails.guest!;
+      guestList.forEach((element) {
+        if (element.guestID == _auth.currentUser!.uid) {
+          allResponse.add(element.status);
+        }
+      });
     }
+
     print("allResponse===========>$allResponse");
     print(allResponse);
     if (allResponse.every((e) => e == 1)) {
@@ -133,7 +143,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
     if (widget.isFromMyeventScreen == false &&
         widget.isPastEvent == false &&
         widget.ismyPastEvent == false) {
-      getListOfGuestUser();
+      getListOfGuestUser(true);
     }
   }
 
@@ -159,7 +169,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   List<UserModel> notGoingGuest = [];
   List<int> attendance = [0, 0, 0];
   bool isDataLoad = false;
-  Future getListOfGuestUser() async {
+  Future getListOfGuestUser(att) async {
     goingGuest = [];
     maybeGuest = [];
     notGoingGuest = [];
@@ -170,31 +180,37 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
     await objCreateEventNotifier.getAllGuestUserList(
         context, objCreateEventNotifier.getEventDetails.guestsID!);
 
-    for (var e in objCreateEventNotifier.getEventDetails.guest!) {
+    objCreateEventNotifier.getEventDetails.guest!.forEach((e) {
       setState(() {
         goingGuest.addAll(objCreateEventNotifier.retrievedGuestUserList
             .where((element) => element.uid == e.guestID && e.status == 0));
       });
-    }
+    });
 
-    for (var e in objCreateEventNotifier.getEventDetails.guest!) {
+    objCreateEventNotifier.getEventDetails.guest!.forEach((e) {
       setState(() {
         maybeGuest.addAll(objCreateEventNotifier.retrievedGuestUserList
             .where((element) => element.uid == e.guestID && e.status == 2));
       });
-    }
+    });
 
-    for (var e in objCreateEventNotifier.getEventDetails.guest!) {
+    objCreateEventNotifier.getEventDetails.guest!.forEach((e) {
       setState(() {
         notGoingGuest.addAll(
           objCreateEventNotifier.retrievedGuestUserList
               .where((element) => element.uid == e.guestID && e.status == 1),
         );
       });
-    }
-    setState(() {
-      attendance = [goingGuest.length, maybeGuest.length, notGoingGuest.length];
     });
+    if (att) {
+      setState(() {
+        attendance = [
+          goingGuest.length,
+          notGoingGuest.length,
+          maybeGuest.length,
+        ];
+      });
+    }
 
     print("Going :- $goingGuest");
     print("maybe :- $maybeGuest");
@@ -202,14 +218,15 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   }
 
   List<AllDates> lstAlldate = [];
+  List<GuestModel> guestList = [];
   getStatusResponse(int Status) {
     var objCreateEventNotifier =
         Provider.of<CreateEventNotifier>(context, listen: false);
     if (lstofAddGuest.isNotEmpty) {
       addGuest = [];
       lstAlldate = [];
-      for (var element in lstofAddGuest) {
-        for (var element1 in objCreateEventNotifier.getEventDetails.guest!) {
+      lstofAddGuest.forEach((element) {
+        objCreateEventNotifier.getEventDetails.guest!.forEach((element1) {
           if (element1.guestID == _auth.currentUser!.uid) {
             addGuest.add(
               GuestModel(
@@ -217,22 +234,24 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                   status: Status,
                   guestUserName: currentuser),
             );
-            for (var element2 in lstAlldate) {
+            lstAlldate.forEach(
+              (element2) {
                 element2.guestResponse!.add(
                   GuestModel(
                       guestID: _auth.currentUser!.uid,
                       status: Status,
                       guestUserName: currentuser),
                 );
-              }
+              },
+            );
           }
-        }
+        });
         guestId = [];
 
         setState(() {
           guestId.add(element.uid);
         });
-      }
+      });
     }
   }
 
@@ -291,18 +310,18 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) => const InviteFriendsScreen(
+                        builder: ((context) => InviteFriendsScreen(
                               isFromAddEvent: false,
                             )),
                       ),
                     ).then((value) async {
-                      await getListOfGuestUser();
+                      await getListOfGuestUser(true);
                     });
                   },
                   child: Container(
                     color: Colors.transparent,
                     margin: EdgeInsets.only(right: width * 0.04),
-                    child: const Icon(
+                    child: Icon(
                       Icons.add,
                       color: primaryColor,
                     ),
@@ -317,7 +336,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const EditEventScreen(),
+                          builder: (context) => EditEventScreen(),
                         ));
                   },
                   child: Container(
@@ -371,7 +390,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
         centerTitle: true,
       ),
       bottomNavigationBar: widget.isFromMyeventScreen == true
-          ? const Text("")
+          ? Text("")
           : PersistanceBottomTab(
               lastIndex: 1,
               index: 1,
@@ -391,7 +410,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
               },
             ),
       body: isDataLoad
-          ? const Center(
+          ? Center(
               child: CircularProgressIndicator(
                 color: primaryColor,
               ),
@@ -418,7 +437,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                         placeholder: (context, url) => Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
+                          children: [
                             CircularProgressIndicator(
                               color: primaryColor,
                             ),
@@ -526,7 +545,8 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                                         await getData();
                                                         if (addGuest
                                                             .isNotEmpty) {
-                                                          for (var element in addGuest) {
+                                                          addGuest.forEach(
+                                                              (element) {
                                                             if (element
                                                                     .guestID ==
                                                                 _auth
@@ -535,7 +555,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                                               element.status =
                                                                   index;
                                                             }
-                                                          }
+                                                          });
 
                                                           await objCreateEventNotifier
                                                               .addGuestList(
@@ -549,7 +569,8 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                                               .whenComplete(
                                                                   () async {
                                                             isLoading = false;
-                                                            await getListOfGuestUser();
+                                                            await getListOfGuestUser(
+                                                                true);
                                                           });
                                                         }
                                                       });
@@ -647,7 +668,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                               left: width * 0.02),
                                           child: GestureDetector(
                                             onTap: _copyLocationToClipboard,
-                                            child: const Icon(
+                                            child: Icon(
                                               Icons.content_copy_outlined,
                                               size: 14,
                                               color: ConstColor.primaryColor,
@@ -669,10 +690,12 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                       builder: (context) => ProfileScreen(
                                           userId: objCreateEventNotifier
                                               .getEventDetails.lstUser!.uid!,
-                                          name: "${objCreateEventNotifier.getEventDetails.lstUser!.firstName!} ${objCreateEventNotifier
+                                          name: objCreateEventNotifier.getEventDetails.lstUser!.firstName! +
+                                              " " +
+                                              objCreateEventNotifier
                                                   .getEventDetails
                                                   .lstUser!
-                                                  .lastName!}",
+                                                  .lastName!,
                                           profile: objCreateEventNotifier
                                               .getEventDetails
                                               .lstUser!
@@ -710,7 +733,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                               width: height * 0.045,
                                               fit: BoxFit.cover,
                                               placeholder: (context, url) =>
-                                                  const CircularProgressIndicator(
+                                                  CircularProgressIndicator(
                                                     color: primaryColor,
                                                   ))),
                                       Container(
@@ -735,13 +758,15 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                               margin: EdgeInsets.only(
                                                   top: height * 0.005),
                                               child: Text(
-                                                "${objCreateEventNotifier
+                                                objCreateEventNotifier
                                                         .getEventDetails
                                                         .lstUser!
-                                                        .firstName!} ${objCreateEventNotifier
+                                                        .firstName! +
+                                                    " " +
+                                                    objCreateEventNotifier
                                                         .EventData
                                                         .lstUser!
-                                                        .lastName!}",
+                                                        .lastName!,
                                                 style: AppTheme.getTheme()
                                                     .textTheme
                                                     .bodyText1!
@@ -758,6 +783,25 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   ),
                                 ),
                               ),
+                              Container(
+                                margin: EdgeInsets.only(top: height * 0.02),
+                                child: isMyEvent
+                                    ? Text(
+                                        "You are hosting",
+                                        textAlign: TextAlign.center,
+                                        maxLines: 2,
+                                        style: AppTheme.getTheme()
+                                            .textTheme
+                                            .bodyText1!
+                                            .copyWith(
+                                                height: 1.2,
+                                                overflow: TextOverflow.ellipsis,
+                                                decoration: TextDecoration.none,
+                                                color: ConstColor.primaryColor,
+                                                fontSize: width * 0.036),
+                                      )
+                                    : Container(),
+                              )
                             ],
                           ),
 
@@ -806,7 +850,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                     ),
                   );
                 },
-                child: const CommonButton(name: TextUtils.GuestList))),
+                child: CommonButton(name: TextUtils.GuestList))),
         Text(
           objCreateEventNotifier.getEventDetails.description!,
           style: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
@@ -859,7 +903,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                             ),
                           );
                         },
-                        child: const CommonButton(name: TextUtils.GuestList)))
+                        child: CommonButton(name: TextUtils.GuestList)))
                 : Container(
                     margin: EdgeInsets.only(
                         bottom: height * 0.015, top: height * 0.007),
@@ -885,7 +929,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                         }
 
                         panEnd = details.globalPosition.dx;
-                        print("panEnd: $panEnd");
+                        print("panEnd: ${panEnd}");
                         if (panEnd <= width * 0.35) {
                           setState(() {
                             panIndex = 0;
@@ -972,7 +1016,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                             .bodyText1!
                                             .copyWith(
                                                 color: panIndex != 0
-                                                    ? const Color(0xffA5A5A5)
+                                                    ? Color(0xffA5A5A5)
                                                     : ConstColor.black_Color,
                                                 fontSize: width * 0.05,
                                                 fontWeight: panIndex != 0
@@ -986,7 +1030,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                             .bodyText1!
                                             .copyWith(
                                                 color: panIndex != 0
-                                                    ? const Color(0xffA5A5A5)
+                                                    ? Color(0xffA5A5A5)
                                                     : ConstColor.black_Color,
                                                 fontSize: width * 0.043,
                                                 fontWeight: panIndex != 0
@@ -1031,13 +1075,13 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        attendance[1].toString(),
+                                        attendance[2].toString(),
                                         style: AppTheme.getTheme()
                                             .textTheme
                                             .bodyText1!
                                             .copyWith(
                                                 color: panIndex != 2
-                                                    ? const Color(0xffA5A5A5)
+                                                    ? Color(0xffA5A5A5)
                                                     : ConstColor.black_Color,
                                                 fontSize: width * 0.05,
                                                 fontWeight: panIndex != 2
@@ -1051,7 +1095,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                             .bodyText2!
                                             .copyWith(
                                                 color: panIndex != 2
-                                                    ? const Color(0xffA5A5A5)
+                                                    ? Color(0xffA5A5A5)
                                                     : ConstColor.black_Color,
                                                 fontSize: width * 0.043,
                                                 fontWeight: panIndex != 2
@@ -1096,13 +1140,13 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        attendance[2].toString(),
+                                        attendance[1].toString(),
                                         style: AppTheme.getTheme()
                                             .textTheme
                                             .bodyText1!
                                             .copyWith(
                                                 color: panIndex != 1
-                                                    ? const Color(0xffA5A5A5)
+                                                    ? Color(0xffA5A5A5)
                                                     : ConstColor.black_Color,
                                                 fontSize: width * 0.05,
                                                 fontWeight: panIndex != 1
@@ -1116,7 +1160,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                             .bodyText1!
                                             .copyWith(
                                               color: panIndex != 1
-                                                  ? const Color(0xffA5A5A5)
+                                                  ? Color(0xffA5A5A5)
                                                   : ConstColor.black_Color,
                                               fontSize: width * 0.043,
                                               fontWeight: panIndex != 1
@@ -1229,7 +1273,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
               bottom: height * 0.01),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(height * 0.016),
-            color: const Color.fromARGB(255, 15, 15, 15),
+            color: Color.fromARGB(255, 15, 15, 15),
           ),
           child: Column(
             children: [
@@ -1279,7 +1323,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                     EdgeInsets.only(top: height * 0.022, bottom: height * 0.01),
                 height: 1,
                 width: width,
-                color: const Color.fromARGB(255, 187, 171, 171).withOpacity(0.2),
+                color: Color.fromARGB(255, 187, 171, 171).withOpacity(0.2),
               ),
 
               ///------------------- yes--------------------
@@ -1288,6 +1332,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                   setState(() {
                     attendance[index] -= 1;
                     attendance[indexs] += 1;
+                    print(attendance);
                     index = indexs;
                     panIndex = indexs;
                   });
@@ -1298,18 +1343,18 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                   await getStatusResponse(index);
 
                   if (addGuest.isNotEmpty) {
-                    for (var element in addGuest) {
+                    addGuest.forEach((element) {
                       if (element.guestID == _auth.currentUser!.uid) {
                         element.status = index;
                       }
-                    }
-                    for (var element in lstAlldate) {
-                      for (var element2 in element.guestResponse!) {
+                    });
+                    lstAlldate.forEach((element) {
+                      element.guestResponse!.forEach((element2) {
                         if (element2.guestID == _auth.currentUser!.uid) {
                           element2.status = index;
                         }
-                      }
-                    }
+                      });
+                    });
                     await objCreateEventNotifier
                         .addGuestList(
                             context,
@@ -1319,9 +1364,9 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                             lstAlldate)
                         .whenComplete(() async {
                       isLoading = false;
-                      await getListOfGuestUser();
                     });
                   }
+                  await getListOfGuestUser(false);
 
                   setState(() {
                     isLoading = false;
@@ -1339,7 +1384,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                       context: context,
                       title: "Response to your Invitation",
                       description:
-                          "${"${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}"} responded ${indexs == 0 ? "Yes" : indexs == 1 ? "No" : "Maybe"} to your event ${objCreateEventNotifier.getEventDetails.eventname}",
+                          "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!} responded ${indexs == 0 ? "Yes" : indexs == 1 ? "No" : "Maybe"} to your event ${objCreateEventNotifier.getEventDetails.eventname}",
                       userId:
                           objCreateEventNotifier.getEventDetails.lstUser!.uid,
                       type: "eventInvite",
@@ -1347,7 +1392,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                         {
                           "notificationType": "Invitation Response",
                           "responseSender":
-                              "${objProviderNotifier.objUsers.firstName!} ${objProviderNotifier.objUsers.lastName!}",
+                              "${objProviderNotifier.objUsers.firstName! + " " + objProviderNotifier.objUsers.lastName!}",
                           "eventId":
                               objCreateEventNotifier.getEventDetails.docId,
                           "eventName":
