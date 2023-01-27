@@ -10,6 +10,7 @@ import 'package:omw/widget/commonButton.dart';
 import 'package:omw/widget/scaffold_snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:omw/notifier/group_notifier.dart';
 
 import '../../../constant/constants.dart';
 import '../../../model/createEvent_model.dart';
@@ -59,10 +60,13 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
     await objCreateEventNotifier.getinvitatedFriendData(
         context, objCreateEventNotifier.getEventData.docId!);
 
+    var objGroupNotifier = Provider.of<GroupNotifier>(context, listen: false);
+
     await objAuthenicationNotifier.getUserDetail();
+    await objGroupNotifier.getData(context, "");
     await _createDynamicLink(false, objCreateEventNotifier.getEventData.docId!);
     setState(() {
-      contactsList = objCreateEventNotifier.inviteFriendList.toList();
+      contactsList = objGroupNotifier.selectedUserList.toList();
       contactsList.sort((a, b) => a.lastName!.compareTo(b.lastName!));
       searchList = contactsList;
       addGuest = objCreateEventNotifier.getEventData.guest!;
