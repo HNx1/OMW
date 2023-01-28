@@ -48,84 +48,85 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen>
     width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      bottomNavigationBar: PersistanceBottomTab(
-        lastIndex: lastIndex,
-        index: lastIndex,
-        onSuccess: (val) {
-          if (lastIndex == 0) {
-            showDialog(
-              context: context,
-              barrierDismissible: true,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  backgroundColor: const Color.fromARGB(255, 15, 15, 15),
-                  title: Container(
-                    margin: EdgeInsets.only(
-                        left: width * 0.02, right: width * 0.02),
-                    child: Text(
-                      "Are you sure you want to leave this event?",
-                      style: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
-                          color: ConstColor.white_Color,
-                          height: 1.4,
-                          fontSize: width * 0.043),
-                    ),
-                  ),
-                  actions: [
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     setState(() {
-                    //       currentIndex = 0;
-                    //       lastIndex = 0;
-                    //     });
-                    //     Navigator.pop(context);
-                    //   },
-                    //   child: Text(
-                    //     "No",
-                    //     style: AppTheme.getTheme()
-                    //         .textTheme
-                    //         .bodyText2!
-                    //         .copyWith(
-                    //             color: ConstColor.primaryColor,
-                    //             height: 2,
-                    //             fontSize: width * 0.06),
-                    //   ),
-                    // ),
-                    Container(
+      bottomNavigationBar: SafeArea(
+        child: PersistanceBottomTab(
+          lastIndex: lastIndex,
+          index: lastIndex,
+          onSuccess: (val) {
+            if (lastIndex == 0) {
+              showDialog(
+                context: context,
+                barrierDismissible: true,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    backgroundColor: const Color.fromARGB(255, 15, 15, 15),
+                    title: Container(
                       margin: EdgeInsets.only(
                           left: width * 0.02, right: width * 0.02),
-                      child: GestureDetector(
-                        onTap: () async {
-                          Navigator.pop(context);
-                          setState(() {
-                            currentIndex = val;
-                            lastIndex = currentIndex;
-                          });
-                        },
-                        child: Text(
-                          "Yes",
-                          style: AppTheme.getTheme()
-                              .textTheme
-                              .bodyText2!
-                              .copyWith(
-                                  color: ConstColor.primaryColor,
-                                  height: 2,
-                                  fontSize: width * 0.06),
-                        ),
+                      child: Text(
+                        "Are you sure you want to leave this event?",
+                      style: AppTheme.getTheme().textTheme.bodyText1!.copyWith(
+                                color: ConstColor.white_Color,
+                                height: 1.4,
+                                fontSize: width * 0.043),
                       ),
                     ),
-                  ],
-                );
-              },
-            );
-          } else {
-            setState(() {
-              currentIndex = val;
-              lastIndex = currentIndex;
-            });
-          }
-        },
-      ),
-
+                    actions: [
+                      // GestureDetector(
+                      //   onTap: () {
+                      //     setState(() {
+                      //       currentIndex = 0;
+                      //       lastIndex = 0;
+                      //     });
+                      //     Navigator.pop(context);
+                      //   },
+                      //   child: Text(
+                      //     "No",
+                      //     style: AppTheme.getTheme()
+                      //         .textTheme
+                      //         .bodyText2!
+                      //         .copyWith(
+                      //             color: ConstColor.primaryColor,
+                      //             height: 2,
+                      //             fontSize: width * 0.06),
+                      //   ),
+                      // ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            left: width * 0.02, right: width * 0.02),
+                        child: GestureDetector(
+                          onTap: () async {
+                            Navigator.pop(context);
+                            setState(() {
+                              currentIndex = val;
+                              lastIndex = currentIndex;
+                            });
+                          },
+                          child: Text(
+                            "Yes",
+                            style: AppTheme.getTheme()
+                                .textTheme
+                                .bodyText2!
+                                .copyWith(
+                                    color: ConstColor.primaryColor,
+                                    height: 2,
+                                    fontSize: width * 0.06),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            } else {
+              setState(() {
+                currentIndex = val;
+                lastIndex = currentIndex;
+              });
+            }
+          },
+        ), // PersistanceBottomTab
+      ), // SafeArea
       ///------- tab screen view ----------
       body: viewContainer[currentIndex],
     );
