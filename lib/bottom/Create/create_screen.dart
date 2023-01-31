@@ -955,6 +955,7 @@ class _CreateScreenState extends State<CreateScreen> {
                         Container(
                           margin: EdgeInsets.only(top: height * 0.026),
                           child: TextFormField(
+                            autofocus: true,
                             textCapitalization: TextCapitalization.sentences,
                             maxLines: 6,
                             autovalidateMode: AutovalidateMode.disabled,
