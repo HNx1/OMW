@@ -243,6 +243,11 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                                     ///--------------------- Enter phone Textfield----------------
                                     Expanded(
                                       child: TextFormField(
+                                        toolbarOptions: ToolbarOptions(
+                                            copy: true,
+                                            paste: true,
+                                            cut: true,
+                                            selectAll: true),
                                         textAlign: TextAlign.start,
                                         inputFormatters: <TextInputFormatter>[
                                           FilteringTextInputFormatter.digitsOnly
@@ -329,8 +334,8 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                                   var datePicked =
                                       await DatePicker.showSimpleDatePicker(
                                           context,
-                                          backgroundColor:
-                                              const Color.fromARGB(255, 12, 12, 12),
+                                          backgroundColor: const Color.fromARGB(
+                                              255, 12, 12, 12),
                                           initialDate: DateTime(1994),
                                           firstDate: DateTime(1960),
                                           lastDate: DateTime(
@@ -349,8 +354,8 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                                                       ConstColor.white_Color));
 
                                   setState(() {
-                                    selectBirthDate =
-                                        DateFormat('MMM dd, yyyy').format(datePicked!);
+                                    selectBirthDate = DateFormat('MMM dd, yyyy')
+                                        .format(datePicked!);
                                   });
                                 },
                                 child: Container(
