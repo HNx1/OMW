@@ -72,6 +72,14 @@ class _MyEvetnCo_SplitScreenState extends State<MyEvetnCo_SplitScreen> {
       }
     });
     setState(() {
+      for (var e in objCreateEventNotifier.getEventDetails.guest!) {
+        setState(() {
+          notResponded.addAll(objCreateEventNotifier.retrievedGuestUserList
+              .where((element) => element.uid == e.guestID && e.status == null));
+        });
+      }
+    });
+    setState(() {
       isDataLoad = false;
     });
     print("Going :- $goingGuest");
@@ -299,6 +307,63 @@ class _MyEvetnCo_SplitScreenState extends State<MyEvetnCo_SplitScreen> {
                         ),
                       ),
                     )
+
+                    // Not responded
+                    Expanded(
+                      flex: 0,
+                      child: GestureDetector(
+                        onTap: () async {
+                          if (isDataLoad == false) {
+                            setState(() {
+                              index = 1;
+                            });
+                            await getListOfGuestUser();
+                          }
+                        },
+                        child: Container(
+                          margin: EdgeInsets.all(height * 0.007),
+                          padding: EdgeInsets.all(height * 0.014),
+                          decoration: BoxDecoration(
+                            color:
+                                index != 1 ? Colors.transparent : primaryColor,
+                            borderRadius: BorderRadius.circular(height * 0.1),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                TextUtils.NotResponded,
+                                style: AppTheme.getTheme()
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
+                                        color: index != 1
+                                            ? const Color(0xffA5A5A5)
+                                            : ConstColor.black_Color,
+                                        fontSize: width * 0.043,
+                                        fontWeight: index != 1
+                                            ? FontWeight.normal
+                                            : FontWeight.w700),
+                              ),
+                              Text(
+                                " (${notResponded.length})",
+                                style: AppTheme.getTheme()
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                        color: index != 1
+                                            ? const Color(0xffA5A5A5)
+                                            : ConstColor.black_Color,
+                                        fontSize: width * 0.043,
+                                        fontWeight: index != 1
+                                            ? FontWeight.normal
+                                            : FontWeight.w700),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

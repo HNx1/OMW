@@ -35,6 +35,7 @@ class _GuestListScreenState extends State<GuestListScreen> {
   List<UserModel> goingGuest = [];
   List<UserModel> maybeGuest = [];
   List<UserModel> notGoingGuest = [];
+  List<UserModel> notRespondedGuest = []
   String? currentUser = "";
   bool isDataLoad = false;
   @override
@@ -52,6 +53,7 @@ class _GuestListScreenState extends State<GuestListScreen> {
     goingGuest = [];
     maybeGuest = [];
     notGoingGuest = [];
+    notRespondedGuest = [];
 
     var user = PrefServices().getCurrentUserId();
 
@@ -93,6 +95,15 @@ class _GuestListScreenState extends State<GuestListScreen> {
           setState(() {
             notGoingGuest.addAll(objCreateEventNotifier.retrievedGuestUserList
                 .where((element) => element.uid == e.guestID && e.status == 1));
+          });
+        }
+      });
+
+      setState(() {
+        for (var e in objCreateEventNotifier.getEventDetails.guest!) {
+          setState(() {
+            notRespondedGuest.addAll(objCreateEventNotifier.retrievedGuestUserList
+                .where((element) => element.uid == e.guestID && e.status == null));
           });
         }
       });
@@ -352,6 +363,64 @@ class _GuestListScreenState extends State<GuestListScreen> {
                         ),
                       ),
                     )
+
+                    // Not Responded
+                    Expanded(
+                      flex: 0,
+                      child: GestureDetector(
+                        onTap: () async {
+                          if (isDataLoad == false) {
+                            setState(() {
+                              index = 0;
+                            });
+                            await getListOfGuestUser();
+                          }
+                        },
+                        child: Container(
+                          width: width * 0.25,
+                          margin: EdgeInsets.all(height * 0.006),
+                          padding: EdgeInsets.all(height * 0.014),
+                          decoration: BoxDecoration(
+                            color:
+                                index != 0 ? Colors.transparent : primaryColor,
+                            borderRadius: BorderRadius.circular(height * 0.1),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                TextUtils.NotResponded,
+                                style: AppTheme.getTheme()
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                        color: index != 0
+                                            ? const Color(0xffA5A5A5)
+                                            : ConstColor.black_Color,
+                                        fontSize: width * 0.043,
+                                        fontWeight: index != 0
+                                            ? FontWeight.normal
+                                            : FontWeight.w700),
+                              ),
+                              Text(
+                                " (${notResponded.length})",
+                                style: AppTheme.getTheme()
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                        color: index != 0
+                                            ? const Color(0xffA5A5A5)
+                                            : ConstColor.black_Color,
+                                        fontSize: width * 0.043,
+                                        fontWeight: index != 0
+                                            ? FontWeight.normal
+                                            : FontWeight.w700),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

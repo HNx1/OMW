@@ -124,6 +124,7 @@ class TextUtils {
   static const String BlockUser = "My Block List";
 
   static const String No = "Not Going";
+  static const String NotResponded = "Hasn't Responded"
   static const String GuestList = "Guest List";
   static const String Mutual = "Mutual Friends";
   static const String CreateEvent = "Create Event";

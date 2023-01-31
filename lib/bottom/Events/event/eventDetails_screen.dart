@@ -49,6 +49,13 @@ class EventDetailsScreen extends StatefulWidget {
   State<EventDetailsScreen> createState() => _EventDetailsScreenState();
 }
 
+enum responseType {
+  not_responded,
+  going,
+  maybe,
+  not_going,
+}
+
 class _EventDetailsScreenState extends State<EventDetailsScreen> {
   int index = 0;
   int panIndex = 0;
@@ -162,10 +169,13 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   //   // {"name": TextUtils.costSplit},
   //   // {"name": "Invite Friends"},
   // ];
+
   List<UserModel> goingGuest = [];
   List<UserModel> maybeGuest = [];
   List<UserModel> notGoingGuest = [];
-  List<int> attendance = [0, 0, 0];
+  Map<responseType, int> attendance = {
+    for (var _responseType in responseType.values) _responseType: 0
+  };
   bool isDataLoad = false;
   Future getListOfGuestUser(att) async {
     goingGuest = [];
@@ -200,13 +210,21 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
         );
       });
     }
+
+    for (var e in objCreateEventNotifier.getEventDetails.guest!) {
+      setState(() {
+        notRespondedGuest.addAll(
+          objCreateEventNotifier.retrievedGuestUserList
+              .where((element) => element.uid == e.guestID && e.status == null),
+        );
+      });
+    }
     if (att) {
       setState(() {
-        attendance = [
-          goingGuest.length,
-          notGoingGuest.length,
-          maybeGuest.length
-        ];
+        attendance[responseType.going] = goingGuest.Length,
+        attendance[responseType.maybe] = maybeGuest.Length,
+        attendance[responseType.not_going] = notGoingGuest.Length,
+        attendance[responseType.not_responded] = notRespondedGuest.Length,
       });
     }
 
@@ -975,7 +993,8 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        attendance[0].toString(),
+                                        attendance[responseType.going]
+                                            .toString(),
                                         style: AppTheme.getTheme()
                                             .textTheme
                                             .bodyText1!
@@ -1040,7 +1059,8 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        attendance[2].toString(),
+                                        attendance[responseType.maybe]
+                                            .toString(),
                                         style: AppTheme.getTheme()
                                             .textTheme
                                             .bodyText1!
@@ -1105,7 +1125,8 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        attendance[1].toString(),
+                                        attendance[responseType.not_going]
+                                            .toString(),
                                         style: AppTheme.getTheme()
                                             .textTheme
                                             .bodyText1!
