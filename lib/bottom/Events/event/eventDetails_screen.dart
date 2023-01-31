@@ -210,11 +210,21 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
         );
       });
     }
+
+    for (var e in objCreateEventNotifier.getEventDetails.guest!) {
+      setState(() {
+        notRespondedGuest.addAll(
+          objCreateEventNotifier.retrievedGuestUserList
+              .where((element) => element.uid == e.guestID && e.status == null),
+        );
+      });
+    }
     if (att) {
       setState(() {
         attendance[responseType.going] = goingGuest.Length,
         attendance[responseType.maybe] = maybeGuest.Length,
         attendance[responseType.not_going] = notGoingGuest.Length,
+        attendance[responseType.not_responded] = notRespondedGuest.Length,
       });
     }
 

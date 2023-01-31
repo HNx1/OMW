@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:omw/model/user_model.dart';
 
@@ -171,7 +170,7 @@ class AllDates {
 
   Map<String, dynamic> toJson() => {
         "selectedDate": selectedDate,
-        "guest": guestResponse == null
+        "guest": guestResponse == responseType.notResponded
             ? []
             : List<Map<String, dynamic>>.from(
                 guestResponse!.map((x) => x.toJson())),
