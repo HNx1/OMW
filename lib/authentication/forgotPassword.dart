@@ -117,6 +117,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         Form(
                           key: formKey,
                           child: CommonTextFromField(
+                            toolbarOptions: ToolbarOptions(
+                                copy: true,
+                                paste: true,
+                                cut: true,
+                                selectAll: true),
                             textCapitalization: TextCapitalization.none,
                             inputType: TextInputType.emailAddress,
 
@@ -129,7 +134,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         ),
 
                         ///-------------------- Try another way---------------------
-                       
                       ],
                     ),
                   ),
@@ -141,7 +145,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       if (isValid) {
                         objAuthrovider.resetPassword(
                             context, _EmailController.text);
-                        
                       }
                     },
                     child: const CommonButton(
