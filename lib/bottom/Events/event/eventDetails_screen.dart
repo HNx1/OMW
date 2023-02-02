@@ -105,7 +105,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
         }
       }
     }
-    if (lstAlldate.length == 0) {
+    if (lstAlldate.isEmpty) {
       guestList = objCreateEventNotifier.getEventDetails.guest!;
       guestList.forEach((element) {
         if (element.guestID == _auth.currentUser!.uid) {

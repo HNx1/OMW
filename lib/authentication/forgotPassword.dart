@@ -116,17 +116,19 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         ///-------------------- email TextField ---------------------
                         Form(
                           key: formKey,
-                          child: CommonTextFromField(
+                          child: TextFormField(
                             toolbarOptions: ToolbarOptions(
                                 copy: true,
                                 paste: true,
                                 cut: true,
                                 selectAll: true),
                             textCapitalization: TextCapitalization.none,
-                            inputType: TextInputType.emailAddress,
-
+                            // inputFormatters: <TextInputFormatter>[
+                            //   TextInputType.emailAddress
+                            // ],
+                            keyboardType: TextInputType.emailAddress,
                             controller: _EmailController,
-                            txt: TextUtils.enterEmail,
+                            initialValue: TextUtils.enterEmail,
 
                             // validator: isTappedWay ? isValidEmail : validateMobile,
                             validator: isValidEmail,
