@@ -4,7 +4,7 @@ import 'package:omw/model/notification_model.dart';
 
 import '../api/apiProvider.dart';
 import '../model/user_model.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 class NotificationNotifier extends ChangeNotifier {
   bool isLoading = false;
