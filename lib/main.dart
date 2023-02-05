@@ -92,8 +92,8 @@ Future<void> main() async {
   }
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('@mipmap/ic_launcher');
-  const IOSInitializationSettings initializationSettingsIOS =
-      IOSInitializationSettings(
+  const DarwinInitializationSettings initializationSettingsIOS =
+      DarwinInitializationSettings(
     requestSoundPermission: false,
     requestBadgePermission: false,
     requestAlertPermission: false,
@@ -123,10 +123,10 @@ Future<void> main() async {
           android: initializationSettingsAndroid,
           iOS: initializationSettingsIOS,
         ),
-        onSelectNotification: (message) async {
+        onDidReceiveNotificationResponse: (message) async {
           notificationCounterValueNotifer.value = 0;
           print("object${message}");
-          var data = json.decode(message!);
+          var data = json.decode(message.payload!);
           if (data["type"] == "Chatting") {
             chat = AllChat(
               data["sendBy"],
