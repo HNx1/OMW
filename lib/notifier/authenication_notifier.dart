@@ -12,7 +12,7 @@ import '../model/user_model.dart';
 import '../preference/preference.dart';
 import '../utils/colorUtils.dart';
 import '../widget/routesFile.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
