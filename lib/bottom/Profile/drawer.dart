@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:omw/authentication/addProfileScreen.dart';
+import 'package:omw/authentication/tutorialScreen.dart';
 import 'package:omw/bottom/Events/Myevents/myEvent_screen.dart';
 import 'package:omw/bottom/Profile/profile_screen.dart';
 
@@ -129,7 +131,10 @@ class _CommonDrawerState extends State<CommonDrawer> {
                               Text(
                                 "${objProviderNotifier.objUsers.firstName![0].toUpperCase()}${objProviderNotifier.objUsers.firstName!.substring(1).toLowerCase()}" +
                                     " " +
-                                    "${objProviderNotifier.objUsers.lastName![0].toUpperCase()}${objProviderNotifier.objUsers.lastName!.substring(1).toLowerCase()}",
+                                    (objProviderNotifier
+                                            .objUsers.lastName!.isEmpty
+                                        ? ""
+                                        : "${objProviderNotifier.objUsers.lastName![0].toUpperCase()}${objProviderNotifier.objUsers.lastName!.substring(1).toLowerCase()}"),
                                 style: AppTheme.getTheme()
                                     .textTheme
                                     .bodyText2!
@@ -203,7 +208,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
                 //     child: ComanButton(TextUtils.Payment, ConstantData.rs,
                 //         height * 0.028, width * 0.04)),
 
-                ///-------------- Setting Button ----------
+                ///-------------- Complete Profile Button ----------
 
                 GestureDetector(
                     onTap: () {
@@ -216,6 +221,34 @@ class _CommonDrawerState extends State<CommonDrawer> {
                       );
                     },
                     child: ComanButton(TextUtils.Settings, ConstantData.setting,
+                        height * 0.028, width * 0.03)),
+                objProviderNotifier.objUsers.lastName!.isEmpty
+                    ? GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => AddProfileScreen()),
+                            ),
+                          );
+                        },
+                        child: ComanButton("Complete your profile",
+                            ConstantData.contact, height * 0.028, width * 0.03))
+                    : Container(),
+
+                // See tutorial
+                GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => TutorialScreen()),
+                        ),
+                      );
+                    },
+                    child: ComanButton("How to Use OMW", ConstantData.menu,
                         height * 0.028, width * 0.03)),
               ],
             ),
