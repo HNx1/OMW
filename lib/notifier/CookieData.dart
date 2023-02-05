@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:omw/model/cookie_model.dart';
 import 'package:omw/model/termsAndConditionsModel.dart';
-import 'package:omw/widget/scaffoldSnackbar.dart';
+import 'package:omw/widget/scaffold_snackbar.dart';
 
 import '../api/apiProvider.dart';
 import '../model/bugsAndReport_model.dart';
