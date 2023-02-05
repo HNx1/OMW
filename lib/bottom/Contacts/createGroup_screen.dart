@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:omw/api/apiProvider.dart';
 import 'package:omw/notifier/group_notifier.dart';
 import 'package:omw/widget/commonButton.dart';
-import 'package:omw/widget/scaffoldSnackbar.dart';
+import 'package:omw/widget/scaffold_snackbar.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/constants.dart';
