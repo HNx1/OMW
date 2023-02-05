@@ -11,6 +11,8 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:omw/admin/admin_screen.dart';
 import 'package:omw/authentication/WelcomeScreen.dart';
 import 'package:omw/authentication/addProfileScreen.dart';
+import 'package:omw/authentication/tutorialScreen.dart';
+import 'package:omw/authentication/addPhoneScreen.dart';
 import 'package:omw/authentication/signUp.dart';
 import 'package:omw/bottom/Chat/IndividualChat/individual_chat_Room.dart';
 import 'package:omw/bottom/Events/event/eventDetails_screen.dart';
@@ -280,7 +282,8 @@ class _MyAppState extends State<MyApp> {
     Routes.Login: (BuildContext context) => LoginScreen(),
     Routes.Welcome: (BuildContext context) => WelcomeScreen(),
     Routes.SignUp: (BuildContext context) => SignUpScreen(),
-    Routes.Profile: (BuildContext context) => AddProfileScreen(),
+    Routes.Profile: (BuildContext context) => AddPhoneScreen(),
+    Routes.tutorial: (BuildContext context) => TutorialScreen(),
     Routes.HOME: (BuildContext context) => BottomNavBarScreen(
           index: 1,
           lastIndex: 1,
