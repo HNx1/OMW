@@ -14,7 +14,7 @@ import '../utils/colorUtils.dart';
 import '../utils/textUtils.dart';
 import '../widget/commonButton.dart';
 import '../widget/routesFile.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 import '../widget/validation.dart';
 
 class LoginScreen extends StatefulWidget {
