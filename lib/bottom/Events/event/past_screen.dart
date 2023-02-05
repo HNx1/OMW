@@ -248,7 +248,14 @@ class _PastScreenState extends State<PastScreen> {
                                                           child: Text(
                                                             "${objCreateEventNotifier.getpastEventList[index].lstUser!.firstName![0].toUpperCase()}${objCreateEventNotifier.getpastEventList[index].lstUser!.firstName!.substring(1).toLowerCase()}" +
                                                                 " " +
-                                                                "${objCreateEventNotifier.getpastEventList[index].lstUser!.lastName![0].toUpperCase()}${objCreateEventNotifier.getpastEventList[index].lstUser!.lastName!.substring(1).toLowerCase()}",
+                                                                (objCreateEventNotifier
+                                                                        .getpastEventList[
+                                                                            index]
+                                                                        .lstUser!
+                                                                        .lastName!
+                                                                        .isEmpty
+                                                                    ? ""
+                                                                    : "${objCreateEventNotifier.getpastEventList[index].lstUser!.lastName![0].toUpperCase()}${objCreateEventNotifier.getpastEventList[index].lstUser!.lastName!.substring(1).toLowerCase()}"),
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
@@ -603,7 +610,14 @@ class _PastScreenState extends State<PastScreen> {
                                                           child: Text(
                                                             "${widget.getList[index].lstUser!.firstName![0].toUpperCase()}${widget.getList[index].lstUser!.firstName!.substring(1).toLowerCase()}" +
                                                                 " " +
-                                                                "${widget.getList[index].lstUser!.lastName![0].toUpperCase()}${widget.getList[index].lstUser!.lastName!.substring(1).toLowerCase()}",
+                                                                (widget
+                                                                        .getList[
+                                                                            index]
+                                                                        .lstUser!
+                                                                        .lastName!
+                                                                        .isEmpty
+                                                                    ? ""
+                                                                    : "${widget.getList[index].lstUser!.lastName![0].toUpperCase()}${widget.getList[index].lstUser!.lastName!.substring(1).toLowerCase()}"),
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
