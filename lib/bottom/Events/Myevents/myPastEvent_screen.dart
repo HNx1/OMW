@@ -213,7 +213,13 @@ class _MyPastEventsState extends State<MyPastEvents> {
                                                 child: Text(
                                                   "${FinalListOfMyPastEvents[index].lstUser!.firstName![0].toUpperCase()}${FinalListOfMyPastEvents[index].lstUser!.firstName!.substring(1).toLowerCase()}" +
                                                       " " +
-                                                      "${FinalListOfMyPastEvents[index].lstUser!.lastName![0].toUpperCase()}${FinalListOfMyPastEvents[index].lstUser!.lastName!.substring(1).toLowerCase()}",
+                                                      (FinalListOfMyPastEvents[
+                                                                  index]
+                                                              .lstUser!
+                                                              .lastName!
+                                                              .isEmpty
+                                                          ? ""
+                                                          : "${FinalListOfMyPastEvents[index].lstUser!.lastName![0].toUpperCase()}${FinalListOfMyPastEvents[index].lstUser!.lastName!.substring(1).toLowerCase()}"),
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis,
