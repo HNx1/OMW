@@ -20,7 +20,7 @@ import '../../../utils/colorUtils.dart';
 import 'package:intl/intl.dart';
 
 import '../../../utils/textUtils.dart';
-import '../../../widget/scaffoldSnackbar.dart';
+import '../../../widget/scaffold_snackbar.dart';
 
 class EventChatPage extends StatefulWidget {
   @override
