@@ -10,7 +10,7 @@ import 'package:omw/utils/colorUtils.dart';
 
 import '../../notifier/AllChatingFunctions.dart';
 import '../../notifier/notication_notifier.dart';
-import '../../widget/scaffoldSnackbar.dart';
+import '../../widget/scaffold_snackbar.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
