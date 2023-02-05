@@ -6,11 +6,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:omw/model/user_model.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../api/apiProvider.dart';
 import '../model/createEvent_model.dart';
 import '../preference/preference.dart';
-import '../utils/permission_utils.dart';
 import '../widget/scaffold_snackbar.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -75,7 +75,9 @@ class CreateEventNotifier extends ChangeNotifier {
     contacts = [];
 
     await getAllUserList(context);
-    if (await requestContactsPermission()) {
+    await Permission.contacts.request();
+    PermissionStatus permission = await Permission.contacts.status;
+    if (permission == PermissionStatus.granted) {
       await getDeviceContactList();
       await getAppContactList();
       await getFinalAppContactList(context, docId);
@@ -86,7 +88,7 @@ class CreateEventNotifier extends ChangeNotifier {
 
   Future getDeviceContactList() async {
     contacts = await ContactsService.getContacts(
-      photoHighResolution: true,
+      photoHighResolution: false,
     );
     contacts!.forEach((element) {
       element.phones!.forEach((element) {
