@@ -226,6 +226,25 @@ class ApiProvider {
     });
   }
 
+  Future createProfile(
+    String firstName,
+    String lastName,
+    String imageUrl,
+    String birthdate,
+  ) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(_auth.currentUser!.uid)
+        .update({
+      "firstName": firstName,
+      "lastName": lastName,
+      "userProfile": imageUrl,
+      "birthDate": birthdate
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
   Future updateEmailAddress(
     String email,
   ) async {
