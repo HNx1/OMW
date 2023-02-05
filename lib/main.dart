@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:omw/admin/admin_screen.dart';
 import 'package:omw/authentication/WelcomeScreen.dart';
 import 'package:omw/authentication/addProfileScreen.dart';
@@ -55,9 +54,6 @@ Future<void> main() async {
   await Firebase.initializeApp();
   await FirebaseAuth.instance;
 
-  Stripe.publishableKey =
-      'pk_test_51LE9ZpLtPhgIm71dX7m1rLR3B3Vi5exebNDqQATBXNcC1knzvy3tYqt1gfI49geOyiPLXdkUPbyQ7kShg5eCMPSX00qGr7YNGe';
-  await Stripe.instance.applySettings();
   await PrefServices().init();
 
   if (!kIsWeb) {
