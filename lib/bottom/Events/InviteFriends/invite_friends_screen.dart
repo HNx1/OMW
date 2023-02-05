@@ -7,7 +7,7 @@ import 'package:omw/bottom/Events/Myevents/myEvent_screen.dart';
 import 'package:omw/constant/theme.dart';
 import 'package:omw/utils/colorUtils.dart';
 import 'package:omw/widget/commonButton.dart';
-import 'package:omw/widget/scaffoldSnackbar.dart';
+import 'package:omw/widget/scaffold_snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:omw/notifier/group_notifier.dart';
