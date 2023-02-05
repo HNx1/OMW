@@ -116,7 +116,7 @@ class AuthenicationNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> registeration({
+  Future<void> registration({
     required BuildContext context,
     required String firstName,
     required String lastname,
@@ -124,9 +124,70 @@ class AuthenicationNotifier extends ChangeNotifier {
     required String phoneNumber,
     required String imageUrl,
     required String birthdate,
-    required File imageFile,
     required String role,
     required String fcmToken,
+  }) async {
+    var isConnected;
+    try {
+      isLoading = true;
+      isConnected = await ApiProvider().checkConnection();
+    } catch (e) {
+      ScaffoldSnackbar.of(context).show(e.toString());
+      isLoading = false;
+    } finally {
+      isLoading = false;
+    }
+    if (isConnected == true) {
+      try {
+        isLoading = true;
+
+        await ApiProvider().checkConnection();
+
+        UserModel userModel = UserModel(
+          firstName: emailId.trim(),
+          lastName: "",
+          emailId: emailId.trim(),
+          phoneNumber: phoneNumber,
+          userProfile: "",
+          birthDate: "",
+          uid: _auth.currentUser!.uid,
+          role: role,
+          fcmToken: fcmToken,
+        );
+
+        if (await ApiProvider().isDuplicatePhoneNumber(phoneNumber)) {
+          ScaffoldSnackbar.of(context)
+              .show("Use another phone number.This is already registered");
+        } else {
+          await ApiProvider().AddUserData(userModel);
+
+          PrefServices().setIsUserLoggedIn(true);
+          var name = firstName.trim() + " " + lastname.trim();
+          PrefServices().setCurrentUserName(name);
+          var currentUser = await PrefServices().getCurrentUserName();
+          print("currentUser==========>$currentUser");
+          Navigator.pushReplacementNamed(context, Routes.tutorial);
+        }
+      } catch (e) {
+        print(e);
+        ScaffoldSnackbar.of(context).show(e.toString());
+        isLoading = false;
+      } finally {
+        isLoading = false;
+      }
+    } else {
+      ScaffoldSnackbar.of(context).show("Turn on the data and retry again");
+    }
+    notifyListeners();
+  }
+
+  Future<void> createProfile({
+    required BuildContext context,
+    required String firstName,
+    required String lastName,
+    required String imageUrl,
+    required String birthdate,
+    required File imageFile,
   }) async {
     var isConnected;
     try {
@@ -152,31 +213,15 @@ class AuthenicationNotifier extends ChangeNotifier {
             .putFile(imageFile);
         var downloadUrl = await snapshot.ref.getDownloadURL();
         imageUrl = downloadUrl;
-        UserModel userModel = UserModel(
-          firstName: firstName.trim(),
-          lastName: lastname.trim(),
-          emailId: emailId.trim(),
-          phoneNumber: phoneNumber,
-          userProfile: imageUrl.trim(),
-          birthDate: birthdate.trim(),
-          uid: _auth.currentUser!.uid,
-          role: role,
-          fcmToken: fcmToken,
-        );
+        await ApiProvider().createProfile(firstName.trim(), lastName.trim(),
+            imageUrl.trim(), birthdate.trim());
 
-        if (await ApiProvider().isDuplicatePhoneNumber(phoneNumber)) {
-          ScaffoldSnackbar.of(context)
-              .show("Use another phone number.This is already registered");
-        } else {
-          await ApiProvider().AddUserData(userModel);
-
-          PrefServices().setIsUserLoggedIn(true);
-          var name = firstName.trim() + " " + lastname.trim();
-          PrefServices().setCurrentUserName(name);
-          var currentUser = await PrefServices().getCurrentUserName();
-          print("currentUser==========>$currentUser");
-          Navigator.pushReplacementNamed(context, Routes.HOME);
-        }
+        PrefServices().setIsUserLoggedIn(true);
+        var name = firstName.trim() + " " + lastName.trim();
+        PrefServices().setCurrentUserName(name);
+        var currentUser = await PrefServices().getCurrentUserName();
+        print("currentUser==========>$currentUser");
+        Navigator.pushReplacementNamed(context, Routes.HOME);
       } catch (e) {
         print(e);
         ScaffoldSnackbar.of(context).show(e.toString());
