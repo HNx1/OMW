@@ -11,7 +11,7 @@ import '../api/apiProvider.dart';
 import '../model/createEvent_model.dart';
 import '../preference/preference.dart';
 import '../utils/permission_utils.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
