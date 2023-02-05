@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../api/apiProvider.dart';
 import '../model/block_User_Model.dart';
 import '../model/groupMessage_model.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
