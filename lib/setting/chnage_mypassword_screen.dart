@@ -9,7 +9,7 @@ import '../../../widget/commonButton.dart';
 import '../../../widget/commonTextFromField.dart';
 import '../../../widget/validation.dart';
 import '../notifier/authenication_notifier.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 class ChnageMyPassword extends StatefulWidget {
   const ChnageMyPassword({Key? key}) : super(key: key);
