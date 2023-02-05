@@ -216,7 +216,13 @@ class _MyUpcomingScreenState extends State<MyUpcomingScreen> {
                                                 child: Text(
                                                   "${FinalListOfMyUpcoming[index].lstUser!.firstName![0].toUpperCase()}${FinalListOfMyUpcoming[index].lstUser!.firstName!.substring(1).toLowerCase()}" +
                                                       " " +
-                                                      "${FinalListOfMyUpcoming[index].lstUser!.lastName![0].toUpperCase()}${FinalListOfMyUpcoming[index].lstUser!.lastName!.substring(1).toLowerCase()}",
+                                                      (FinalListOfMyUpcoming[
+                                                                  index]
+                                                              .lstUser!
+                                                              .lastName!
+                                                              .isEmpty
+                                                          ? ""
+                                                          : "${FinalListOfMyUpcoming[index].lstUser!.lastName![0].toUpperCase()}${FinalListOfMyUpcoming[index].lstUser!.lastName!.substring(1).toLowerCase()}"),
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis,
