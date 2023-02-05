@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:omw/bottom/Contacts/add_popup.dart';
 import 'package:omw/notifier/group_notifier.dart';
 import 'package:omw/widget/commonButton.dart';
-import 'package:omw/widget/scaffoldSnackbar.dart';
+import 'package:omw/widget/scaffold_snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
