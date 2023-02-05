@@ -10,7 +10,7 @@ import '../notifier/authenication_notifier.dart';
 import '../notifier/event_notifier.dart';
 import '../preference/preference.dart';
 import '../widget/routesFile.dart';
-import '../widget/scaffoldSnackbar.dart';
+import '../widget/scaffold_snackbar.dart';
 
 class Spalsh extends StatefulWidget {
   const Spalsh({Key? key}) : super(key: key);
