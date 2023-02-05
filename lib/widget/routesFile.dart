@@ -13,6 +13,6 @@ class Routes {
   static const payment = "payment/payment_screen.dart";
   static const chatting = "Chat/IndividualChat/individual_chat_Room.dart";
   static const eventDetails = "Events/event/eventDetails_screen.dart";
-   static const viewMultidate = "Create/seeMutiSelectedDate_screen.dart";
-
+  static const viewMultidate = "Create/seeMutiSelectedDate_screen.dart";
+  static const tutorial = "authentication/tutorialScreen.dart";
 }
