@@ -58,6 +58,12 @@ class ConstantData {
   static const block = baseImageURl + "block.png";
   static const paypal = baseImageURl + "paypal.png";
   static const card = baseImageURl + "card.png";
+  static const tutorial1 = baseImageURl + "tutorial1.JPG";
+  static const tutorial2 = baseImageURl + "tutorial2.JPG";
+  static const tutorial3 = baseImageURl + "tutorial3.JPG";
+  static const tutorial4 = baseImageURl + "tutorial4.JPG";
+  static const tutorial5 = baseImageURl + "tutorial5.JPG";
+  static const tutorial6 = baseImageURl + "tutorial6.JPG";
 }
 
 var height;
