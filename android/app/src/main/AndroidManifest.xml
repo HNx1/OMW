@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="h.omw">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="h.omw">
       <uses-permission android:name="android.permission.CAMERA" />
      <uses-permission android:name="android.permission.INTERNET"/>
      <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
@@ -18,7 +17,8 @@
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.AppCompat"
+            <!-- android:theme="@style/Theme.AppCompat" -->
+            android:theme="@style/NormalTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
